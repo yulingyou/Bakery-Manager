@@ -1,5 +1,4 @@
 import './App.css';
-
 import React from 'react';
 import { useState } from 'react';
 
@@ -15,7 +14,7 @@ function App() {
 
   return (
     <div className="App">
-      <p>{data}</p>
+      <p>{data} yesing</p>
     </div>
   );
 }
