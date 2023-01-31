@@ -8,6 +8,9 @@
 @tailwind utilities;
 
 @layer base {
+    html {
+        @apply font-sans
+    }
     h1 {
         @apply font-heading
     }
