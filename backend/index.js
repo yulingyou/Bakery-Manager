@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require("express");
 const itemsRouter = require("./routes/items");
+const ordersRouter = require("./routes/orders");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -15,6 +16,7 @@ const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@c
 
 app.use(express.json())
 app.use("/items", itemsRouter);
+app.use("/orders", ordersRouter);
 
 
 main().catch(err => console.log(err));
