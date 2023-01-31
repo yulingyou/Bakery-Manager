@@ -14,40 +14,26 @@ function Item({food}) {
   const decreaseCount = () => {
     setCounter((prevCounter) => prevCounter - 1)
   }
-
-  // container with border
-  //--- image
-  //--- price
-  //--- batch
-
-  //container for counter and add button //
-  //--- counter container
-  //--- add button
   
 
   return (
-    <body class="bg-rose-200">
-      <table class="table-auto">
-        <div class="min-h-screen display: inline-block">
-          <div class="grid grid-cols-3 gap-2 p-12">
-            <div class="bg-rose-100 col-span-4">{food.itemName}</div>
-            <img></img>
-            <div>Price: {food.price}</div>
-            <p>Batch Quantity: {food.batchQuantity}</p>
-            <div class="counters">
-              <button class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded-full" onClick={increaseCount}>+</button>
-              <p>{counter}</p>
-              <button class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded-full" onClick={decreaseCount}>-</button>
-            </div>
-              <button class="bg-rose-500 hover:bg-rose-700 text-white font-bold py-1 px-2 rounded-full">add to basket</button>
-            </div>
-          </div>
-        </table>
-    </body>
+    <div class="card w-96 bg-base-100 shadow-xl card-bordered">
+  <figure><img src=""/></figure>
+  <div class="card-body">
+    <h2 class="card-title">{food.itemName}</h2>
+    <p>Price: {food.price}</p>
+    <p>Batch Quantity: {food.batchQuantity}</p>
+    <div class="card-actions justify-end">
+      <button class='btn'onClick={increaseCount}>+</button>
+      <p>{counter}</p>
+      <button class='btn' onClick={decreaseCount}>-</button>
+      <button class="btn btn-primary">Add to basket</button>
+    </div>
+  </div>
+</div>
   )
 }
 
-// class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
 function App() {
   // const [data, setData] = useState(null);
 
