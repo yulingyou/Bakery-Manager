@@ -29,7 +29,7 @@ function Item({food}) {
       <button class='btn'onClick={increaseCount}>+</button>
       <p>{counter}</p>
       <button class='btn' onClick={decreaseCount}>-</button>
-      <button class="btn btn-primary">Add to basket</button>
+      <button class="bg-bone btn btn-primary">Add to basket</button>
     </div>
   </div>
 </div>
