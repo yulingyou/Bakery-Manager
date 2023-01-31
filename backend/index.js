@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({path: './.env.development'});
 const express = require("express");
 const mongoose = require("mongoose");
 const itemsRouter = require("./routes/items");
@@ -6,12 +6,9 @@ const itemsRouter = require("./routes/items");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-//Change 'dev' to 'production' when using real database
-process.env.STATUS === 'dev' ?(DATABASE_NAME = process.env.DATABASE)
-: (DATABASE_NAME = process.env.TEST_DATABASE)
 // Set up mongoose connection
 mongoose.set('strictQuery', false);
-const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ds0ycgm.mongodb.net/${DATABASE_NAME}?retryWrites=true&w=majority`;
+const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ds0ycgm.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
 
 app.use(express.json())
 app.use("/items", itemsRouter);
