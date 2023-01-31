@@ -17,12 +17,14 @@ function Item({food}) {
   
 
   return (
-    <div class="card w-96 bg-base-100 shadow-xl card-bordered">
+    <div class="bg-green card w-96 bg-base-100 shadow-xl card-bordered">
   <figure><img src=""/></figure>
-  <div class="card-body">
-    <h2 class="card-title">{food.itemName}</h2>
-    <p>Price: {food.price}</p>
-    <p>Batch Quantity: {food.batchQuantity}</p>
+      <div class="card-body">
+        <div class="bg-green text-bone">
+          <h1 class="card-title heading">{food.itemName}</h1>
+          <p>Price: {food.price}</p>
+          <p>Batch Quantity: {food.batchQuantity}</p>
+        </div>
     <div class="card-actions justify-end">
       <button class='btn'onClick={increaseCount}>+</button>
       <p>{counter}</p>
