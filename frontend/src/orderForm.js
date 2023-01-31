@@ -5,6 +5,7 @@ import { useState } from 'react';
 function OrderForm() {
 
   return (
+  <div class="h-screen bg-gray-400 flex items-center justify-center">
     <div className="bg-grey-lighter h-screen font-sans pt-20">
         <div className="container mx-auto mt-20 flex justify-center items-center">
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
@@ -83,6 +84,7 @@ function OrderForm() {
             </form>
           </div>
         </div>
+    </div>
     </div>
   );
 }
