@@ -1,4 +1,4 @@
-gconst app = require("../../index");
+const app = require("../../index");
 const request = require("supertest");
 require("../mongodb_helper");
 const Item = require('../../models/item');
