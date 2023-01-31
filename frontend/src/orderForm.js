@@ -5,14 +5,14 @@ import { useState } from 'react';
 function OrderForm() {
 
   return (
-  <div class="h-screen bg-gray-400 flex items-center justify-center">
+  <div class="h-screen flex items-center justify-center">
     <div className="bg-grey-lighter h-screen font-sans pt-20">
         <div className="container mx-auto mt-20 flex justify-center items-center">
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form>
               <div class="form-group mb-6">
                 <input type="text" class="form-control block
-                  w-full
+                  w-96
                   px-3
                   py-1.5
                   text-base
@@ -29,7 +29,8 @@ function OrderForm() {
               </div>
               <div class="form-group mb-6">
                 <input type="text" class="form-control block
-                  w-full
+                  w-96
+                  h-40
                   px-3
                   py-1.5
                   text-base
@@ -46,7 +47,7 @@ function OrderForm() {
               </div>
               <div class="form-group mb-6">
                 <input type="date" class="form-control block
-                  w-full
+                  w-96
                   px-3
                   py-1.5
                   text-base
