@@ -9,8 +9,10 @@ export default function Item({food}) {
       setCounter((prevCounter) => prevCounter + 1)
     }
     
-    const decreaseCount = () => {
-      setCounter((prevCounter) => prevCounter - 1)
+  const decreaseCount = () => {
+    if (this.counter > 0) {
+        setCounter((prevCounter) => prevCounter - 1)
+      }
     }
     
   
