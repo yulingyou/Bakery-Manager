@@ -3,6 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import Item from './Item';
 import BasketItem from './Basket/BasketItem';
+import Basket from './Basket/Basket';
 
 function App() {
   // const [data, setData] = useState(null);
@@ -12,9 +13,6 @@ function App() {
   //     .then((res) => res.json())
   //     .then((data) => setData(data.message));
   // }, []);
-
-
-
 
   const blueberryMuffin = {
     price: 22,
@@ -41,26 +39,17 @@ function App() {
   }
   
   const items = [blueberryMuffin, raspberryMuffin, chickenMuffin, lemonDrizzleCake]
-  // const basket = [blueberryMuffin,raspberryMuffin]
 
   const itemsDisplay = items.map((food) => {
     return <Item food={food}></Item> 
   })
 
-
-
   return (
     <div>
       <div class='flex flex-wrap'>
+        <Basket>Basket</Basket>
         {itemsDisplay}
       </div>
-      {/* <div className ='Basket'>
-
-
-      </div>
-        <div class='flex flex-wrap'>
-        {basketDisplay}
-      </div> */}
     </div>
   );
 }
