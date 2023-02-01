@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Item from './Item';
 import BasketItem from './Basket/BasketItem';
 import Basket from './Basket/Basket';
+import Navbar from './Navbar';
 
 function App() {
   // const [data, setData] = useState(null);
@@ -47,9 +48,12 @@ function App() {
   return (
     <div>
       <div class='flex flex-wrap'>
+        <Navbar></Navbar>
         <Basket>Basket</Basket>
-        {itemsDisplay}
       </div>
+      <div class='flex flex-wrap'>
+        {itemsDisplay}
+    </div>
     </div>
   );
 }
