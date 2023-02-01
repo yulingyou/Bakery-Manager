@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 import App from './App';
+import AddItem from './AddItem'
 import {
   createBrowserRouter,
   RouterProvider
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/orderform',
     element: <OrderForm />
+  },
+  {
+    path: '/addItem',
+    element: <AddItem />
   }
 ])
 
