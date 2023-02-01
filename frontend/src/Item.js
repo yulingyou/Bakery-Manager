@@ -14,7 +14,7 @@ export default function Item({food}) {
     }
     
     
-    return (
+  return (
       <div class="m-10 place-content-evenly bg-green card w-96 bg-base-100 shadow-xl card-bordered">
       <figure><img src="https://www.dinnerbyheston.co.uk/cms/images/_800x418_crop_center-center_82_none/Brown-Bread-Ice-cream-APW-copy.jpg?mtime=1575465674"/></figure>
         <div class="rounded-b-lg bg-green card-body">

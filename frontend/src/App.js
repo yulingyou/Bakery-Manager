@@ -2,7 +2,7 @@ import './styles.css';
 import React from 'react';
 import { useState } from 'react';
 import Item from './Item';
-import Basket from './Basket';
+import BasketItem from './Basket/BasketItem';
 
 function App() {
   // const [data, setData] = useState(null);
@@ -13,7 +13,6 @@ function App() {
   //     .then((data) => setData(data.message));
   // }, []);
 
-  // const basket = [1]
 
 
 
@@ -42,23 +41,26 @@ function App() {
   }
   
   const items = [blueberryMuffin, raspberryMuffin, chickenMuffin, lemonDrizzleCake]
+  // const basket = [blueberryMuffin,raspberryMuffin]
 
   const itemsDisplay = items.map((food) => {
-    return <Item food={food}> basket={basket}</Item> 
+    return <Item food={food}></Item> 
   })
 
-  // const basketDisplay = basket.map((item) => {
-  //   return <Basket item={item}></Basket>
-  // })
+
 
   return (
     <div>
       <div class='flex flex-wrap'>
         {itemsDisplay}
       </div>
+      {/* <div className ='Basket'>
+
+
+      </div>
         <div class='flex flex-wrap'>
         {basketDisplay}
-      </div>
+      </div> */}
     </div>
   );
 }
