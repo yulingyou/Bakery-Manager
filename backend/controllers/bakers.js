@@ -1,15 +1,26 @@
+const { restart } = require("nodemon");
 const Baker = require("../models/baker");
 
 const BakersController = {
   getAll: (req, res) => {
-    console.log("GET Bakers")
-    Baker.find(async (err, orders) => {
-      if (err) {
-        throw err;
-      }
-      console.log("Confirmed Orders:", orders)
-      res.status(200).json({ confirmedOrder:  orders });
-    });
+    console.log("GET CONFIRMED ORDERS")
+    try {
+      Baker.find((err, orders) => {
+        if (err) throw err;
+        console.log("Confirmed Orders:", orders)
+        res.status(200).json({ confirmedOrder:  orders });
+      });
+    } catch (err) {
+      console.error("Error retrieving confirmed orders", err);
+      res.status(500).json({message: "Error retrieving orders"})
+    }
+    // Baker.find(async (err, orders) => {
+    //   if (err) {
+    //     console.error("Error retrieving orders:", err);
+    //   }
+    //   console.log("Confirmed Orders:", orders)
+    //   res.status(200).json({ confirmedOrder:  orders });
+    // });
   },
 
   getBakerById: (req, res, next) => {
