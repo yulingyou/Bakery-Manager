@@ -1,6 +1,6 @@
 const Baker = require("../models/baker");
 
-const BakerController = {
+const BakersController = {
   getAll: (req, res) => {
     console.log("GET Bakers")
     Baker.find(async (err, orders) => {
@@ -23,7 +23,20 @@ const BakerController = {
     } catch (err) {
       return res.status(500).json({ message: err.message });
     }
-  }
+  },
+
+  createBaker: (req, res) => {
+    console.log("POST Baker")
+    const baker = new Baker(req.body);
+    console.log("NEW Baker: ", baker)
+    baker.save(async (err) => {
+      if (err) {
+        throw err;
+      }
+      const allBakers = await Baker.find()
+      res.status(201).json({bakers: allBakers});
+    }
+  )},
   
   // getByBakerId: (req, res) => {
   //   console.log("Confirm order")
@@ -39,4 +52,4 @@ const BakerController = {
 }
 
 
-module.exports = OrdersController
+module.exports = BakersController
