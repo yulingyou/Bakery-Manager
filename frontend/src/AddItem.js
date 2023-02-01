@@ -1,6 +1,15 @@
 import React from "react";
+import { useState } from "react";
 
 export default function AddItem() {
+
+    const [item, setItem] = useState('')
+    const [price, setPrice] = useState('')
+    const [costToBake, setCostToBake] = useState('')
+    const [ingredients, setIngredients] = useState('')
+    const [batchQuantity, setBatchQuantity] = useState('')
+
+    console.log(item)
 
     const item1 = {
         itemName: 'muffin one',
@@ -21,6 +30,16 @@ export default function AddItem() {
     }
 
     const allItems = [item1, item2]
+
+    const addItem = () => {
+        const itemObj = 
+            {itemName: item,
+            price,
+            image: 'placeholder image',
+            costToBake,
+            ingredients,
+            batchQuantity}
+    }
 
     const itemDisplay = allItems.map((item) => {
         return (
@@ -85,31 +104,56 @@ export default function AddItem() {
                         <label className="label">
                             <span className="label-text">Item</span>
                         </label>
-                        <input type="text" placeholder="Item" className="input input-bordered" />
+                        <input 
+                        type="text" 
+                        placeholder="Item" 
+                        className="input input-bordered" 
+                        value={item}
+                        onChange={(e) => setItem(e.target.value)}/>
                         </div>
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input type="text" placeholder="price" className="input input-bordered" />
+                        <input 
+                        type="text" 
+                        placeholder="price" 
+                        className="input input-bordered"
+                        value={price}
+                        onChange={(e) => setPrice(e.target.value)} />
                         </div>
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Cost to bake</span>
                         </label>
-                        <input type="text" placeholder="Cost to bake" className="input input-bordered" />
+                        <input 
+                        type="text" 
+                        placeholder="Cost to bake" 
+                        className="input input-bordered" 
+                        value={costToBake}
+                        onChange={(e) => setCostToBake(e.target.value)}/>
                         </div>
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Ingredients</span>
                         </label>
-                        <input type="text" placeholder="ingredients" className="input input-bordered" />
+                        <input 
+                        type="text" 
+                        placeholder="ingredients" 
+                        className="input input-bordered" 
+                        value={ingredients}
+                        onChange={(e) => setIngredients(e.target.value)}/>/>
                         </div>
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Batch Quantity</span>
                         </label>
-                        <input type="text" placeholder="Batch Quantity" className="input input-bordered" />
+                        <input 
+                        type="text" 
+                        placeholder="Batch Quantity" 
+                        className="input input-bordered" 
+                        value={batchQuantity}
+                        onChange={(e) => setBatchQuantity(e.target.value)}/>/>
                         </div>
                         <div className="form-control mt-6">
                         <label className="btn btn-primary" htmlFor="my-modal-5">Add</label>
