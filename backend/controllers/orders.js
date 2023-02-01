@@ -1,3 +1,4 @@
+const BatchOrder = require("../models/BatchOrder");
 const Order = require("../models/order");
 
 const OrdersController = {
@@ -23,6 +24,19 @@ const OrdersController = {
       res.status(201).json({Order: allOrders});
     }
   )},
+  addBatch: async (req, res) => {
+    const orderRef = '63da563fdd9375028be24ef8'
+    const order = await Order.findById(orderRef)
+
+    const batchOrder = new BatchOrder(req.body)
+    batchOrder.save()
+    // add the batchOrder to the order
+    const filter = {_id: orderRef}
+    const newOrders = [...order.orders, batchOrder]
+    await Order.findOneAndUpdate(filter, {orders: newOrders})
+
+    res.status(200).json({batchOrder: batchOrder})
+  }
 }
 
 
