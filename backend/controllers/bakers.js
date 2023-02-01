@@ -12,7 +12,7 @@ const BakersController = {
       });
     } catch (err) {
       console.error("Error retrieving confirmed orders", err);
-      res.status(500).json({message: "Error retrieving orders"})
+      res.status(500).json({message: "Error retrieving confirmed orders"})
     }
     // Baker.find(async (err, orders) => {
     //   if (err) {

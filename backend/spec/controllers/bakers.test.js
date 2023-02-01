@@ -1,10 +1,9 @@
 const Baker = require("../../models/baker");
 const BakersController = require("../../controllers/bakers")
-require('dotenv').config({path: './.env.test'});
-const app = require("../../index");
 
 describe("BakersController", () => {
-  it("should return all bakers", async () => {
+
+  it("should return all confirmed orders", async () => {
     const mockResponse = {
       status: jest.fn().mockReturnThis(),
       json: jest.fn()
@@ -18,4 +17,19 @@ describe("BakersController", () => {
     expect(mockResponse.status).toHaveBeenCalledWith(200);
     expect(mockResponse.json).toHaveBeenCalledWith({ confirmedOrder: mockOrders });
   })
+
+  it("should throw error when retrieving confirmed orders", async () => {
+    const mockRes = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn()
+    };
+
+    const mockError = new Error("Error retrieving confirmed orders");
+    Baker.find = jest.fn((cb) => cb(mockError));
+
+    await BakersController.getAll(null, mockRes);
+
+    expect(mockRes.status).toHaveBeenCalledWith(500);
+    expect(mockRes.json).toHaveBeenCalledWith({ message: mockError.message });
+  });
 })
