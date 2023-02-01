@@ -14,20 +14,13 @@ const BakersController = {
       console.error("Error retrieving confirmed orders", err);
       res.status(500).json({message: "Error retrieving confirmed orders"})
     }
-    // Baker.find(async (err, orders) => {
-    //   if (err) {
-    //     console.error("Error retrieving orders:", err);
-    //   }
-    //   console.log("Confirmed Orders:", orders)
-    //   res.status(200).json({ confirmedOrder:  orders });
-    // });
   },
 
   getBakerById: (req, res, next) => {
     try {
       const baker = Baker.findById(req.params.id);
       if (baker == null) {
-        return res.status(404).json({ message: "Cannot find baker" });
+        return res.status(404).json({ message: "Cannot find order" });
       }
       res.baker = baker;
       next();
