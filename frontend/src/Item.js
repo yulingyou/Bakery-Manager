@@ -33,7 +33,7 @@ export default function Item({food}) {
   return (
     <div>
       <br></br>
-      <div className="place-content-evenly mt-50 m-10  bg-green card w-96 bg-base-100 shadow-xl card-bordered">
+      <div className="place-content-evenly mt-50 m-10   drop-shadow-mdbg-green card w-96 bg-base-100 shadow-xl card-bordered">
       <figure><img src="https://www.dinnerbyheston.co.uk/cms/images/_800x418_crop_center-center_82_none/Brown-Bread-Ice-cream-APW-copy.jpg?mtime=1575465674"/></figure>
         <div className="rounded-b-lg bg-green card-body">
           <div className="bg-green text-900">
