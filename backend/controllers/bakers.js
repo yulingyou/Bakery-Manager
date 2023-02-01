@@ -3,12 +3,12 @@ const Baker = require("../models/baker");
 const BakersController = {
   getAll: (req, res) => {
     console.log("GET Bakers")
-    Baker.find(async (err, bakers) => {
+    Baker.find(async (err, orders) => {
       if (err) {
         throw err;
       }
-      console.log("Bakers:", bakers)
-      res.status(200).json({ bakers:  bakers });
+      console.log("Confirmed Orders:", orders)
+      res.status(200).json({ confirmedOrder:  orders });
     });
   },
 
@@ -37,7 +37,7 @@ const BakersController = {
       res.status(201).json({bakers: allBakers});
     }
   )},
-  
+
   // getByBakerId: (req, res) => {
   //   console.log("Confirm order")
   //   const orderId = req.order._id
