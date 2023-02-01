@@ -27,7 +27,6 @@ describe('/items', () => {
 
         let response = await request(app)
             .get("/items")
-            .send("Hello");
     
         let items = response.body.items.map((item) => ( item.item_name ));
         expect(items).toEqual(["berry"]);

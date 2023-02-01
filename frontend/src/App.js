@@ -2,6 +2,9 @@ import './styles.css';
 import React from 'react';
 import { useState } from 'react';
 import Item from './Item';
+import BasketItem from './Basket/BasketItem';
+import Basket from './Basket/Basket';
+import Navbar from './Navbar';
 
 function App() {
   // const [data, setData] = useState(null);
@@ -43,13 +46,18 @@ function App() {
   const items = [blueberryMuffin, raspberryMuffin, chickenMuffin, lemonDrizzleCake]
 
   const itemsDisplay = items.map((food) => {
-    return <Item food={food}></Item>
+    return <Item food={food}></Item> 
   })
 
   return (
-    <div class='flex flex-wrap'>
-      {itemsDisplay}
-
+    <div>
+      <div class='flex flex-wrap'>
+        <Navbar></Navbar>
+        <Basket>Basket</Basket>
+      </div>
+      <div class='flex flex-wrap'>
+        {itemsDisplay}
+    </div>
     </div>
   );
 }
