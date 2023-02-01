@@ -1,38 +1,7 @@
 import './styles.css';
 import React from 'react';
 import { useState } from 'react';
-
-
-function Item({food}) {
-
-  const [counter, setCounter] = useState(0)
-
-  const increaseCount = () => {
-    setCounter((prevCounter) => prevCounter + 1)
-  }
-  
-  const decreaseCount = () => {
-    setCounter((prevCounter) => prevCounter - 1)
-  }
-  
-
-  return (
-    <div class="card w-96 bg-base-100 shadow-xl card-bordered">
-  <figure><img src=""/></figure>
-  <div class="card-body">
-    <h2 class="card-title">{food.itemName}</h2>
-    <p>Price: {food.price}</p>
-    <p>Batch Quantity: {food.batchQuantity}</p>
-    <div class="card-actions justify-end">
-      <button class='btn'onClick={increaseCount}>+</button>
-      <p>{counter}</p>
-      <button class='btn' onClick={decreaseCount}>-</button>
-      <button class="btn btn-primary">Add to basket</button>
-    </div>
-  </div>
-</div>
-  )
-}
+import Item from './Item';
 
 function App() {
   // const [data, setData] = useState(null);
@@ -60,16 +29,23 @@ function App() {
     itemName: 'Chicken Muffin',
     batchQuantity: 22
   }
+
+  const lemonDrizzleCake = {
+    price: 20,
+    itemName: 'Lemon Drizzle Cake',
+    batchQuantity: 1
+  }
   
-  const items = [blueberryMuffin, raspberryMuffin, chickenMuffin]
+  const items = [blueberryMuffin, raspberryMuffin, chickenMuffin, lemonDrizzleCake]
 
   const itemsDisplay = items.map((food) => {
     return <Item food={food}></Item>
   })
 
   return (
-    <div class='flex'>
+    <div class='flex flex-wrap'>
       {itemsDisplay}
+
     </div>
   );
 }
