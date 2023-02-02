@@ -1,13 +1,24 @@
 import './styles.css';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function OrderForm() {
+const OrderForm = () => {
+  const [order, setOrderSummary] = useState([]);
+
+  useEffect(() => {
+    fetch('/orders', {
+      method: "get",
+      body: JSON.stringify({ message: order})
+    })
+      .then(res => res.json())
+      .then(data => setOrderSummary(data))
+      .catch(error => console.error(error));
+  }, [order]);
 
   return (
   <div class="h-screen flex items-center justify-center">
-    <div className="bg-grey-lighter h-screen font-sans pt-20">
-        <div className="container mx-auto mt-20 flex justify-center items-center">
+    <div className="h-screen pt-20 font-sans bg-grey-lighter">
+        <div className="container flex items-center justify-center mx-auto mt-20">
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form>
               <div class="form-group mb-6">
@@ -28,7 +39,7 @@ function OrderForm() {
                   placeholder="Company Name"></input>
               </div>
               <div class="form-group mb-6">
-                <input type="text" class="form-control block
+                <div type="text" class="form-control block
                   w-96
                   h-40
                   px-3
@@ -43,7 +54,7 @@ function OrderForm() {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="order_summary"
-                  placeholder="Order Summary"></input>
+                  placeholder="Order Summary">{setOrderSummary}</div>
               </div>
               <div class="form-group mb-6">
                 <input type="date" class="form-control block
