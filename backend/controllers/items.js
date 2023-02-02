@@ -56,8 +56,12 @@ const ItemsController = {
     uploadBytes(storageRef, image).then((snapshot) => {
     console.log('Uploaded a blob or file!');
     });
-    
-  }
+},
+    getItemByName: async (req, res) => {
+      const filter = { item_name: req.params.name};
+      const item = await Item.find(filter).populate().exec()
+      res.status(200).json({item: item})
+    }
 }
 
 
