@@ -1,12 +1,12 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Item(props) {
 
     const [counter, setCounter] = useState(0)
     const [basketText, setBasketText] = useState("Add to Basket"); 
     const [inBasket, setInBasket] = useState(false); 
-    const [mostRecentBatchID, setMostRecentBatchID] = useState(""); 
+    const [batchID, setBatchID] = useState(""); 
 
     const increaseCount = () => {
       setCounter((prevCounter) => prevCounter + 1)
@@ -18,7 +18,27 @@ export default function Item(props) {
       }
   }
 
-  const addBatchToOrder = async () => {
+
+  useEffect(() => {
+    fetch("orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
+    })
+    .then(response => response.json())
+    .then(async data => {
+      console.log("IN BASKET:", data[0].orders)
+      data[0].orders.forEach(element => {
+        if (element.item === props.food.item_name){
+          console.log("ELEMENT:" ,element.item, "=", props.food.item_name)
+          setInBasket(true)
+          setBatchID(element._id)
+          changeBasketButtonText("In Basket")
+          setCounter(element.batch_quantity)
+        }
+      });
+    });
+  }, [])
+  
+
+const addBatchToOrder = async () => {
     let response = await fetch('/orders/addBatch', {
       method: 'post',
       headers: {
@@ -32,15 +52,13 @@ export default function Item(props) {
       console.log("Batch added: " + response.status)
       let data = await response.json()
       console.log("BATCH ORDER ADDED:", data)
-      setMostRecentBatchID(data.batchOrder._id)
+      setBatchID(data.batchOrder._id)
     }
   }
-  console.log("MOST RECENT BATCHID:", mostRecentBatchID)
 
   const removeBatchFromOrder = async () => {
-    console.log("TRYING TO REMOVE BATCH:", mostRecentBatchID)
-    let response = await fetch(`/orders/delete/batch/${mostRecentBatchID}`, {
-      method: 'post',
+    let response = await fetch(`/orders/delete/batch/${batchID}`, {
+      method: 'delete',
       headers: {
         'Content-Type': 'application/json'
       }, })
@@ -48,7 +66,6 @@ export default function Item(props) {
       console.log("post failed, Error status:" + response.status)
     } else {
       console.log("Batch removed: " + response.status)
-      let data = await response.json()
     }
   }
 
@@ -65,8 +82,8 @@ export default function Item(props) {
       addBatchToOrder();
     }
   }
-
   const changeBasketButtonText = (text) => setBasketText(text);
+
 
     return (
       <div className="m-10 place-content-evenly bg-green card w-96 bg-base-100 shadow-xl card-bordered">
