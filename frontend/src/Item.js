@@ -41,7 +41,7 @@ export default function Item(props) {
       setInBasket(false)
 
     }
-    else{
+    else if (!inBasket && counter >0){
       changeBasketButtonText("In Basket")
       setInBasket(true)
       addBatchToOrder();
