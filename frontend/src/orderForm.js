@@ -7,7 +7,7 @@ const OrderForm = () => {
   // const [order, setOrderSummary] = useState([]);
 
   useEffect(() => {
-    fetch('/orders', {
+    fetch('http://localhost:3001/orders', { //specify the localhost
       method: "get",
       // body: JSON.stringify({ message: order})
     })
