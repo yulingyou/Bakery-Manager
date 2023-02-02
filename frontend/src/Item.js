@@ -6,6 +6,7 @@ export default function Item(props) {
     const [counter, setCounter] = useState(0)
     const [basketText, setBasketText] = useState("Add to Basket"); 
     const [inBasket, setInBasket] = useState(false); 
+    const [mostRecentBatchID, setMostRecentBatchID] = useState(""); 
 
     const increaseCount = () => {
       setCounter((prevCounter) => prevCounter + 1)
@@ -31,14 +32,31 @@ export default function Item(props) {
       console.log("Batch added: " + response.status)
       let data = await response.json()
       console.log("BATCH ORDER ADDED:", data)
+      setMostRecentBatchID(data.batchOrder._id)
     }
+  }
+  console.log("MOST RECENT BATCHID:", mostRecentBatchID)
 
+  const removeBatchFromOrder = async () => {
+    console.log("TRYING TO REMOVE BATCH:", mostRecentBatchID)
+    let response = await fetch(`/orders/delete/batch/${mostRecentBatchID}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      }, })
+    if (response.status !== 201) {
+      console.log("post failed, Error status:" + response.status)
+    } else {
+      console.log("Batch removed: " + response.status)
+      let data = await response.json()
+    }
   }
 
   const updateBasket = () => {
     if (inBasket){
       changeBasketButtonText("Add to basket")
       setInBasket(false)
+      removeBatchFromOrder();
 
     }
     else if (!inBasket && counter >0){
