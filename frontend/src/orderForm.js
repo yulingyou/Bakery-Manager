@@ -3,7 +3,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 const OrderForm = () => {
-  const [order, setOrderSummary] = useState([]);
+  const [companyName, setCompanyName] = useState("");
+  // const [order, setOrderSummary] = useState([]);
 
   useEffect(() => {
     fetch('/orders', {
@@ -11,18 +12,26 @@ const OrderForm = () => {
       // body: JSON.stringify({ message: order})
     })
       .then(res => res.json())
-      .then(data => setOrderSummary(data))
+      .then((data) => {
+        console.log(data)
+        data.orders.map((order) => {
+          setCompanyName(order.company)
+          console.log(order.company)
+          console.log(order.orders)
+        })
+      })
       .catch(error => console.error(error));
-  }, [order]);
+  }, []);
 
   return (
-  <div className="h-screen flex items-center justify-center">
+  <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
         <div className="container flex items-center justify-center mx-auto mt-20">
-          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+          <div className="block max-w-md p-6 bg-white rounded-lg shadow-lg">
             <form>
-              <div className="form-group mb-6">
-                <input type="text" className="form-control block
+              <div className="mb-6 form-group">
+                <div type="text" className="form-control block
+                  h-10
                   w-96
                   px-3
                   py-1.5
@@ -36,9 +45,9 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="company_name"
-                  placeholder="Company Name"></input>
+                  placeholder="Company Name">{companyName}</div>
               </div>
-              <div className="form-group mb-6">
+              <div className="mb-6 form-group">
                 <div type="text" className="form-control block
                   w-96
                   h-40
@@ -54,9 +63,10 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="order_summary"
-                  placeholder="Order Summary">{order}</div>
+                  placeholder="Order Summary">
+                  </div>
               </div>
-              <div className="form-group mb-6">
+              <div className="mb-6 form-group">
                 <input type="date" className="form-control block
                   w-96
                   px-3
