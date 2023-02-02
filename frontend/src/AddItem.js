@@ -1,6 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+// const { ref, getStorage, uploadBytes } = require("firebase/storage");
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import storage from "./firebaseConfig";
+
 export default function AddItem() {
 
     const [item, setItem] = useState('')
@@ -10,11 +14,12 @@ export default function AddItem() {
     const [batchQuantity, setBatchQuantity] = useState('')
     const [itemImage, setItemImage] = useState('')
     const [file, setFile] = useState('')
+    const [imageUrl, setImageUrl] = useState('')
 
     useEffect(() => {
 
         const fetchImage = async () => {
-            const response = await fetch('/items/getImage:id', {
+            const response = await fetch('/items/getImage', {
             })
             const data = await response.json()
             setItemImage(data)
@@ -27,22 +32,27 @@ export default function AddItem() {
         fetchImage()
     }, [])
 
-    const uploadImage = async () => {
+    const uploadIm = async () => {
+        const storage = getStorage();
 
-        console.log('file inside upload image', file)
-        
-        const response = await fetch('/items/postImage', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({name: file.name}),
-        })
-        const data = await response.json()
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        const storageRef = ref(storage, 'images/' + file.name);
+        const uploadTask = uploadBytesResumable(storageRef, file);
 
-        if (response.ok) {
-            console.log(data)
-        }
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on('state_changed',
+                (snapshot) => {}, 
+                (error) => {
+                        console.log(error)
+                    }, 
+                () => {
+                    // Upload completed successfully, now we can get the download URL
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    // setImageUrl(downloadURL)
+                    });
+                }
+                );
     }
 
     function handleChange(event) {
@@ -75,7 +85,7 @@ export default function AddItem() {
         const itemObj = 
             {itemName: item,
             price,
-            image: 'placeholder image',
+            image: imageUrl,
             costToBake,
             ingredients,
             batchQuantity}
@@ -196,10 +206,10 @@ export default function AddItem() {
                         onChange={(e) => setBatchQuantity(e.target.value)}/>
                         </div>
                         <div className="form-control mt-6">
-                        <label className="btn btn-primary" htmlFor="my-modal-5" onClick={uploadImage}>Add</label>
+                        <label className="btn btn-primary" htmlFor="my-modal-5" onClick={uploadIm}>Add</label>
                        </div>
                       <input type="file" 
-                      class="file-input file-input-bordered file-input-xs w-full max-w-xs" 
+                      className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
                       onChange={handleChange} 
                       accept="/image/*"/>
                     </div>
