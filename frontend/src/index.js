@@ -7,6 +7,7 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import OrderForm from './orderForm';
+import Confirmation from './Confirmation';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: '/orderform',
     element: <OrderForm />
+  },
+  {
+    path: '/confirmation',
+    element: <Confirmation />
   }
 ])
 
