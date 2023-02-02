@@ -40,8 +40,11 @@ console.log("outside:",companyName)
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
         <div className="container flex items-center justify-center mx-auto mt-20">
-          <div className="block max-w-md p-6 bg-white rounded-lg shadow-lg">
+          <div className="block max-w-md p-6 rounded-lg shadow-lg bg-green">
             <form>
+            <h1 className="mb-12 text-3xl text-center font-heading">
+              Order Form
+            </h1>
               <div className="mb-6 form-group">
                 <div type="text" className="form-control block
                   h-10
@@ -100,10 +103,10 @@ console.log("outside:",companyName)
               </div>
               <div>
               <button type="submit" className="
+                btn
                 w-full
                 px-6
                 py-2.5
-                bg-blue-600
                 text-white
                 font-medium
                 text-xs
@@ -111,9 +114,9 @@ console.log("outside:",companyName)
                 uppercase
                 rounded
                 shadow-md
-                hover:bg-blue-700 hover:shadow-lg
-                focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
-                active:bg-blue-800 active:shadow-lg
+                hover:bg-#A9A9A9 hover:shadow-lg
+                focus:bg-#A9A9A9 focus:shadow-lg focus:outline-none focus:ring-0
+                active:bg-#A9A9A9 active:shadow-lg
                 transition
                 duration-150
                 ease-in-out"
