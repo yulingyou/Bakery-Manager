@@ -8,7 +8,7 @@ const OrderForm = () => {
   useEffect(() => {
     fetch('/orders', {
       method: "get",
-      body: JSON.stringify({ message: order})
+      // body: JSON.stringify({ message: order})
     })
       .then(res => res.json())
       .then(data => setOrderSummary(data))
@@ -16,13 +16,13 @@ const OrderForm = () => {
   }, [order]);
 
   return (
-  <div class="h-screen flex items-center justify-center">
+  <div className="h-screen flex items-center justify-center">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
         <div className="container flex items-center justify-center mx-auto mt-20">
-          <div class="block p-6 rounded-lg shadow-lg bg-white max-w-md">
+          <div className="block p-6 rounded-lg shadow-lg bg-white max-w-md">
             <form>
-              <div class="form-group mb-6">
-                <input className="company name" type="text" class="form-control block
+              <div className="form-group mb-6">
+                <input type="text" className="form-control block
                   w-96
                   px-3
                   py-1.5
@@ -38,8 +38,8 @@ const OrderForm = () => {
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="company_name"
                   placeholder="Company Name"></input>
               </div>
-              <div class="form-group mb-6">
-                <div type="text" class="form-control block
+              <div className="form-group mb-6">
+                <div type="text" className="form-control block
                   w-96
                   h-40
                   px-3
@@ -54,10 +54,10 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="order_summary"
-                  placeholder="Order Summary">{setOrderSummary}</div>
+                  placeholder="Order Summary">{order}</div>
               </div>
-              <div class="form-group mb-6">
-                <input type="date" class="form-control block
+              <div className="form-group mb-6">
+                <input type="date" className="form-control block
                   w-96
                   px-3
                   py-1.5
@@ -74,7 +74,7 @@ const OrderForm = () => {
                   placeholder="Date needed by"></input>
               </div>
               <div>
-              <button type="submit" class="
+              <button type="submit" className="
                 w-full
                 px-6
                 py-2.5
