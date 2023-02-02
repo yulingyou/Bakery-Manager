@@ -4,25 +4,31 @@ import { useState, useEffect } from 'react';
 
 const OrderForm = () => {
   const [companyName, setCompanyName] = useState("");
-  // const [order, setOrderSummary] = useState([]);
+  const [order, setOrderSummary] = useState("");
+
 
   useEffect(() => {
-    fetch('http://localhost:3001/orders', { //specify the localhost
+    fetch('/orders', { //specify the localhost
       method: "get",
       // body: JSON.stringify({ message: order})
     })
       .then(res => res.json())
       .then((data) => {
         console.log(data)
-        data.orders.map((order) => {
-          setCompanyName(order.company)
-          console.log(order.company)
-          console.log(order.orders)
-        })
+        setCompanyName(data.orders[0].company)
+        setOrderSummary(data.orders[0].orders)
+        // data.orders.map((order) => {
+        //   console.log(order.company)
+        //   console.log(order.orders)
+        //   setCompanyName(order.company)
+        //   console.log(companyName)
+          
+        // })
       })
       .catch(error => console.error(error));
   }, []);
 
+console.log("outside:",companyName)
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
@@ -45,7 +51,7 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="company_name"
-                  placeholder="Company Name">{companyName}</div>
+                  placeholder="Company Name">Company Name: {companyName}</div>
               </div>
               <div className="mb-6 form-group">
                 <div type="text" className="form-control block
@@ -63,7 +69,7 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="order_summary"
-                  placeholder="Order Summary">
+                  placeholder="Order Summary">{order}
                   </div>
               </div>
               <div className="mb-6 form-group">
