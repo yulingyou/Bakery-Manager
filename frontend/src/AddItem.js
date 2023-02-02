@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AddItem() {
 
@@ -8,11 +8,51 @@ export default function AddItem() {
     const [costToBake, setCostToBake] = useState('')
     const [ingredients, setIngredients] = useState('')
     const [batchQuantity, setBatchQuantity] = useState('')
+    const [itemImage, setItemImage] = useState('')
+    const [file, setFile] = useState('')
 
-    console.log(item)
+    useEffect(() => {
+
+        const fetchImage = async () => {
+            const response = await fetch('/items/getImage:id', {
+            })
+            const data = await response.json()
+            setItemImage(data)
+
+            if (response.ok) {
+                console.log('URL FETCHED', data)
+            }
+        }
+        
+        fetchImage()
+    }, [])
+
+    const uploadImage = async () => {
+
+        console.log('file inside upload image', file)
+        
+        const response = await fetch('/items/postImage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({name: file.name}),
+        })
+        const data = await response.json()
+
+        if (response.ok) {
+            console.log(data)
+        }
+    }
+
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+        }
+
+    console.log(file)
 
     const item1 = {
-        itemName: 'muffin one',
+        itemName: 'fish',
         price: 11,
         image: 'placeholder image',
         costToBake: 4,
@@ -21,7 +61,7 @@ export default function AddItem() {
     }
 
     const item2 = {
-        itemName: 'muffin two',
+        itemName: 'otherfish',
         price: 10,
         image: 'placeholder image',
         costToBake: 2,
@@ -48,7 +88,7 @@ export default function AddItem() {
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                <img src={itemImage.url} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>
@@ -142,7 +182,7 @@ export default function AddItem() {
                         placeholder="ingredients" 
                         className="input input-bordered" 
                         value={ingredients}
-                        onChange={(e) => setIngredients(e.target.value)}/>/>
+                        onChange={(e) => setIngredients(e.target.value)}/>
                         </div>
                         <div className="form-control">
                         <label className="label">
@@ -153,11 +193,15 @@ export default function AddItem() {
                         placeholder="Batch Quantity" 
                         className="input input-bordered" 
                         value={batchQuantity}
-                        onChange={(e) => setBatchQuantity(e.target.value)}/>/>
+                        onChange={(e) => setBatchQuantity(e.target.value)}/>
                         </div>
                         <div className="form-control mt-6">
-                        <label className="btn btn-primary" htmlFor="my-modal-5">Add</label>
-                        </div>
+                        <label className="btn btn-primary" htmlFor="my-modal-5" onClick={uploadImage}>Add</label>
+                       </div>
+                      <input type="file" 
+                      class="file-input file-input-bordered file-input-xs w-full max-w-xs" 
+                      onChange={handleChange} 
+                      accept="/image/*"/>
                     </div>
                     <div className="modal-action">
                     <label htmlFor="my-modal-5" className="btn">Close</label>
