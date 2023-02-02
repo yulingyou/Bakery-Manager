@@ -5,28 +5,35 @@ import { useState, useEffect } from 'react';
 const OrderForm = () => {
   const [companyName, setCompanyName] = useState("");
   const [order, setOrderSummary] = useState("");
+  const [dateNeededBy, setDateNeededBy] = useState ("");
 
 
   useEffect(() => {
     fetch('/orders', { //specify the localhost
       method: "get",
-      // body: JSON.stringify({ message: order})
     })
       .then(res => res.json())
       .then((data) => {
         console.log(data)
         setCompanyName(data.orders[0].company)
         setOrderSummary(data.orders[0].orders)
-        // data.orders.map((order) => {
-        //   console.log(order.company)
-        //   console.log(order.orders)
-        //   setCompanyName(order.company)
-        //   console.log(companyName)
-          
-        // })
+  
       })
       .catch(error => console.error(error));
   }, []);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    fetch('/orders', {
+      method: "post",
+      body: JSON.stringify({ date: dateNeededBy })
+    })
+    .then(res => res.json())
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(error => console.error(error));
+  };
 
 console.log("outside:",companyName)
   return (
@@ -87,7 +94,9 @@ console.log("outside:",companyName)
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="needed_by_date"
-                  placeholder="Date needed by"></input>
+                  placeholder="Date needed by"
+                  value={dateNeededBy}
+                  onChange={e => setDateNeededBy(e.target.value)}></input>
               </div>
               <div>
               <button type="submit" className="
@@ -108,7 +117,7 @@ console.log("outside:",companyName)
                 transition
                 duration-150
                 ease-in-out"
-                id="submit" >Send</button>
+                onSubmit={handleSubmit} >Send</button>
               </div>
             </form>
           </div>
