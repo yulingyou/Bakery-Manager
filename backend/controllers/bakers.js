@@ -2,8 +2,8 @@ const { restart } = require("nodemon");
 const Baker = require("../models/baker");
 
 const BakersController = {
-  getAll: (req, res) => {
-    console.log("GET CONFIRMED ORDERS")
+  getAll: (req, res, next) => {
+    // console.log("GET CONFIRMED ORDERS")
     try {
       Baker.find((err, orders) => {
         if (err) throw err;
@@ -41,19 +41,6 @@ const BakersController = {
       res.status(201).json({bakers: allBakers});
     }
   )},
-
-  // getByBakerId: (req, res) => {
-  //   console.log("Confirm order")
-  //   const orderId = req.order._id
-  //   Baker.find(async (err, orders) => {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     console.log("Orders:", orders)
-  //     res.status(200).json({ orders:  orders });
-  //   });
-  // },
 }
-
 
 module.exports = BakersController
