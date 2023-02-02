@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-export default function Item({food}) {
+export default function Item(props) {
 
     const [counter, setCounter] = useState(0)
     const [basketText, setBasketText] = useState("Add to Basket"); 
@@ -17,14 +17,34 @@ export default function Item({food}) {
       }
   }
 
+  const addBatchToOrder = async () => {
+    let response = await fetch('/orders/addBatch', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify({ item: props.food.item_name, batch_quantity: counter, price_per_batch: props.food.price})
+      })
+    if (response.status !== 201) {
+      console.log("post failed, Error status:" + response.status)
+    } else {
+      console.log("Batch added: " + response.status)
+      let data = await response.json()
+      console.log("BATCH ORDER ADDED:", data)
+    }
+
+  }
+
   const updateBasket = () => {
     if (inBasket){
       changeBasketButtonText("Add to basket")
       setInBasket(false)
+
     }
     else{
       changeBasketButtonText("In Basket")
       setInBasket(true)
+      addBatchToOrder();
     }
   }
 
@@ -35,14 +55,14 @@ export default function Item({food}) {
         <div className="object-fit contain">
         <figure class="rounded -lg max-w-lg h-64 relative max-w-sm transition-all duration-300 ">
             <a href="#">
-              <img class="rounded-lg" src={food.itemImage} />
+              <img class="rounded-lg" src={props.food.image} />
           </a>
           </figure>
         <div className="rounded-b-lg bg-green card-body">
           <div className="bg-green text-black">
-            <h1 className="card-title heading">{food.itemName}</h1>
-            <p>Price: {food.price}</p>
-            <p>Batch Quantity: {food.batchQuantity}</p>
+            <h1 className="card-title heading">{props.food.item_name}</h1>
+            <p>Price: {props.food.price}</p>
+            <p>Batch Quantity: {props.food.batch_quantity}</p>
           </div>
       <div className="card-actions justify-end w-28">
       <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={decreaseCount}>-</button>

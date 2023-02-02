@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const BatchOrderSchema = new Schema({
   item: { type: String },
   batch_quantity: { type: Number},
-//   price_per_batch: {type: Number},
+  price_per_batch: {type: Number},
 });
 
 // Export model
