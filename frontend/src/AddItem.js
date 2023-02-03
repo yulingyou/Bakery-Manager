@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+// NEED THIS:
+import storage from "./firebaseConfig";
 
 export default function AddItem() {
 
@@ -110,13 +112,31 @@ export default function AddItem() {
         setItems(data.items)
     }
 
-    const editItem = async (id) => {
-        const response = await fetch('/', {
+    const selectedItem = (itemObj) => {
+        setItem(itemObj.itemName)
+        setPrice(itemObj.price)
+        setCostToBake(itemObj.costToBake)
+        setIngredients(itemObj.ingredients)
+        setBatchQuantity(itemObj.batchQuantity)
+        setFile('')
+    }
+
+    const editItem = async (itemObj) => {
+
+        selectedItem(itemObj)
+
+        const updatedItem = {itemName: item,
+            price,
+            costToBake,
+            ingredients,
+            batchQuantity}
+
+        const response = await fetch('/items/editItem', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({id}),
+            body: JSON.stringify({id: itemObj._id, updatedItem}),
         })
         const data = await response.json()
 
@@ -152,7 +172,9 @@ export default function AddItem() {
         </td>
         <td>{item.batchQuantity}</td>
         <th className="flex justify-around">
-          <button className="btn">edit</button>
+          {/* <button className="btn" onClick={() => {editItem(item)}}>edit</button> */}
+          <label htmlFor="my-modal-5" className="btn" onClick={() => {selectedItem(item)}}>edit</label>
+
           <button className="btn" onClick={() => {deleteItem(item._id)}}>delete</button>
         </th>
       </tr>
