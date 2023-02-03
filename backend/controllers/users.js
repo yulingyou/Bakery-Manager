@@ -18,7 +18,8 @@ const UsersController = {
       email: req.body.email,
       password: req.body.password,
       address: req.body.address,
-      phoneNumber: req.body.phone_number
+      phoneNumber: req.body.phone_number,
+      typeOfBusiness: req.body.typeOfBusiness
     });
 
     user.save((err) => {
@@ -29,16 +30,16 @@ const UsersController = {
       }
     });
   },
-  Delete: (req, res) => {
-    const email = req.body.email
-    try {
-    const user = User.findOne({ email })
-    user.remove()
-    res.status(200).json({ message: 'User successfully deleted.' })
-    } catch (error) {
-    res.status(400).json({ message: error.message })
-    }
-    }
+  // Delete: (req, res) => {
+  //   const email = req.body.email
+  //   try {
+  //   const user = User.findOne({ email })
+  //   user.remove()
+  //   res.status(200).json({ message: 'User successfully deleted.' })
+  //   } catch (error) {
+  //   res.status(400).json({ message: error.message })
+  //   }
+  //   }
 };
 
 module.exports = UsersController;
