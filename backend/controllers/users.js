@@ -13,7 +13,7 @@ const UsersController = {
     });
   },
   Create: (req, res) => {
-    const user = new User({ 
+    const user = new User({
       companyName: req.body.companyName,
       email: req.body.email,
       password: req.body.password,
@@ -29,6 +29,16 @@ const UsersController = {
       }
     });
   },
+  Delete: (req, res) => {
+    const email = req.body.email
+    try {
+    const user = User.findOne({ email })
+    user.remove()
+    res.status(200).json({ message: 'User successfully deleted.' })
+    } catch (error) {
+    res.status(400).json({ message: error.message })
+    }
+    }
 };
 
 module.exports = UsersController;
