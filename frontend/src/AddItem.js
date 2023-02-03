@@ -127,6 +127,8 @@ export default function AddItem() {
         setFile('')
     }
 
+    console.log(isEditing)
+
     const editItem = async (url=null) => {
 
         const updatedItem = {itemName: item,
@@ -157,6 +159,7 @@ export default function AddItem() {
             const storageUrl = await uploadTaskPromise()
             editItem(storageUrl)
         } else editItem()
+        setIsEditing(false)
     }
 
     const itemDisplay = items?.map((item) => {
@@ -281,7 +284,6 @@ export default function AddItem() {
                             :
                             <label className="btn btn-primary" htmlFor="my-modal-5" onClick={addItemWrapper}>Add</label>
                             }
-
                        </div>
                       <input type="file" 
                       className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
@@ -289,7 +291,12 @@ export default function AddItem() {
                       accept="/image/*"/>
                     </div>
                     <div className="modal-action">
-                    <label htmlFor="my-modal-5" className="btn">Close</label>
+                        {isEditing ? 
+                        <label htmlFor="my-modal-5" className="btn" onClick={() => {setIsEditing(false)}}>Close</label>
+                        :
+                        <label htmlFor="my-modal-5" className="btn">Close</label>
+
+                        }
                     </div>
                 </div>
                 </div>
