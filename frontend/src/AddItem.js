@@ -7,6 +7,7 @@ import storage from "./firebaseConfig";
 
 export default function AddItem() {
 
+    const [itemId, setItemId] =useState('')
     const [item, setItem] = useState('')
     const [price, setPrice] = useState('')
     const [costToBake, setCostToBake] = useState('')
@@ -15,6 +16,7 @@ export default function AddItem() {
     const [file, setFile] = useState('')
 
     const [items, setItems] = useState([]);
+    const [isEditing, setIsEditing] = useState(false)
 
     const resetFields = () => {
         setItem('')
@@ -113,6 +115,10 @@ export default function AddItem() {
     }
 
     const selectedItem = (itemObj) => {
+
+        setIsEditing(true)
+
+        setItemId(itemObj._id)
         setItem(itemObj.itemName)
         setPrice(itemObj.price)
         setCostToBake(itemObj.costToBake)
@@ -121,9 +127,7 @@ export default function AddItem() {
         setFile('')
     }
 
-    const editItem = async (itemObj) => {
-
-        selectedItem(itemObj)
+    const editItem = async () => {
 
         const updatedItem = {itemName: item,
             price,
@@ -136,7 +140,7 @@ export default function AddItem() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({id: itemObj._id, updatedItem}),
+            body: JSON.stringify({id: itemId, updatedItem}),
         })
         const data = await response.json()
 
@@ -263,7 +267,12 @@ export default function AddItem() {
                         onChange={(e) => setBatchQuantity(e.target.value)}/>
                         </div>
                         <div className="form-control mt-6">
-                        <label className="btn btn-primary" htmlFor="my-modal-5" onClick={addItemWrapper}>Add</label>
+                            {isEditing ? 
+                            <label className="btn btn-primary" htmlFor="my-modal-5" onClick={(editItem)}>Edit</label>
+                            :
+                            <label className="btn btn-primary" htmlFor="my-modal-5" onClick={addItemWrapper}>Add</label>
+                            }
+
                        </div>
                       <input type="file" 
                       className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
