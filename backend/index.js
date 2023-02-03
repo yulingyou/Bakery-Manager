@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const itemsRouter = require("./routes/items");
 const ordersRouter = require("./routes/orders");
 const bakersRouter = require("./routes/bakers");
+const usersRouter = require("./routes/users");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use("/items", itemsRouter);
 app.use("/orders", ordersRouter);
 app.use("/bakers", bakersRouter);
+app.use("/users", usersRouter)
 
 main().catch(err => console.log(err));
 async function main() {
