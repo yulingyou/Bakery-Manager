@@ -24,7 +24,7 @@ useEffect(() => {
 
 return (
     <div className='orderConfirmation'>
-        <div className='orderText'><h1>Your order is confirmed and will be delivered on DATE</h1></div>
+        <div className='orderText' data-cy="confirmation_message"><h1>Your order is confirmed and will be delivered on DATE</h1></div>
         <div className='orderName'> Order: 
         <p>{orderName} </p></div>
         <div className='orderQuantity'></div>
