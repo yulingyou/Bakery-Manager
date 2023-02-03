@@ -1,16 +1,23 @@
 import './styles.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
+// import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 const OrderForm = () => {
+  // const navigate = useNavigate();
+  // const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [companyName, setCompanyName] = useState("");
   const [order, setOrderSummary] = useState("");
   const [dateNeededBy, setDateNeededBy] = useState ("");
 
 
   useEffect(() => {
+    // if (token) {
     fetch('/orders', { //specify the localhost
       method: "get",
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
     })
       .then(res => res.json())
       .then((data) => {
@@ -20,6 +27,9 @@ const OrderForm = () => {
   
       })
       .catch(error => console.error(error));
+    // } else {
+    //   navigate("/ABC");
+    // }
   }, []);
 
   const handleSubmit = (event) => {

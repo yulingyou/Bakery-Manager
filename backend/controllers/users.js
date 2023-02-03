@@ -1,17 +1,17 @@
 const User = require("../models/user");
 
 const UsersController = {
-  // getAll: (req, res) => {
-  //   console.log("GET ORDERS")
-  //   User.find(async (err, users) => {
-  //     if (err) {
-  //       console.log(err)
-  //       throw err;
-  //     }
-  //     console.log("orders:", users)
-  //     res.status(200).json({ users:  users });
-  //   });
-  // },
+  getAll: (req, res) => {
+    console.log("GET ORDERS")
+    User.find(async (err, users) => {
+      if (err) {
+        console.log(err)
+        throw err;
+      }
+      console.log("orders:", users)
+      res.status(200).json({ users:  users });
+    });
+  },
   Create: (req, res) => {
     const user = new User({ 
       companyName: req.body.companyName,
