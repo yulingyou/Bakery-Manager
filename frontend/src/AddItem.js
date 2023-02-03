@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import storage from "./firebaseConfig";
 
 export default function AddItem() {
 
@@ -15,6 +14,14 @@ export default function AddItem() {
 
     const [items, setItems] = useState([]);
 
+    const resetFields = () => {
+        setItem('')
+        setPrice('')
+        setCostToBake('')
+        setIngredients('')
+        setBatchQuantity('')
+        setFile('')
+    }
 
     useEffect(() => {
         fetch("/items", {
@@ -41,7 +48,6 @@ export default function AddItem() {
             () => {
                     // Upload completed successfully, now we can get the download URL
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log('File available at', downloadURL);
                     // setImageUrl(downloadURL)
                     resolve(downloadURL)
                     });
@@ -55,8 +61,6 @@ export default function AddItem() {
         setFile(event.target.files[0]);
         }
 
-    console.log(file)
-
     const addItem = async (url) => {
         const itemObj = {itemName: item,
                         price,
@@ -64,7 +68,6 @@ export default function AddItem() {
                         costToBake,
                         ingredients,
                         batchQuantity}
-        console.log('this is the item passed', itemObj)
 
         const response = await fetch('/items', {
             method: 'POST',
@@ -86,9 +89,45 @@ export default function AddItem() {
         const storageUrl = await uploadTaskPromise()
 
         await addItem(storageUrl)
+
+        resetFields()
+    }
+
+    const deleteItem = async (id) => {
+        console.log('this is id', id)
+        const response = await fetch('/items/deleteItem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id}),
+        })
+        const data = await response.json()
+
+        if (response.ok) {
+            console.log('data', data)
+        }
+        setItems(data.items)
+    }
+
+    const editItem = async (id) => {
+        const response = await fetch('/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id}),
+        })
+        const data = await response.json()
+
+        if(response.ok) {
+            console.log('data', data)
+        }
+        setItems(data.items)
     }
 
     const itemDisplay = items?.map((item) => {
+
         return (
             <tr>
         <td>
@@ -112,8 +151,9 @@ export default function AddItem() {
           {item.ingredients}
         </td>
         <td>{item.batchQuantity}</td>
-        <th>
-          {/* <button className="btn btn-ghost btn-xs"></button> */}
+        <th className="flex justify-around">
+          <button className="btn">edit</button>
+          <button className="btn" onClick={() => {deleteItem(item._id)}}>delete</button>
         </th>
       </tr>
         )}
@@ -131,7 +171,7 @@ export default function AddItem() {
                         <th>ingredients</th>
                         <th>Batch Quantity</th>
                         <th>
-                        <label htmlFor="my-modal-5" className="btn">add item</label></th>
+                        <label htmlFor="my-modal-5" className="btn" onClick={resetFields}>add item</label></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -139,10 +179,7 @@ export default function AddItem() {
                     </tbody>    
                 </table>
             </div>
-                        {/* The button to open modal
-            <label htmlFor="my-modal-5" className="btn">add item</label> */}
 
-            {/* Put this part before </body> tag */}
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
                 <div className="modal">
                 <div className="modal-box w-11/12 max-w-5xl">
@@ -208,7 +245,7 @@ export default function AddItem() {
                        </div>
                       <input type="file" 
                       className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
-                      onChange={handleChange} 
+                      onChange={handleChange}
                       accept="/image/*"/>
                     </div>
                     <div className="modal-action">
