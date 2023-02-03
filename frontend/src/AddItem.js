@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-// const { ref, getStorage, uploadBytes } = require("firebase/storage");
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import storage from "./firebaseConfig";
 
@@ -12,9 +11,7 @@ export default function AddItem() {
     const [costToBake, setCostToBake] = useState('')
     const [ingredients, setIngredients] = useState('')
     const [batchQuantity, setBatchQuantity] = useState('')
-    const [itemImage, setItemImage] = useState('')
     const [file, setFile] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
 
     const [items, setItems] = useState([]);
 
@@ -29,55 +26,19 @@ export default function AddItem() {
      
     }, [])
 
-    useEffect(() => {
-
-        const fetchImage = async () => {
-            const response = await fetch('/items/getImage', {
-            })
-            const data = await response.json()
-            setItemImage(data)
-
-            if (response.ok) {
-                console.log('URL FETCHED', data)
-            }
-        }
-        
-        fetchImage()
-    }, [])
-
-    // const uploadImage = async () => {
-    //     const storage = getStorage();
-
-    //     // Upload file and metadata to the object 'images/mountains.jpg'
-    //     const storageRef = ref(storage, 'images/' + file.name);
-    //     const uploadTask = uploadBytesResumable(storageRef, file);
-
-    //     // Listen for state changes, errors, and completion of the upload.
-    //     uploadTask.on('state_changed', (snapshot) => {}, 
-    //             (error) => {console.log(error)}, 
-    //             () => {
-    //                 // Upload completed successfully, now we can get the download URL
-    //                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //                 console.log('File available at', downloadURL);
-    //                 setImageUrl(downloadURL)
-    //                 });
-    //             }
-    //             );
-    // }
-
     const uploadTaskPromise = async () => {
 
         return new Promise(function(resolve, reject) {
         
-            const storage = getStorage();
+        const storage = getStorage();
         // Upload file and metadata to the object 'images/mountains.jpg'
         const storageRef = ref(storage, 'images/' + file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on('state_changed', (snapshot) => {}, 
-                (error) => {console.log(error)}, 
-                () => {
+            (error) => {console.log(error)}, 
+            () => {
                     // Upload completed successfully, now we can get the download URL
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log('File available at', downloadURL);
@@ -85,7 +46,7 @@ export default function AddItem() {
                     resolve(downloadURL)
                     });
                 }
-                );
+            );
         })
 
     }
@@ -96,10 +57,10 @@ export default function AddItem() {
 
     console.log(file)
 
-    const addItem = async () => {
+    const addItem = async (url) => {
         const itemObj = {itemName: item,
                         price,
-                        image: imageUrl,
+                        image: url,
                         costToBake,
                         ingredients,
                         batchQuantity}
@@ -115,22 +76,16 @@ export default function AddItem() {
         const data = await response.json()
 
         if (response.ok) {
-            console.log('this is the data', data)
+            console.log('data', data)
         }
     
         setItems(data.items)
-    
-
     }
 
     const addItemWrapper = async () => {
         const storageUrl = await uploadTaskPromise()
-        console.log('this is storage url', storageUrl)
-        setImageUrl(storageUrl)
-        console.log('image after upload in wrapper', imageUrl)
-        await addItem()
-        console.log('image after add item in wrapper', imageUrl)
 
+        await addItem(storageUrl)
     }
 
     const itemDisplay = items?.map((item) => {
@@ -175,16 +130,17 @@ export default function AddItem() {
                         <th>Cost to Bake</th>
                         <th>ingredients</th>
                         <th>Batch Quantity</th>
-                        <th></th>
-                    </tr>
+                        <th>
+                        <label htmlFor="my-modal-5" className="btn">add item</label></th>
+                        </tr>
                     </thead>
                     <tbody>
                     {itemDisplay}
                     </tbody>    
                 </table>
             </div>
-                        {/* The button to open modal */}
-            <label htmlFor="my-modal-5" className="btn">add item</label>
+                        {/* The button to open modal
+            <label htmlFor="my-modal-5" className="btn">add item</label> */}
 
             {/* Put this part before </body> tag */}
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
