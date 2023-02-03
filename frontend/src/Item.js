@@ -44,7 +44,7 @@ export default function Item(props) {
         }
       });
     });
-  }, [inBasket])
+  }, [])
   
 
 
@@ -132,7 +132,7 @@ const addBatchToOrder = async () => {
         <div className="rounded-b-lg bg-green card-body">
           <div className="bg-green text-black">
             <h1 className="card-title heading">{props.food.item_name}</h1>
-            <p>Price: {props.food.price}</p>
+            <p>Price: £{props.food.price.toFixed(2)}</p>
             <p>Batch Quantity: {props.food.batch_quantity}</p>
           </div>
       <div className="card-actions justify-end w-28">
