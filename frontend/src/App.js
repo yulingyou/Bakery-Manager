@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 
 function App() {
   const [items, setItems] = useState([]);
-
+  const [updateBasket, setUpdateBasket] = useState(false)
 
   useEffect(() => {
       fetch("/items", {
@@ -21,14 +21,14 @@ function App() {
 
 
   const itemsDisplay = items.map((food) => {
-    return <Item food={food}></Item> 
+    return <Item key={ food._id } updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
   })
 
   return (
     <div>
       <div class='flex flex-wrap'>
         <Navbar></Navbar>
-        <Basket>Basket</Basket>
+        <Basket updateBasket={updateBasket} setUpdateBasket={setUpdateBasket}></Basket>
       </div>
       <div class='flex flex-wrap'>
         {itemsDisplay}

@@ -5,7 +5,6 @@ import { useState, useEffect} from 'react';
 export default function Basket(props) {
   const [batchOrders, setBatchOrders] = useState([]);
 
-
   useEffect(() => {
     fetch("orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
     })
@@ -14,8 +13,7 @@ export default function Basket(props) {
       setBatchOrders(data[0].orders)
     });
 
-}, [])
-
+  }, [props.updateBasket])
   
   const getTotalPrice = () => {
     let total = 0;
@@ -26,7 +24,7 @@ export default function Basket(props) {
   }
 
   const basketDisplay = batchOrders.map((item) => {
-    return <BasketItem item={item}></BasketItem>
+    return <BasketItem key={ item._id } updateBasket={props.updateBasket} item={item}></BasketItem>
   })
 
 
@@ -43,7 +41,7 @@ export default function Basket(props) {
             <div class="card-body">
                   {basketDisplay}
                   <br></br>
-              <li>Total Price: £{getTotalPrice()}</li>
+              <li>Total Price: £{getTotalPrice()} </li>
               <div class="card-actions">
               <button class="btn btn-primary btn-block"><a href='/checkout'>Checkout</a></button>
             </div> 

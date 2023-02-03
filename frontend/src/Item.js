@@ -3,47 +3,41 @@ import { useState, useEffect } from 'react';
 
 export default function Item(props) {
 
-    const [counter, setCounter] = useState(0)
-    const [basketText, setBasketText] = useState("Add to Basket"); 
-    const [inBasket, setInBasket] = useState(false); 
-    const [batchID, setBatchID] = useState(""); 
-    const [quantityInBasket, setQuantityInBasket] = useState(); 
+  const [counter, setCounter] = useState(0)
+  const [basketText, setBasketText] = useState("Add to Basket"); 
+  const [inBasket, setInBasket] = useState(false); 
+  const [batchID, setBatchID] = useState(""); 
+  const [quantityInBasket, setQuantityInBasket] = useState(); 
 
-    const increaseCount = () => {
-      if (!inBasket){
-        setCounter((prevCounter) => prevCounter + 1)
-      }else{
-        setCounter((prevCounter) => prevCounter + 1)
-        changeBasketButtonText("Update Basket")
-      }
+  const changeCounter = (amount) =>{
+    if ((counter > 0 && amount === -1) || (amount === +1)){
+      setCounter((prevCounter) => prevCounter + amount)
     }
-    
-    const decreaseCount = () => {
-      if (counter > 0) {
-        if(!inBasket){
-          setCounter((prevCounter) => prevCounter - 1)
-        }else{
-          setCounter((prevCounter) => prevCounter - 1)
-          changeBasketButtonText("Update Basket")
-        }
-      }
+
+    if(!inBasket){
+      changeBasketButtonText("Add to Basket")
+    }else{
+      changeBasketButtonText("Update Basket")
+    }
   }
 
+  //Fetch batch orders within basket
   useEffect(() => {
-    fetch("/orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
-    })
-    .then(response => response.json())
-    .then(async data => {
-      data[0].orders.forEach(element => {
-        if (element.item === props.food.item_name){
-          setInBasket(true)
-          setBatchID(element._id)
-          changeBasketButtonText("In Basket")
-          setCounter(element.batch_quantity)
-          setQuantityInBasket(element.batch_quantity)
-        }
+      fetch("/orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
+      })
+      .then(response => response.json())
+      .then(async data => {
+        data[0].orders.forEach(element => {
+          if (element.item === props.food.item_name){
+            setInBasket(true)
+            setBatchID(element._id)
+            changeBasketButtonText("In Basket")
+            setCounter(element.batch_quantity)
+            setQuantityInBasket(element.batch_quantity)
+          }
+        });
       });
-    });
+  // }, [props.updateBasket])
   }, [])
   
 
@@ -85,16 +79,13 @@ const addBatchToOrder = async () => {
       headers: {
         'Content-Type': 'application/json'
       },
-        body: JSON.stringify({batch_quantity: counter})
-      })
-      if (response.status !== 202){
-        console.log("ERROR: ", response.error)
-        console.log("ATTEMPTED REQUEST:", `/batchOrders/update/batch/${batchID}`)
-        console.log("counter:", counter)
-        console.log("patch failed, Error status:" + response.status)
-      }
-      else{
-        console.log("Batch updated:" + response.status)
+      body: JSON.stringify({batch_quantity: counter})
+    })
+    if (response.status !== 202){
+      console.log("patch failed, Error status:" + response.status)
+    }
+    else{
+      console.log("Batch updated:" + response.status)
       }
     }
 
@@ -104,18 +95,23 @@ const addBatchToOrder = async () => {
       changeBasketButtonText("Add to basket")
       setInBasket(false)
       removeBatchFromOrder();
+      props.setUpdateBasket(!props.updateBasket)
     }
     //if in basket but quantity has been changed
     else if (inBasket && quantityInBasket !== counter){
       changeBasketButtonText("In Basket")
       setInBasket(true)
+      setQuantityInBasket(counter)
       updateBatchOrder();
+      props.setUpdateBasket(!props.updateBasket)
     }
     //if not in basket
     else if (!inBasket && counter >0){
       changeBasketButtonText("In Basket")
       setInBasket(true)
       addBatchToOrder();
+      setQuantityInBasket(counter)
+      props.setUpdateBasket(!props.updateBasket)
     }
   }
   const changeBasketButtonText = (text) => setBasketText(text);
@@ -136,9 +132,9 @@ const addBatchToOrder = async () => {
             <p>Batch Quantity: {props.food.batch_quantity}</p>
           </div>
       <div className="card-actions justify-end w-28">
-      <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={decreaseCount}>-</button>
+      <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={()=>{changeCounter(-1)}}>-</button>
         <p className='text-center text-black' data-cy="counter">{counter}</p>
-        <button data-cy="increase-btn" className='btn btn-circle btn-sm' onClick={increaseCount}>+</button>
+        <button data-cy="increase-btn" className='btn btn-circle btn-sm' onClick={()=>{changeCounter(1)}}>+</button>
       </div>
       <div data-cy="basket-btn" className="btn" onClick={() => updateBasket()}>{basketText}</div>
 

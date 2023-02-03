@@ -77,19 +77,6 @@ const OrdersController = {
     console.log("Batches in Order", order.orders)
     res.status(201).json(order)
   },
-  updateBasketByBatchID: async (req,res) => {
-    // const filter = { _id: req.params.batchID };
-    // const batch = await BatchOrder.find(filter)
-    // console.log("batch: ", batch)
-    // batch.batch_quantity = req.body.batch_quantity;
-    // console.log("new batch qnty: ", batch.batch_quantity)
-
-    // res.status(201).json(batch)
-
-
-
-
-  },
 }
 
 

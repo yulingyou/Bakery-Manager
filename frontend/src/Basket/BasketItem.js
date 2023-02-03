@@ -14,7 +14,7 @@ export default function BasketItem(props) {
         setItem(data[0])
         setpricePerBatch((data[0].price_per_batch).toFixed(2))
       })
-    }, [])
+    }, [props.updateBasket])
     
   return(
     <div>
