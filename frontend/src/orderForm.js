@@ -21,6 +21,7 @@ const OrderForm = () => {
     })
       .then(res => res.json())
       .then((data) => {
+        setToken(window.localStorage.getItem("token"));
         console.log(data)
         setCompanyName(data.orders[0].company)
         setOrderSummary(data.orders[0].orders)
