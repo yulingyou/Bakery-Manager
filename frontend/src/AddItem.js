@@ -127,13 +127,15 @@ export default function AddItem() {
         setFile('')
     }
 
-    const editItem = async () => {
+    const editItem = async (url=null) => {
 
         const updatedItem = {itemName: item,
             price,
             costToBake,
             ingredients,
             batchQuantity}
+        
+        if(url !== null) {updatedItem.image = url}
 
         const response = await fetch('/items/editItem', {
             method: 'POST',
@@ -148,6 +150,13 @@ export default function AddItem() {
             console.log('data', data)
         }
         setItems(data.items)
+    }
+
+    const editItemWrapper = async () => {
+        if (file) {
+            const storageUrl = await uploadTaskPromise()
+            editItem(storageUrl)
+        } else editItem()
     }
 
     const itemDisplay = items?.map((item) => {
@@ -268,7 +277,7 @@ export default function AddItem() {
                         </div>
                         <div className="form-control mt-6">
                             {isEditing ? 
-                            <label className="btn btn-primary" htmlFor="my-modal-5" onClick={(editItem)}>Edit</label>
+                            <label className="btn btn-primary" htmlFor="my-modal-5" onClick={() => {editItemWrapper()}}>Edit</label>
                             :
                             <label className="btn btn-primary" htmlFor="my-modal-5" onClick={addItemWrapper}>Add</label>
                             }
