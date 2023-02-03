@@ -7,7 +7,7 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import OrderForm from './orderForm';
-import Confirmation from './Confirmation';
+import Confirmation from './confirmation';
 
 const router = createBrowserRouter([
   {
