@@ -58,7 +58,7 @@ const OrdersController = {
     const batchOrders = await Order.find(filter).populate('orders').exec()
     res.status(200).json(batchOrders)
   },
-  DeleteBatchByID: async (req, res) => {
+  deleteBatchByID: async (req, res) => {
 
     let order = await Order.findById('63dbab59d49bd03887f3aafe')
     const filter = { _id: '63dbab59d49bd03887f3aafe'};
@@ -76,7 +76,20 @@ const OrdersController = {
     await BatchOrder.deleteOne({ _id: req.params.batchID})
     console.log("Batches in Order", order.orders)
     res.status(201).json(order)
-  }
+  },
+  updateBasketByBatchID: async (req,res) => {
+    // const filter = { _id: req.params.batchID };
+    // const batch = await BatchOrder.find(filter)
+    // console.log("batch: ", batch)
+    // batch.batch_quantity = req.body.batch_quantity;
+    // console.log("new batch qnty: ", batch.batch_quantity)
+
+    // res.status(201).json(batch)
+
+
+
+
+  },
 }
 
 

@@ -7,36 +7,46 @@ export default function Item(props) {
     const [basketText, setBasketText] = useState("Add to Basket"); 
     const [inBasket, setInBasket] = useState(false); 
     const [batchID, setBatchID] = useState(""); 
+    const [quantityInBasket, setQuantityInBasket] = useState(); 
 
     const increaseCount = () => {
-      setCounter((prevCounter) => prevCounter + 1)
+      if (!inBasket){
+        setCounter((prevCounter) => prevCounter + 1)
+      }else{
+        setCounter((prevCounter) => prevCounter + 1)
+        changeBasketButtonText("Update Basket")
+      }
     }
     
-  const decreaseCount = () => {
-    if (counter > 0) {
-        setCounter((prevCounter) => prevCounter - 1)
+    const decreaseCount = () => {
+      if (counter > 0) {
+        if(!inBasket){
+          setCounter((prevCounter) => prevCounter - 1)
+        }else{
+          setCounter((prevCounter) => prevCounter - 1)
+          changeBasketButtonText("Update Basket")
+        }
       }
   }
 
-
   useEffect(() => {
-    fetch("orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
+    fetch("/orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
     })
     .then(response => response.json())
     .then(async data => {
-      console.log("IN BASKET:", data[0].orders)
       data[0].orders.forEach(element => {
         if (element.item === props.food.item_name){
-          console.log("ELEMENT:" ,element.item, "=", props.food.item_name)
           setInBasket(true)
           setBatchID(element._id)
           changeBasketButtonText("In Basket")
           setCounter(element.batch_quantity)
+          setQuantityInBasket(element.batch_quantity)
         }
       });
     });
-  }, [])
+  }, [inBasket])
   
+
 
 const addBatchToOrder = async () => {
     let response = await fetch('/orders/addBatch', {
@@ -68,14 +78,40 @@ const addBatchToOrder = async () => {
       console.log("Batch removed: " + response.status)
     }
   }
+  
+  const updateBatchOrder = async () =>{
+    let response = await fetch(`batchOrders/update/batch/${batchID}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify({batch_quantity: counter})
+      })
+      if (response.status !== 202){
+        console.log("ERROR: ", response.error)
+        console.log("ATTEMPTED REQUEST:", `/batchOrders/update/batch/${batchID}`)
+        console.log("counter:", counter)
+        console.log("patch failed, Error status:" + response.status)
+      }
+      else{
+        console.log("Batch updated:" + response.status)
+      }
+    }
 
   const updateBasket = () => {
-    if (inBasket){
+    //if remove item from basket
+    if (inBasket && quantityInBasket === counter){
       changeBasketButtonText("Add to basket")
       setInBasket(false)
       removeBatchFromOrder();
-
     }
+    //if in basket but quantity has been changed
+    else if (inBasket && quantityInBasket !== counter){
+      changeBasketButtonText("In Basket")
+      setInBasket(true)
+      updateBatchOrder();
+    }
+    //if not in basket
     else if (!inBasket && counter >0){
       changeBasketButtonText("In Basket")
       setInBasket(true)
