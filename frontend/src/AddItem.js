@@ -16,6 +16,19 @@ export default function AddItem() {
     const [file, setFile] = useState('')
     const [imageUrl, setImageUrl] = useState('')
 
+    const [items, setItems] = useState([]);
+
+
+    useEffect(() => {
+        fetch("/items", {
+        })
+          .then(response => response.json())
+          .then(async data => {
+            setItems(data.items);
+          })
+     
+    }, [])
+
     useEffect(() => {
 
         const fetchImage = async () => {
@@ -32,27 +45,49 @@ export default function AddItem() {
         fetchImage()
     }, [])
 
-    const uploadIm = async () => {
-        const storage = getStorage();
+    // const uploadImage = async () => {
+    //     const storage = getStorage();
 
+    //     // Upload file and metadata to the object 'images/mountains.jpg'
+    //     const storageRef = ref(storage, 'images/' + file.name);
+    //     const uploadTask = uploadBytesResumable(storageRef, file);
+
+    //     // Listen for state changes, errors, and completion of the upload.
+    //     uploadTask.on('state_changed', (snapshot) => {}, 
+    //             (error) => {console.log(error)}, 
+    //             () => {
+    //                 // Upload completed successfully, now we can get the download URL
+    //                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+    //                 console.log('File available at', downloadURL);
+    //                 setImageUrl(downloadURL)
+    //                 });
+    //             }
+    //             );
+    // }
+
+    const uploadTaskPromise = async () => {
+
+        return new Promise(function(resolve, reject) {
+        
+            const storage = getStorage();
         // Upload file and metadata to the object 'images/mountains.jpg'
         const storageRef = ref(storage, 'images/' + file.name);
         const uploadTask = uploadBytesResumable(storageRef, file);
 
         // Listen for state changes, errors, and completion of the upload.
-        uploadTask.on('state_changed',
-                (snapshot) => {}, 
-                (error) => {
-                        console.log(error)
-                    }, 
+        uploadTask.on('state_changed', (snapshot) => {}, 
+                (error) => {console.log(error)}, 
                 () => {
                     // Upload completed successfully, now we can get the download URL
                     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                     console.log('File available at', downloadURL);
                     // setImageUrl(downloadURL)
+                    resolve(downloadURL)
                     });
                 }
                 );
+        })
+
     }
 
     function handleChange(event) {
@@ -61,44 +96,51 @@ export default function AddItem() {
 
     console.log(file)
 
-    const item1 = {
-        itemName: 'fish',
-        price: 11,
-        image: 'placeholder image',
-        costToBake: 4,
-        ingredients: ['banana', 'juice'],
-        batchQuantity: 12
+    const addItem = async () => {
+        const itemObj = {itemName: item,
+                        price,
+                        image: imageUrl,
+                        costToBake,
+                        ingredients,
+                        batchQuantity}
+        console.log('this is the item passed', itemObj)
+
+        const response = await fetch('/items', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(itemObj),
+        })
+        const data = await response.json()
+
+        if (response.ok) {
+            console.log('this is the data', data)
+        }
+    
+        setItems(data.items)
+    
+
     }
 
-    const item2 = {
-        itemName: 'otherfish',
-        price: 10,
-        image: 'placeholder image',
-        costToBake: 2,
-        ingredients: ['banana', 'orange'],
-        batchQuantity: 6
+    const addItemWrapper = async () => {
+        const storageUrl = await uploadTaskPromise()
+        console.log('this is storage url', storageUrl)
+        setImageUrl(storageUrl)
+        console.log('image after upload in wrapper', imageUrl)
+        await addItem()
+        console.log('image after add item in wrapper', imageUrl)
+
     }
 
-    const allItems = [item1, item2]
-
-    const addItem = () => {
-        const itemObj = 
-            {itemName: item,
-            price,
-            image: imageUrl,
-            costToBake,
-            ingredients,
-            batchQuantity}
-    }
-
-    const itemDisplay = allItems.map((item) => {
+    const itemDisplay = items?.map((item) => {
         return (
             <tr>
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
               <div className="mask mask-squircle w-12 h-12">
-                <img src={itemImage.url} alt="Avatar Tailwind CSS Component" />
+                <img src={item.image} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
             <div>
@@ -206,7 +248,7 @@ export default function AddItem() {
                         onChange={(e) => setBatchQuantity(e.target.value)}/>
                         </div>
                         <div className="form-control mt-6">
-                        <label className="btn btn-primary" htmlFor="my-modal-5" onClick={uploadIm}>Add</label>
+                        <label className="btn btn-primary" htmlFor="my-modal-5" onClick={addItemWrapper}>Add</label>
                        </div>
                       <input type="file" 
                       className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
