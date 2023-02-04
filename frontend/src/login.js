@@ -81,11 +81,7 @@ export default function LogInForm({navigate}) {
 												duration-150
 												ease-in-out"
 												onSubmit={handleSubmit} >Submit</button>
-											{/* <button id='submit' type="submit" value="Submit" class="bg-blue-500 text-white rounded-md px-2 py-1">Submit</button> */}
 										</div>
-											{/* <input placeholder="Email" id="email" type='text' value={ email } onChange={handleEmailChange} /> */}
-											{/* <input placeholder="Password" id="password" type='password' value={ password } onChange={handlePasswordChange} /> */}
-											{/* <input id='submit' type="submit" value="Submit" /> */}
 									</form>
 								</div>
 								</div>
@@ -96,3 +92,5 @@ export default function LogInForm({navigate}) {
 		</div>
 	);
 }
+
+//TODO link to the login backend branch
