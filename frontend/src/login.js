@@ -2,23 +2,32 @@ import './styles.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Navbar2 from './Navbar2';
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
-export default function LogInForm({navigate}) {
+export default function LogInForm({}) {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		fetch('/users', {
+		fetch('/tokens', {
 			method: 'post',
+			headers: {
+				"Content-Type": "application/json",
+			},
 			body: JSON.stringify({ email: email, password: password})
 		})
 			.then(response => {
-				if(response.status === 201) {
+				if(response.status !== 201) {
+					console.log("oop");
 					navigate("/login")
 				} else {
-					navigate("/signup")
+					let data = response.json();
+					console.log("you are login");
+					window.localStorage.setItem("token", data.token);
+					navigate("/orderform")
 				}
 			})
 	}
