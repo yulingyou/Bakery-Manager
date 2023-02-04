@@ -12,25 +12,23 @@ export default function LogInForm({}) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		fetch('/tokens', {
+		let response = await fetch('/tokens', {
 			method: 'post',
 			headers: {
 				"Content-Type": "application/json",
 			},
-			body: JSON.stringify({ email: email, password: password})
-		})
-			.then(response => {
-				if(response.status !== 201) {
+			body: JSON.stringify({ email: email, password: password}),
+		});
+			if(response.status !== 201) {
 					console.log("oop");
 					navigate("/login")
 				} else {
-					let data = response.json();
+					let data = await response.json();
 					console.log("you are login");
 					window.localStorage.setItem("token", data.token);
 					navigate("/orderform")
 				}
-			})
-	}
+	};
 
 	const handleEmailChange = (event) => {
 		setEmail(event.target.value)

@@ -13,7 +13,10 @@ const OrderForm = () => {
 
   useEffect(() => {
     if (token) {
-    fetch('/orders', { //specify the localhost
+      console.log(token)
+      //specify the localhost
+    fetch('/orders', { 
+      mode: 'cors',
       method: "get",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,8 +48,8 @@ const OrderForm = () => {
     })
     .catch(error => console.error(error));
   };
-
 console.log("outside:",companyName)
+
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
