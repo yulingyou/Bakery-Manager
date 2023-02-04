@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const Item = require('../models/item')
 
 const OrderSchema = new Schema({
+  userId: String,
   company: { type: String },
   order: {type: Array},
   date_of_order: {type: String},
