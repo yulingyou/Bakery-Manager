@@ -5,17 +5,25 @@ const User = require("../models/user");
 
 const OrdersController = {
   getAll: (req, res) => {
-    console.log("GET ORDERS")
-    Order.find(async (err, orders) => {
-      if (err) {
-        console.log(err)
-        throw err;
-      }
-      const token = await TokenGenerator.jsonwebtoken(req.user_id);
-      console.log("orders:", orders)
+    Order.find({userId: req.user_id})
+    .exec((err, orders) => {
+      const token = TokenGenerator.jsonwebtoken(req.user_id);
+      if(err) return res.status(400).send(err);
       res.status(200).json({ orders: orders, token: token });
-    });
+    })
   },
+  // getAll: (req, res) => {
+  //   console.log("GET ORDERS")
+  //   Order.find(async (err, orders) => {
+  //     if (err) {
+  //       console.log(err)
+  //       throw err;
+  //     }
+  //     const token = await TokenGenerator.jsonwebtoken(req.user_id);
+  //     console.log("orders:", orders)
+  //     res.status(200).json({ orders: orders, token: token });
+  //   });
+  // },
   createOrder: (req, res) => {
     User.find({_id: req.user_id }, function (err, docs)
     {
@@ -24,7 +32,8 @@ const OrdersController = {
       }
     })
     console.log("POST ORDER")
-    const order = new Order({userId: req.user_id, company: req.body.company, orders: req.body.orders});
+    console.log(req.body)
+    const order = new Order({userId: req.user_id, company: req.body.company, order: req.body.order, date_of_order: req.body.date_of_order, date_required: req.body.date_required });
     console.log("NEW ORDER: ", order)
     order.save(async (err) => {
       if (err) {

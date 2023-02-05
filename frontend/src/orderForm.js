@@ -27,7 +27,7 @@ const OrderForm = () => {
         setToken(window.localStorage.getItem("token"));
         console.log(data)
         setCompanyName(data.orders[0].company)
-        setOrderSummary(data.orders[0].orders)
+        setOrderSummary(data.orders[data.orders.length-1].order)
   
       })
       .catch(error => console.error(error));
