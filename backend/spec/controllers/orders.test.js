@@ -20,7 +20,7 @@ describe("OrdersController", () => {
       expect(mockResponse.json).toHaveBeenCalledWith({"orders": mockOrders});
     })
   });
-  describe('createOrder', () => {
+  describe("createOrder", () => {
     it("should add a new ID to a list of all orders", async () => {
       const mockResponse = {
         status: jest.fn().mockReturnThis(),
