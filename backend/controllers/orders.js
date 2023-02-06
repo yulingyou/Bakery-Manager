@@ -33,7 +33,9 @@ const OrdersController = {
     })
     console.log("POST ORDER")
     console.log(req.body)
-    const order = new Order({userId: req.user_id, company: req.body.company, order: req.body.order });
+    const order = new Order({userId: req.user_id, company: req.body.company, order: req.body.order
+      // date_of_order: req.body.date_of_order, date_required: req.body.date_required 
+    });
     console.log("NEW ORDER: ", order)
     order.save(async (err) => {
       if (err) {
@@ -51,24 +53,25 @@ const OrdersController = {
       // res.status(201).json({Order: allOrders, token: token});
     }
   )},
-  updateOrder: (req, res) => {
-    User.find({_id: req.user_id }, function (err, docs)
+  updateOrder: async(req, res) => {
+    User.find({_id: req.user_id }, function (err)
     {
       if (err) {
         throw err;
       }
       const token = TokenGenerator.jsonwebtoken(req.user_id);
-      res.status(201).json({ message: "OK", orders: orders, token: token});
+      res.status(201).json({ message: "OK", token: token});
     })
-    const filter = { _id: req.order_id};
-    const update = { date_of_order: new Date, date_required: req.date_required }
-    let doc = Order.findOneAndUpdate(filter, update, {
-      new: true
-    });
-    return doc
+    const filter = { _id: req.params.order_id};
+    const update = { date_of_order: new Date, date_required: req.body.date_required }
+    await Order.findByIdAndUpdate( req.params.order_id, update);
+    const order = await Order.find(filter)
+    return order
   }
 
 }
+
+
 
 
 module.exports = OrdersController

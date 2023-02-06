@@ -38,7 +38,7 @@ const OrderForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch('/orders', {
+    fetch(`/orders/`, {
       method: "post",
       body: JSON.stringify({ date: dateNeededBy })
     })
