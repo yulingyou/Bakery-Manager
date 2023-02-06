@@ -27,9 +27,9 @@ function App() {
 
   return (
     <div>
-      <div class="navbar h-10 bg-green">
+      <div class="navbar h-10 bg-lightgreen">
         <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl">Bakewells Bakery</a>
+          <a class="btn btn-ghost normal-case text-xl text-black" href='./addItem'>Bakewells Bakery</a>
         </div>
         <Basket></Basket>
       </div>

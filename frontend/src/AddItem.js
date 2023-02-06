@@ -191,7 +191,6 @@ export default function AddItem() {
         </td>
         <td>{item.batchQuantity}</td>
         <th className="flex justify-around gap-5">
-          {/* <button className="btn" onClick={() => {editItem(item)}}>edit</button> */}
           <label htmlFor="my-modal-5" className="btn" onClick={() => {selectedItem(item)}}>edit</label>
 
           <button className="btn" onClick={() => {deleteItem(item._id)}}>delete</button>
@@ -201,12 +200,12 @@ export default function AddItem() {
         )
 
     return (
-        <div class='bg-bone'>
+        <div>
         <div class='grid place-self-center'>
-            <div class="card card-compact w-full h-full mt-5 border-8 border-bone bg-bone shadow-xl">
+            <div class="card card-compact w-full h-full mt-10 border-8 border-bone bg-bone shadow-xl">
             
                 <div class="card-body">
-                <table className="table w-full">
+                <table className="table w-full text-black">
                     <thead>
                     <tr>
                         <th>Item</th>

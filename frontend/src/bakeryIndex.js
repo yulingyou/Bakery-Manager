@@ -2,6 +2,21 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function BakeryIndex() {
+
+    const today = dayjs().set('year', year);
+    const startWeek = today.startOf("isoWeek");
+    const weekDays = Array.from(new Array(7).keys()).map((index) => {
+        return startWeek.add(index, "day");
+    });
+    
+    const startOfMonth = today.set("month", month).startOf("month");
+    const startOfFirstWeek = startOfMonth.startOf("isoWeek");
+    const daysToFirstDay = startOfMonth.diff(startOfFirstWeek, "day");
+    const daysToPrepend = Array.from(new Array(daysToFirstDay).keys());
+    const daysInMonth = Array.from(new Array(startOfMonth.daysInMonth()).keys());
+
+
+    
     return (
         <body>
             <div className='flex'>
@@ -11,25 +26,32 @@ export default function BakeryIndex() {
                     <div className='fixed mt-10 h-96 w-96 top-10 left-80 bg-bone card rounded-full'>
                         <div className="artboard artboard-horizontal phone-1"></div>
                     </div>
-    {/* company name */}
-                <div className='fixed mt-40 top-60 left-70 right-80'>
-                    <h1 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Bakewells Bakery</h1>
-                    <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
-                    </div>
-                </div>
             </div>
     {/* cards that contain 3 elements */}
                     <div className="fixed mt-40 top-80 left-80 right-30 card-body bg-darkgreen card shadow-xl w-96">
-                    <button class="btn btn-primary text-bone btn-block"><a href='/addItem'>Add more items</a></button>
-    {/* text box bio */}
-                <div className="fixed mt-40 top-80 right-80 w-96 h-40 border-solid border-5 border-green mb-10 form-control">        
-                    <textarea className="textarea textarea-bordered textarea-xl border-darkgreen" placeholder="Bio"></textarea>
-                    <br></br>
-                    <div className="btn text-bone ">
-                        <p>Update bio</p>
+                    <button class="btn bg-beige text-bone btn-block"><a href='/addItem'>Add more items</a></button>
                     </div>
-                </div>
+                    <div className="grid grid-cols-7 mt-2 rounded-md border overflow-hidden flex-1"> 
+ {weekDays.map((weekDay, index) => (
+          <div className="text-center" key={`weekday_${index}`}>
+            {weekDay.format("ddd")}
+          </div>
+        ))}
+{daysToPrepend.map((day) => (
+          <div key={`prepend_${day}`}></div>
+        ))}
+{daysInMonth.map((day) => {
+          const key = getDate(startOfMonth, day);
+          return (
+            <div
+              className={`text-center `}
+              key={key}
+            >
+              {day + 1}
             </div>
+          )
+        })}
+</div>
         </div>
     </div>
 </body>

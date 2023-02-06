@@ -42,13 +42,13 @@ export default function Basket(props) {
                   <span class="badge badge-sm indicator-item dropdown-end">{batchOrders.length}</span>
                 </div>
               </label>
-              <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
+              <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow text-black">
               <div class="card-body">
                 {basketDisplay}
                 <br></br>
                 <li>Total Price: £{getTotalPrice()}</li>
                 <div class="card-actions">
-                  <button class="btn btn-primary btn-block"><a href='/checkout'>Checkout</a></button>
+                  <button class="btn bg-bone btn-block"><a href='/checkout'>Checkout</a></button>
                 </div> 
               </div>
             </div>
@@ -59,7 +59,7 @@ export default function Basket(props) {
                 <img src="https://www.jocooks.com/wp-content/uploads/2022/03/bakewell-tart-1-28.jpg" />
               </div>
             </label>
-          <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+          <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black">
             <li>
               <a href="/profile" class="justify-between">
                 Profile
@@ -80,7 +80,7 @@ export default function Basket(props) {
   return (
     <div>
       <div>
-        <div class="navbar bg-green">
+        <div class="navbar bg-lightgreen">
           {basketMenu}
         </div>
       </div>
