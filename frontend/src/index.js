@@ -11,6 +11,7 @@ import OrderForm from './orderForm';
 import Login from './login';
 import Profile from './profile';
 import BakeryIndex from './bakeryIndex';
+import Orders from './orders';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path: '/bakeryindex',
     element: <BakeryIndex/>
+  },
+  {
+    path: '/orders',
+    element: <Orders/>
   },
 ])
 
