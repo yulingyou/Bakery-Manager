@@ -27,26 +27,25 @@ function App() {
 
   return (
     <div>
-      <div class='flex flex-wrap'>
-        <Navbar></Navbar>
-        <Basket>Basket</Basket>
-        <div class='flex flex-wrap place-content-evenly'>
-        <div class="collapse">
-        <input type="checkbox" /> 
-        <div class="mt-5 collapse-title text-xl font-medium">
-          ABOUT US
+      <div class="navbar h-10 bg-green">
+        <div class="flex-1">
+          <a class="btn btn-ghost normal-case text-xl">Bakewells Bakery</a>
         </div>
-        <div class="collapse-content"> 
-          <p>bake</p>
-        </div>
+        <Basket></Basket>
       </div>
-    <div class="divider w-full"></div>
-          {/* {itemsDisplay} */}
-          </div>
+    <div class="collapse justify-center mt-5">
+      <input type="checkbox" /> 
+      <div class="collapse-title text-xl font-medium">
+        About us!
       </div>
-      <div class='flex flex-wrap'>
-        {itemsDisplay}
+    <div class="collapse-content"> 
+        <p>We sell cake</p>
+      </div>
     </div>
+    <div class="divider"></div> 
+      <div class='flex flex-wrap place-content-evenly'>
+        {itemsDisplay}
+      </div>
     </div>
   );
 }

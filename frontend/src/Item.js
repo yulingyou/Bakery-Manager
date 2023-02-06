@@ -69,28 +69,27 @@ export default function Item(props) {
   const changeBasketButtonText = (text) => setBasketText(text);
 
     return (
-      <div className="m-10 place-content-evenly bg-green card w-96 bg-base-100 shadow-xl card-bordered">
-        <div className="object-fit contain">
-        <figure class="rounded -lg max-w-lg h-64 relative max-w-sm transition-all duration-300 ">
+      <div className="m-10 place-content-evenly bg-green card w-96 shadow-xl card-bordered">
+        <div className="object-fit contain ">
+          <figure class="rounded -lg max-w-lg h-64 relative max-w-sm transition-all duration-300 ">
             <a href="#">
               <img class="rounded-lg" src={props.food.image} />
-          </a>
+            </a>
           </figure>
-        <div className="rounded-b-lg bg-green card-body">
-          <div className="bg-green text-black">
-            <h1 className="card-title heading">{props.food.item_name}</h1>
-            <p>Price: {props.food.price}</p>
-            <p>Batch Quantity: {props.food.batch_quantity}</p>
+          <div className="rounded-b-lg bg-green card-body">
+            <div className="bg-green text-black">
+              <h1 className="card-title heading">{props.food.item_name}</h1>
+              <p>Price: {props.food.price}</p>
+              <p>Batch Quantity: {props.food.batch_quantity}</p>
+            </div>
+          <div className="card-actions justify-end w-28">
+            <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={decreaseCount}>-</button>
+             <p className='text-center text-black' data-cy="counter">{counter}</p>
+            <button data-cy="increase-btn" className='btn btn-circle btn-sm' onClick={increaseCount}>+</button>
           </div>
-      <div className="card-actions justify-end w-28">
-      <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={decreaseCount}>-</button>
-        <p className='text-center text-black' data-cy="counter">{counter}</p>
-        <button data-cy="increase-btn" className='btn btn-circle btn-sm' onClick={increaseCount}>+</button>
+          <div data-cy="basket-btn" className="btn" onClick={() => updateBasket()}>{basketText}</div>
+        </div>
       </div>
-      <div data-cy="basket-btn" className="btn" onClick={() => updateBasket()}>{basketText}</div>
-
     </div>
-        </div>
-        </div>
     )
   }
