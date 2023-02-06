@@ -15,7 +15,6 @@ export default function Basket(props) {
 
   }, [props.updateBasket])
 
-  console.log("BASKET FETCHED:", batchOrders.length)
   
   const getTotalPrice = () => {
     let total = 0;
