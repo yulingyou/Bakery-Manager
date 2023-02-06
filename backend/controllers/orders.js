@@ -7,6 +7,7 @@ const OrdersController = {
     console.log("GET ORDERS")
     Order.find(async (err, orders) => {
       if (err) {
+        console.log(err)
         throw err;
       }
       console.log("orders:", orders)

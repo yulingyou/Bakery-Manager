@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const itemsRouter = require("./routes/items");
 const ordersRouter = require("./routes/orders");
 const batchOrdersRouter = require("./routes/batchOrders");
+const bakersRouter = require("./routes/bakers");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -15,7 +16,6 @@ const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@c
 app.use(express.json())
 app.use("/items", itemsRouter);
 app.use("/orders", ordersRouter);
-app.use("/batchOrders", batchOrdersRouter);
 
 main().catch(err => console.log(err));
 async function main() {
