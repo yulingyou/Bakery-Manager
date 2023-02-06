@@ -7,8 +7,8 @@ const BatchOrdersController = {
     console.log(batchID)
 
     const filter = { _id: batchID};
-    const new_quantity = req.body.batch_quantity;
-    await BatchOrder.findByIdAndUpdate(batchID,  { batch_quantity: new_quantity });
+    const new_quantity = req.body.batchQuantity;
+    await BatchOrder.findByIdAndUpdate(batchID,  { batchQuantity: new_quantity });
     const batch = await BatchOrder.find(filter)
     console.log("new batch:", batch)
     res.status(202).json(batch)

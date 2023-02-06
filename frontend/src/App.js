@@ -28,7 +28,7 @@ function App() {
     <div>
       <div class='flex flex-wrap'>
         <Navbar></Navbar>
-        <Basket updateBasket={updateBasket} setUpdateBasket={setUpdateBasket}></Basket>
+        <Basket updateBasket={updateBasket}></Basket>
         <div class='flex flex-wrap place-content-evenly'>
         <div class="collapse">
         <input type="checkbox" /> 

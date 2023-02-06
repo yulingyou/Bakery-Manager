@@ -56,6 +56,7 @@ const addBatchToOrder = async () => {
       console.log("Batch added: " + response.status)
       let data = await response.json()
       console.log("BATCH ORDER ADDED:", data)
+      props.setUpdateBasket(!props.updateBasket)
       setBatchID(data.batchOrder._id)
     }
   }
@@ -70,6 +71,7 @@ const addBatchToOrder = async () => {
       console.log("post failed, Error status:" + response.status)
     } else {
       console.log("Batch removed: " + response.status)
+      props.setUpdateBasket(!props.updateBasket)
     }
   }
   
@@ -79,13 +81,16 @@ const addBatchToOrder = async () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({batch_quantity: counter})
+      body: JSON.stringify({batchQuantity: counter})
     })
     if (response.status !== 202){
       console.log("patch failed, Error status:" + response.status)
     }
     else{
       console.log("Batch updated:" + response.status)
+      console.log("NEW AMOUNT:" + counter)
+      props.setUpdateBasket(!props.updateBasket)
+
       }
     }
 
@@ -94,16 +99,15 @@ const addBatchToOrder = async () => {
     if (inBasket && quantityInBasket === counter){
       changeBasketButtonText("Add to basket")
       setInBasket(false)
+      setCounter(0)
       removeBatchFromOrder();
-      props.setUpdateBasket(!props.updateBasket)
     }
     //if in basket but quantity has been changed
     else if (inBasket && quantityInBasket !== counter){
       changeBasketButtonText("In Basket")
+      updateBatchOrder();
       setInBasket(true)
       setQuantityInBasket(counter)
-      updateBatchOrder();
-      props.setUpdateBasket(!props.updateBasket)
     }
     //if not in basket
     else if (!inBasket && counter >0){
@@ -111,7 +115,6 @@ const addBatchToOrder = async () => {
       setInBasket(true)
       addBatchToOrder();
       setQuantityInBasket(counter)
-      props.setUpdateBasket(!props.updateBasket)
     }
   }
   const changeBasketButtonText = (text) => setBasketText(text);
