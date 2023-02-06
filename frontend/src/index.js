@@ -1,10 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './styles.css';
 import App from './App';
+import AddItem from './AddItem'
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
+import OrderForm from './orderForm';
 import Login from './login';
 import Profile from './profile';
 
@@ -18,6 +21,14 @@ const router = createBrowserRouter([
     element: <h2>THIS IS AN EXAMPLE</h2>
   },
   {
+    path: '/orderform',
+    element: <OrderForm />
+  },
+  {
+    path: '/addItem',
+    element: <AddItem />
+  },
+  {
     path: '/login',
     element: <Login />
   },
@@ -25,6 +36,7 @@ const router = createBrowserRouter([
     path: '/profile',
     element: <Profile/>
   },
+
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

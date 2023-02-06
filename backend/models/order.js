@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
+const {ObjectId} = require('mongodb')
 const Schema = mongoose.Schema;
 const Item = require('../models/item')
 
 const OrderSchema = new Schema({
   company: { type: String },
-  order: {type: Array},
-  date_of_order: {type: String},
-  date_required: {type: String},
+  orders: [{type: ObjectId, ref: "BatchOrder"}],
+  // date_of_order: {type: String},
+  // date_required: {type: String},
 });
 
 // Export model
