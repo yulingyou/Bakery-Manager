@@ -16,6 +16,8 @@ const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@c
 app.use(express.json())
 app.use("/items", itemsRouter);
 app.use("/orders", ordersRouter);
+app.use("/batchOrders", batchOrdersRouter);
+app.use("/bakers", bakersRouter);
 
 main().catch(err => console.log(err));
 async function main() {
