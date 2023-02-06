@@ -10,6 +10,7 @@ import {
 import OrderForm from './orderForm';
 import Login from './login';
 import Profile from './profile';
+import BakeryIndex from './bakeryIndex';
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,10 @@ const router = createBrowserRouter([
     path: '/profile',
     element: <Profile/>
   },
-
+  {
+    path: '/bakeryindex',
+    element: <BakeryIndex/>
+  },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -69,16 +69,13 @@ export default function Item(props) {
   const changeBasketButtonText = (text) => setBasketText(text);
 
     return (
-      <div className="m-10 place-content-evenly bg-green card w-96 shadow-xl card-bordered">
-        <div className="object-fit contain ">
-          <figure class="rounded -lg max-w-lg h-64 relative max-w-sm transition-all duration-300 ">
-            <a href="#">
-              <img class="rounded-lg" src={props.food.image} />
-            </a>
+      <div className="m-10 place-content-evenly bg-green card w-96 shadow-xl rounded-t-lg">
+          <figure>
+              <img class="rounded-t-lg object-cover h-64 w-96" src={props.food.image} alt='food' />
           </figure>
           <div className="rounded-b-lg bg-green card-body">
             <div className="bg-green text-black">
-              <h1 className="card-title heading">{props.food.item_name}</h1>
+              <h1 className="card-title heading">{props.food.itemName}</h1>
               <p>Price: {props.food.price}</p>
               <p>Batch Quantity: {props.food.batch_quantity}</p>
             </div>
@@ -90,6 +87,5 @@ export default function Item(props) {
           <div data-cy="basket-btn" className="btn" onClick={() => updateBasket()}>{basketText}</div>
         </div>
       </div>
-    </div>
     )
   }

@@ -71,7 +71,10 @@ export default function AddItem() {
                         image: url,
                         costToBake,
                         ingredients,
-                        batchQuantity}
+            batchQuantity
+        }
+        
+        console.log(itemObj)
 
         const response = await fetch('/items', {
             method: 'POST',
@@ -187,7 +190,7 @@ export default function AddItem() {
           {item.ingredients}
         </td>
         <td>{item.batchQuantity}</td>
-        <th className="flex justify-around">
+        <th className="flex justify-around gap-5">
           {/* <button className="btn" onClick={() => {editItem(item)}}>edit</button> */}
           <label htmlFor="my-modal-5" className="btn" onClick={() => {selectedItem(item)}}>edit</label>
 
@@ -198,8 +201,11 @@ export default function AddItem() {
         )
 
     return (
-        <div>
-            <div className="overflow-x-auto w-full">
+        <div class='bg-bone'>
+        <div class='grid place-self-center'>
+            <div class="card card-compact w-full h-full mt-5 border-8 border-bone bg-bone shadow-xl">
+            
+                <div class="card-body">
                 <table className="table w-full">
                     <thead>
                     <tr>
@@ -209,14 +215,14 @@ export default function AddItem() {
                         <th>ingredients</th>
                         <th>Batch Quantity</th>
                         <th>
-                        <label htmlFor="my-modal-5" className="btn" onClick={resetFields}>add item</label></th>
+                        <label htmlFor="my-modal-5" className="btn ml-10" onClick={resetFields}>add item</label></th>
                         </tr>
                     </thead>
                     <tbody>
                     {itemDisplay}
                     </tbody>    
                 </table>
-            </div>
+                    </div>
 
             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
                 <div className="modal">
@@ -300,6 +306,8 @@ export default function AddItem() {
                     </div>
                 </div>
                 </div>
-        </div>
+            </div>
+            </div>
+            </div>
     )
 }
