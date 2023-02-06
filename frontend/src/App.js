@@ -5,6 +5,7 @@ import Item from './Item';
 import Basket from './Basket/Basket';
 import Navbar from './Navbar';
 
+
 function App() {
   const [items, setItems] = useState([]);
 
@@ -32,7 +33,7 @@ function App() {
         <div class='flex flex-wrap place-content-evenly'>
         <div class="collapse">
         <input type="checkbox" /> 
-        <div class="collapse-title text-xl font-medium mt-5">
+        <div class="mt-5 collapse-title text-xl font-medium">
           ABOUT US
         </div>
         <div class="collapse-content"> 

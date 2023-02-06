@@ -8,6 +8,8 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import OrderForm from './orderForm';
+import Login from './login';
+import Profile from './profile';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +27,16 @@ const router = createBrowserRouter([
   {
     path: '/addItem',
     element: <AddItem />
-  }
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/profile',
+    element: <Profile/>
+  },
+
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
