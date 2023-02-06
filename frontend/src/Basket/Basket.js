@@ -18,7 +18,7 @@ export default function Basket(props) {
   const getTotalPrice = () => {
     let total = 0;
     batchOrders.forEach(element => {
-       total += (element.price_per_batch * element.batch_quantity);
+       total += (element.pricePerBatch * element.batchQuantity);
     });
     return total.toFixed(2);
   }

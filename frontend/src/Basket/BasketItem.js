@@ -12,14 +12,14 @@ export default function BasketItem(props) {
       .then(response => response.json())
       .then(async data => {
         setItem(data[0])
-        setpricePerBatch((data[0].price_per_batch).toFixed(2))
+        setpricePerBatch((data[0].pricePerBatch).toFixed(2))
       })
     }, [props.updateBasket])
     
   return(
     <div>
       <p>-----------------------------------------</p>
-      <p>{item.batch_quantity} | {item.item} | £{pricePerBatch}</p>
+      <p>{item.batchQuantity} | {item.itemName} | £{pricePerBatch}</p>
     </div>
   )
 

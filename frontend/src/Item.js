@@ -28,12 +28,12 @@ export default function Item(props) {
       .then(response => response.json())
       .then(async data => {
         data[0].orders.forEach(element => {
-          if (element.item === props.food.item_name){
+          if (element.itemName === props.food.itemName){
             setInBasket(true)
             setBatchID(element._id)
             changeBasketButtonText("In Basket")
-            setCounter(element.batch_quantity)
-            setQuantityInBasket(element.batch_quantity)
+            setCounter(element.batchQuantity)
+            setQuantityInBasket(element.batchQuantity)
           }
         });
       });
@@ -48,7 +48,7 @@ const addBatchToOrder = async () => {
       headers: {
         'Content-Type': 'application/json'
       },
-        body: JSON.stringify({ item: props.food.item_name, batch_quantity: counter, price_per_batch: props.food.price})
+        body: JSON.stringify({ itemName: props.food.itemName, batchQuantity: counter, pricePerBatch: props.food.price})
       })
     if (response.status !== 201) {
       console.log("post failed, Error status:" + response.status)
@@ -127,9 +127,9 @@ const addBatchToOrder = async () => {
           </figure>
         <div className="rounded-b-lg bg-green card-body">
           <div className="bg-green text-black">
-            <h1 className="card-title heading">{props.food.item_name}</h1>
+            <h1 className="card-title heading">{props.food.itemName}</h1>
             <p>Price: £{props.food.price.toFixed(2)}</p>
-            <p>Batch Quantity: {props.food.batch_quantity}</p>
+            <p>Batch Quantity: {props.food.batchQuantity}</p>
           </div>
       <div className="card-actions justify-end w-28">
       <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={()=>{changeCounter(-1)}}>-</button>
