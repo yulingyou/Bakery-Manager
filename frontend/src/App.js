@@ -29,6 +29,19 @@ function App() {
       <div class='flex flex-wrap'>
         <Navbar></Navbar>
         <Basket updateBasket={updateBasket} setUpdateBasket={setUpdateBasket}></Basket>
+        <div class='flex flex-wrap place-content-evenly'>
+        <div class="collapse">
+        <input type="checkbox" /> 
+        <div class="collapse-title text-xl font-medium mt-5">
+          ABOUT US
+        </div>
+        <div class="collapse-content"> 
+          <p>bake</p>
+        </div>
+      </div>
+    <div class="divider w-full"></div>
+          {/* {itemsDisplay} */}
+          </div>
       </div>
       <div class='flex flex-wrap'>
         {itemsDisplay}

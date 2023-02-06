@@ -5,6 +5,8 @@ const ItemsController = require("../controllers/items");
 
 router.get("/", ItemsController.getAll);
 router.post("/", ItemsController.createItem);
+router.get('/getImage', ItemsController.getImage);
+router.post('/postImage', ItemsController.postImage);
 router.get("/:name", ItemsController.getItemByName);
 
 module.exports = router;
