@@ -119,30 +119,24 @@ const addBatchToOrder = async () => {
   }
   const changeBasketButtonText = (text) => setBasketText(text);
 
-
-    return (
-      <div className="m-10 place-content-evenly bg-green card w-96 bg-base-100 shadow-xl card-bordered">
-        <div className="object-fit contain">
-        <figure class="rounded -lg max-w-lg h-64 relative max-w-sm transition-all duration-300 ">
-            <a href="#">
-              <img class="rounded-lg" src={props.food.image} />
-          </a>
+  return (
+      <div className="m-10 place-content-evenly bg-lightgreen card w-96 shadow-xl rounded-t-lg">
+          <figure>
+              <img class="rounded-t-lg object-cover h-64 w-96 " src={props.food.image} alt='food' />
           </figure>
-        <div className="rounded-b-lg bg-green card-body">
-          <div className="bg-green text-black">
-            <h1 className="card-title heading">{props.food.itemName}</h1>
-            <p>Price: £{props.food.price.toFixed(2)}</p>
-            <p>Batch Quantity: {props.food.batchQuantity}</p>
-          </div>
-      <div className="card-actions justify-end w-28">
+          <div className="rounded-b-lg card-body">
+            <div className="bg-lightgreen text-black">
+              <h1 className="card-title heading">{props.food.itemName}</h1>
+              <p>Price: {props.food.price.toFixed(2)}</p>
+              <p>Batch Quantity: {props.food.batchQuantity}</p>
+            </div>
+            <div className="card-actions justify-end w-28">
       <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={()=>{changeCounter(-1)}}>-</button>
         <p className='text-center text-black' data-cy="counter">{counter}</p>
         <button data-cy="increase-btn" className='btn btn-circle btn-sm' onClick={()=>{changeCounter(1)}}>+</button>
       </div>
-      <div data-cy="basket-btn" className="btn" onClick={() => updateBasket()}>{basketText}</div>
-
-    </div>
-        </div>
-        </div>
+          <div data-cy="basket-btn" className="btn bg-bone text-black" onClick={() => updateBasket()}>{basketText}</div>
+      </div>
+      </div>
     )
   }
