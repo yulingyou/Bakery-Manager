@@ -1,65 +1,34 @@
 import './styles.css';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Item from './Item';
-import BasketItem from './Basket/BasketItem';
 import Basket from './Basket/Basket';
+import Navbar from './Navbar';
 
 function App() {
-  // const [data, setData] = useState(null);
+  const [items, setItems] = useState([]);
+  const [updateBasket, setUpdateBasket] = useState(false)
 
-  // React.useEffect(() => {
-  //   fetch("/api")
-  //     .then((res) => res.json())
-  //     .then((data) => setData(data.message));
-  // }, []);
+  useEffect(() => {
+      fetch("/items", {
+      })
+        .then(response => response.json())
+        .then(async data => {
+          setItems(data.items);
+        })
+   
+  }, [])
 
-  const blueberryMuffin = {
-    price: 22,
-    itemName: 'Blueberry Muffin',
-    batchQuantity: 12
-  }
-  
-  const raspberryMuffin = {
-    price: 25,
-    itemName: 'Raspberry Muffin',
-    batchQuantity: 12
-  }
-  
-  const chickenMuffin = {
-    price: 2,
-    itemName: 'Chicken Muffin',
-    batchQuantity: 22
-  }
-
-  const lemonDrizzleCake = {
-    price: 20,
-    itemName: 'Lemon Drizzle Cake',
-    batchQuantity: 1
-  }
-
-  const krispyKreme = {
-    price: 20,
-    itemName: 'Lemon Drizzle Cake',
-    batchQuantity: 1
-  }
-
-  const pancakes = {
-    price: 20,
-    itemName: 'Lemon Drizzle Cake',
-    batchQuantity: 1
-  }
-  
-  const items = [blueberryMuffin, raspberryMuffin, chickenMuffin, lemonDrizzleCake, krispyKreme, pancakes]
 
   const itemsDisplay = items.map((food) => {
-    return <Item food={food}></Item> 
+    return <Item key={ food._id } updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
   })
 
   return (
     <div>
       <div class='flex flex-wrap'>
-        <Basket>Basket</Basket>
+        <Navbar></Navbar>
+        <Basket updateBasket={updateBasket}></Basket>
         <div class='flex flex-wrap place-content-evenly'>
         <div class="collapse">
         <input type="checkbox" /> 
@@ -71,9 +40,12 @@ function App() {
         </div>
       </div>
     <div class="divider w-full"></div>
-          {itemsDisplay}
+          {/* {itemsDisplay} */}
           </div>
       </div>
+      <div class='flex flex-wrap'>
+        {itemsDisplay}
+    </div>
     </div>
   );
 }

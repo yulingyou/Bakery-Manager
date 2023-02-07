@@ -1,8 +1,8 @@
 var mongoose = require("mongoose");
-require('dotenv').config();
+require('dotenv').config()({path: './.env.test'});
 
 beforeAll(function (done) {
-  const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ds0ycgm.mongodb.net/${process.env.TEST_DATABASE}?retryWrites=true&w=majority`;
+  const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ds0ycgm.mongodb.net/${process.env.DATABASE}?retryWrites=true&w=majority`;
   mongoose.connect(mongoDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

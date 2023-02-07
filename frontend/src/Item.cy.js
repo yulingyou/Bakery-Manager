@@ -34,4 +34,16 @@ describe('<Item />', () => {
     cy.get('[data-cy=counter]').should('have.text', '1')
   })
   
+  it('should change text when button is clicked', () => {
+    cy.mount(<Item food={mockItem} />)
+    cy.get('[data-cy=basket-btn]').should('have.text', 'Add to Basket')
+  })
+
+  it('should say in basket when button is clicked', () => {
+    cy.mount(<Item food={mockItem} />)
+    cy.get('[data-cy=basket-btn]').click()
+    cy.get('[data-cy=basket-btn]').should('have.text', 'In Basket')
+  })
+
+
 })
