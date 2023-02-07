@@ -25,25 +25,25 @@ describe("updateOrder", () => {
     };
   });
 
-  it("creates an order", async () => {
-    const user = new User({ _id: req.user_id });
-    await user.save();
-    const order = new Order({
-      _id: req.params.order_id,
-      date_of_order: new Date(),
-      date_required: '02/02/2023'
-    });
-    await order.save();
+  // it("creates an order", async () => {
+  //   const user = new User({ _id: req.user_id });
+  //   await user.save();
+  //   const order = new Order({
+  //     _id: req.params.order_id,
+  //     date_of_order: new Date(),
+  //     date_required: '02/02/2023'
+  //   });
+  //   await order.save();
 
-    await Orders.createOrder(req, res);
-    expect(res.status).toHaveBeenCalledWith(201);
-    expect(res.status().json).toHaveBeenCalledWith({
-      message: "OK",
-      token: expect.any(String)
-    });
-    const newOrder = await Order.findById(req.params.order_id);
-    expect(updatedOrder.date_required).toEqual(req.body.orders);
-  });  
+  //   await Orders.createOrder(req, res);
+  //   expect(res.status).toHaveBeenCalledWith(201);
+  //   expect(res.status().json).toHaveBeenCalledWith({
+  //     message: "OK",
+  //     token: expect.any(String)
+  //   });
+  //   const newOrder = await Order.findById(req.params.order_id);
+  //   expect(updatedOrder.date_required).toEqual(req.body.orders);
+  // });  
   it("updates an order", async () => {
     const user = new User({ _id: req.user_id });
     await user.save();

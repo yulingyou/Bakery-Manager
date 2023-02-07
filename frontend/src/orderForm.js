@@ -41,7 +41,7 @@ const OrderForm = () => {
 
   console.log(orderId)
   const handleSubmit = (event) => {
-    debugger;
+    // debugger;
     event.preventDefault();
     console.log("handleSubmit")
     fetch(`/orders/update/${orderId}`, {
