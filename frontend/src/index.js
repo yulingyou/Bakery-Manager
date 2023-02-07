@@ -8,6 +8,9 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import OrderForm from './orderForm';
+// import { Navigate } from "react-router-dom";
+
+import LogInForm from './login';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: '/addItem',
     element: <AddItem />
+  },
+  {
+    path: '/login',
+    element: <LogInForm />
   }
 ])
 

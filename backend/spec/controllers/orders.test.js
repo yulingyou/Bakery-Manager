@@ -1,92 +1,67 @@
-const Order = require("../../models/order");
-const OrdersController = require("../../controllers/orders")
+const app = require("../../index");
+const request = require("supertest");
+const Order = require('../../models/order');
+const Orders = require('../../controllers/orders')
+const User = require('../../models/user');
+const mongoose = require("mongoose");
 require('dotenv').config({path: './.env.test'});
 
-describe("OrdersController", () => {
-  describe('getAll', () => {
-    it("should return IDs of all orders", async () => {
-      const mockResponse = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn()
-      };
 
-      const mockOrders = ["1","2"];
-      Order.find = jest.fn((cb) => cb(null, mockOrders));
-      
-      await OrdersController.getAll(null, mockResponse);
-      
-      expect(mockResponse.status).toHaveBeenCalledWith(200);
-      expect(mockResponse.json).toHaveBeenCalledWith({"orders": mockOrders});
-    })
-  });
-  describe("createOrder", () => {
-    xit('should add a new ID to a list of all orders', async () => {
-      const mockRequest = { body: { "orders": ['1', '2','3']} };
-      const mockResponse = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn()
-      };
-  
-      await OrdersController.createOrder(mockRequest, mockResponse);
-      expect(mockResponse.status).toHaveBeenCalledWith(201);
-      expect(mockResponse.json).toHaveBeenCalledWith({ Order: [order] });
-    });
-  });
-  describe('getBatch', () => {
-    it("should return a batch", async () => {
-      const mockResponse = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn()
-      };
-
-      const mockOrder = {"_id": "1",  
-      "batch_quantity": 5,
-      "price_per_batch": 32};
-      Order.find = jest.fn((cb) => cb(null, mockOrder));
-      
-      await OrdersController.getAll(null, mockResponse);
-      
-      expect(mockResponse.status).toHaveBeenCalledWith(200);
-      expect(mockResponse.json).toHaveBeenCalledWith({"orders": mockOrder});
-    })
-  });
-  describe("getBasketInfoByID", () => {
-   xit("should return all items in a basket", async () => {
-
-      const mockResponse = {
-        status: jest.fn().mockReturnThis(),
-        json: jest.fn()
-      };
-      const mockRequest = { params: {"id": '10'} };
-      // const mockRequest = {
-      //   params: jest.fn().mockReturnThis()
-      // };
-
-      const mockBasket =  {
-        "_id": "10",
-        "orders": [
-            {
-                "_id": "1",
-                "item": "Blueberry Muffin",
-                "batch_quantity": 19,
-                "price_per_batch": 10,
-              },
-              {
-                "_id": "2",
-                "item": "Raspberry Muffin",
-                "batch_quantity": 5,
-                "price_per_batch": 32,
-            }
-        ],
+describe("updateOrder", () => {
+  let req, res;
+  beforeEach(() => {
+    req = {
+      user_id: mongoose.Types.ObjectId(),
+      params: {
+        order_id: mongoose.Types.ObjectId()
+      },
+      body: {
+        date_required: ''
       }
+    };
+    res = {
+      status: jest.fn().mockReturnValue({
+        json: jest.fn()
+      })
+    };
+  });
 
-      Order.find = jest.fn((cb) => cb(null, mockBasket));
-      
-      await OrdersController.getBasketInfoByID(mockRequest, mockResponse);
-      
-      expect(mockResponse.status).toHaveBeenCalledWith(200);
-      expect(mockResponse.json).toHaveBeenCalledWith({"orders": mockBasket});
+  // it("creates an order", async () => {
+  //   const user = new User({ _id: req.user_id });
+  //   await user.save();
+  //   const order = new Order({
+  //     _id: req.params.order_id,
+  //     date_of_order: new Date(),
+  //     date_required: '02/02/2023'
+  //   });
+  //   await order.save();
 
-    })
-  })
+  //   await Orders.createOrder(req, res);
+  //   expect(res.status).toHaveBeenCalledWith(201);
+  //   expect(res.status().json).toHaveBeenCalledWith({
+  //     message: "OK",
+  //     token: expect.any(String)
+  //   });
+  //   const newOrder = await Order.findById(req.params.order_id);
+  //   expect(updatedOrder.date_required).toEqual(req.body.orders);
+  // });  
+  it("updates an order", async () => {
+    const user = new User({ _id: req.user_id });
+    await user.save();
+    const order = new Order({
+      _id: req.params.order_id,
+      date_of_order: new Date(),
+      date_required: '02/02/2023'
+    });
+    await order.save();
+
+    await Orders.updateOrder(req, res);
+    expect(res.status).toHaveBeenCalledWith(201);
+    expect(res.status().json).toHaveBeenCalledWith({
+      message: "OK",
+      token: expect.any(String)
+    });
+    const updatedOrder = await Order.findById(req.params.order_id);
+    expect(updatedOrder.date_required).toEqual(req.body.date_required);
+  });
 });
