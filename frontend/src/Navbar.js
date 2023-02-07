@@ -7,11 +7,11 @@ export default function Navbar(props) {
 
     return (
     <div>
-    <div class="navbar bg-base-100">
+    {/* <div class="navbar bg-green">
         <div class="flex-1">
             <a class="btn btn-ghost normal-case text-xl">Bakewells Bakery</a>
                 </div>
-        <div class="flex-none">
+                <div class="flex-none">
                     
             <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
@@ -21,7 +21,7 @@ export default function Navbar(props) {
             </label>
             <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                <a class="justify-between">
+                <a href="/profile" class="justify-between">
                     Profile
                     <span class="badge">New</span>
                 </a>
@@ -31,7 +31,7 @@ export default function Navbar(props) {
             </ul>
             </div>
         </div>
-  </div>
+  </div> */}
 </div>
   )
 };

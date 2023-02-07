@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect} from 'react';
 
-
 export default function BasketItem(props) {
   const [item, setItem] = useState([]);
   const [pricePerBatch, setpricePerBatch] = useState([]);
@@ -21,7 +20,16 @@ export default function BasketItem(props) {
         }
       })
     }, [props.updateBasket])
-
+    
+  useEffect(() => {
+    fetch(`/orders/getBatch/${props.item._id}`, {
+    })
+      .then(response => response.json())
+      .then(async data => {
+        setItem(data[0])
+      })
+    }, [])
+    
   return(
     <div>
       <p>-----------------------------------------</p>

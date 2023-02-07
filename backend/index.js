@@ -8,6 +8,7 @@ const bakersRouter = require("./routes/bakers");
 const usersRouter = require("./routes/users");
 const JWT = require("jsonwebtoken");
 const tokensRouter = require("./routes/tokens");
+const batchOrdersRouter = require('./routes/batchOrders');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -45,6 +46,9 @@ app.use("/batchOrders", batchOrdersRouter);
 app.use("/bakers", bakersRouter);
 app.use("/users", usersRouter);
 app.use("/tokens", tokensRouter);
+app.use("/orders", ordersRouter);
+app.use("/batchOrders", batchOrdersRouter);
+
 
 main().catch(err => console.log(err));
 async function main() {
