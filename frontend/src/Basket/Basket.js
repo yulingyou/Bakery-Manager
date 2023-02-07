@@ -1,10 +1,10 @@
 import React from 'react';
 import BasketItem from './BasketItem';
+import { Link} from 'react-router-dom'
 import { useState, useEffect} from 'react';
 
 export default function Basket(props) {
   const [batchOrders, setBatchOrders] = useState([]);
-
 
   useEffect(() => {
     fetch("orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
@@ -14,21 +14,24 @@ export default function Basket(props) {
       setBatchOrders(data[0].orders)
     });
 
-}, [])
-
+  }, [props.updateBasket])
   
   const getTotalPrice = () => {
     let total = 0;
     batchOrders.forEach(element => {
-       total += (element.price_per_batch * element.batch_quantity);
+       total += (element.pricePerBatch * element.batchQuantity);
     });
     return total.toFixed(2);
   }
 
   const basketDisplay = batchOrders.map((item) => {
-    return <BasketItem item={item}></BasketItem>
+    return <BasketItem key={ item._id } updateBasket={props.updateBasket} item={item}></BasketItem>
   })
 
+  const Checkout = () => {
+    console.log("checkout")
+    
+  }
 
   const basketMenu =
     (
@@ -48,7 +51,7 @@ export default function Basket(props) {
                 <br></br>
                 <li>Total Price: £{getTotalPrice()}</li>
                 <div class="card-actions">
-                  <button class="btn bg-bone btn-block"><a href='/checkout'>Checkout</a></button>
+                   <Link to="/orderform"><button className="btn btn-primary btn-block" onClick={() => Checkout()}>Checkout</button></Link>
                 </div> 
               </div>
             </div>
@@ -73,7 +76,6 @@ export default function Basket(props) {
       </div>
     </div>
 </div>
-      
     )
 
 

@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const BatchOrderSchema = new Schema({
-  item: { type: String },
-  batch_quantity: { type: Number},
-  price_per_batch: {type: Number},
+  itemName: { type: String },
+  batchQuantity: { type: Number},
+  pricePerBatch: {type: Number},
 });
 
 // Export model

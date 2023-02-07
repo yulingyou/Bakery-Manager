@@ -71,10 +71,7 @@ export default function AddItem() {
                         image: url,
                         costToBake,
                         ingredients,
-            batchQuantity
-        }
-        
-        console.log(itemObj)
+                        batchQuantity}
 
         const response = await fetch('/items', {
             method: 'POST',
@@ -190,7 +187,8 @@ export default function AddItem() {
           {item.ingredients}
         </td>
         <td>{item.batchQuantity}</td>
-        <th className="flex justify-around gap-5">
+        <th className="flex justify-around">
+          {/* <button className="btn" onClick={() => {editItem(item)}}>edit</button> */}
           <label htmlFor="my-modal-5" className="btn" onClick={() => {selectedItem(item)}}>edit</label>
 
           <button className="btn" onClick={() => {deleteItem(item._id)}}>delete</button>

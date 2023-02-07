@@ -12,7 +12,6 @@ const BatchOrdersController = {
     const batch = await BatchOrder.find(filter)
     console.log("new batch:", batch)
     res.status(202).json(batch)
-
     },
     getAll: async (req, res) => {
         const allBatchOrders = await BatchOrder.find()

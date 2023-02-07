@@ -25,14 +25,13 @@ const ItemsController = {
       const allItems = await Item.find()
       res.status(201).json({ items: allItems });
     }
-    )
-  },
+  )},
+
   getImage: (req, res) => {
     getDownloadURL(ref(storage, 'bpcbgbeesroom.png'))
       .then((url) => {
-
-        console.log(url)
-        res.status(200).json({ url })
+      console.log(url)
+      res.status(200).json({url})
 
       })
       .catch((error) => {
@@ -42,13 +41,28 @@ const ItemsController = {
   },
   postImage: (req, res) => {
     try {
-      const image = req.body;
+      const image = req.body; 
       console.log('image', image);
-      res.status(200).json({ message: "success" })
-    } catch (error) {
+      res.status(200).json({message: "success"})
+    } catch(error) {
       console.log(error)
     }
 
+
+    const storage = getStorage();
+    const storageRef = ref(storage, 'images');
+
+    // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, image).then((snapshot) => {
+    console.log('Uploaded a blob or file!');
+    });
+},
+    getItemByName: async (req, res) => {
+      const filter = { item_name: req.params.name};
+      const item = await Item.find(filter).populate().exec()
+      res.status(200).json({item: item})
+    }
+}
 
     const storage = getStorage();
     const storageRef = ref(storage, 'images');

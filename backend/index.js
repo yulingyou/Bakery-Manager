@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const itemsRouter = require("./routes/items");
 const ordersRouter = require("./routes/orders");
+const batchOrdersRouter = require("./routes/batchOrders");
 const bakersRouter = require("./routes/bakers");
 const usersRouter = require("./routes/users");
 const JWT = require("jsonwebtoken");
@@ -39,7 +40,9 @@ const tokenChecker = (req, res, next) => {
 // route setup
 app.use(express.json())
 app.use("/items", itemsRouter);
-app.use("/orders",tokenChecker,ordersRouter);
+// app.use("/orders",tokenChecker,ordersRouter);
+app.use("/orders",ordersRouter);
+app.use("/batchOrders", batchOrdersRouter);
 app.use("/bakers", bakersRouter);
 app.use("/users", usersRouter);
 app.use("/tokens", tokensRouter);
