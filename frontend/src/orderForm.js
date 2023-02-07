@@ -30,7 +30,7 @@ const OrderForm = () => {
         console.log("data:",  data)
         setCompanyName(data.orders[0].company)
         setOrderSummary(data.orders[0].orders)
-        setOrderId(data.orders[data.orders.length-1]._id)
+        setOrderId(data.orders[0]._id)
   
       })
       .catch(error => console.error(error));
@@ -39,17 +39,14 @@ const OrderForm = () => {
     }
   }, []);
 
-  console.log("ORDER SUMMARY:", orderSummary)
 
   const orderSumarryDisplay = orderSummary.map((orderID) => {
     return <OrderSummaryItem key={ orderID } orderID={orderID}></OrderSummaryItem>
   })
 
-  console.log(orderId)
   const handleSubmit = (event) => {
     // debugger;
     event.preventDefault();
-    console.log("handleSubmit")
     fetch(`/orders/update/${orderId}`, {
       method: "put",
       headers: {
@@ -66,7 +63,6 @@ const OrderForm = () => {
     })
     .catch(error => console.error(error));
   };
-  console.log("date needed by:", dateNeededBy)
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
