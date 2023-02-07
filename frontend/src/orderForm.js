@@ -1,6 +1,6 @@
 import './styles.css';
 import React from 'react';
-import BasketItem from './Basket/BasketItem'
+import OrderSummaryItem from './orderSummaryItem'
 import { useState, useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
@@ -11,8 +11,6 @@ const OrderForm = () => {
   const [orderSummary, setOrderSummary] = useState([]);
   const [dateNeededBy, setDateNeededBy] = useState ("");
   const [orderId, setOrderId] = useState("")
-
-
 
 
   useEffect(() => {
@@ -43,13 +41,8 @@ const OrderForm = () => {
 
   console.log("ORDER SUMMARY:", orderSummary)
 
-  const orderSumarryDisplay = orderSummary.map((order) => {
-    // return <BasketItem key={ order._id } item={order}></BasketItem>
-    return (
-      <div>
-        <p>{order}</p>
-      </div>
-    )
+  const orderSumarryDisplay = orderSummary.map((orderID) => {
+    return <OrderSummaryItem key={ orderID } orderID={orderID}></OrderSummaryItem>
   })
 
   console.log(orderId)
@@ -104,7 +97,7 @@ const OrderForm = () => {
               <div className="mb-6 form-group">
                 <div type="text" className="form-control block
                   w-96
-                  h-40
+                  h-auto
                   px-3
                   py-1.5
                   text-base
