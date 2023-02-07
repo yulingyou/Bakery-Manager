@@ -8,6 +8,9 @@ import {
   RouterProvider
 } from 'react-router-dom'
 import OrderForm from './orderForm';
+// import { Navigate } from "react-router-dom";
+
+import LogInForm from './login';
 import Login from './login';
 import Profile from './profile';
 import BakeryIndex from './bakeryIndex';
@@ -27,6 +30,9 @@ const router = createBrowserRouter([
     element: <OrderForm />
   },
   {
+    path: '/login',
+    element: <LogInForm />
+  }
     path: '/addItem',
     element: <AddItem />
   },
