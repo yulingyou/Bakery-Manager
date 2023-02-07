@@ -44,9 +44,6 @@ function App() {
       <div class='flex flex-wrap place-content-evenly'>
         {itemsDisplay}
       </div>
-      <div class='flex flex-wrap'>
-        {itemsDisplay}
-    </div>
     </div>
   );
 }
