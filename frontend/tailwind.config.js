@@ -14,7 +14,7 @@ module.exports = {
         'lightgreen': '#A3C9A8',
         'green': '#84B59F',
         'darkgreen': '#445B4D'
-      },
+      }
     },
   },
   plugins: [require("daisyui")],
