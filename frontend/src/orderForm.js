@@ -9,6 +9,7 @@ const OrderForm = () => {
   const [companyName, setCompanyName] = useState("");
   const [order, setOrderSummary] = useState("");
   const [dateNeededBy, setDateNeededBy] = useState ("");
+  const [orderId, setOrderId] = useState("")
 
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const OrderForm = () => {
       console.log(token)
       //specify the localhost
     fetch('/orders', { 
-      mode: 'cors',
+      // mode: 'cors',
       method: "get",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -28,6 +29,8 @@ const OrderForm = () => {
         console.log(data)
         setCompanyName(data.orders[0].company)
         setOrderSummary(data.orders[data.orders.length-1].order)
+        console.log(data.orders[data.orders.length-1]._id)
+        setOrderId(data.orders[data.orders.length-1]._id)
   
       })
       .catch(error => console.error(error));
@@ -36,11 +39,20 @@ const OrderForm = () => {
     }
   }, []);
 
+  console.log(orderId)
   const handleSubmit = (event) => {
+    debugger;
     event.preventDefault();
-    fetch(`/orders/`, {
-      method: "post",
-      body: JSON.stringify({ date: dateNeededBy })
+    console.log("handleSubmit")
+    fetch(`/orders/update/${orderId}`, {
+      method: "put",
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ 
+        date_required: dateNeededBy
+      })
     })
     .then(res => res.json())
     .then((data) => {
@@ -48,8 +60,7 @@ const OrderForm = () => {
     })
     .catch(error => console.error(error));
   };
-console.log("outside:",companyName)
-
+  console.log(dateNeededBy)
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
@@ -134,7 +145,7 @@ console.log("outside:",companyName)
                 transition
                 duration-150
                 ease-in-out"
-                onSubmit={handleSubmit} >Send</button>
+                onClick={handleSubmit} >Send</button>
               </div>
             </form>
           </div>
