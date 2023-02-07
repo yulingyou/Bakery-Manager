@@ -1,12 +1,34 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import BatchOrder from './batchOrder'
 
-export default function Orders() {
+
+export default function Orders(props) {
+    
+    const [allBatchOrders, setAllBatchOrders] = useState([]);
+
+
+    useEffect(() => {
+        fetch("batchOrders/getAll", {
+        })
+            .then(response => response.json())
+            .then(async data => {
+                // console.log(data)
+          setAllBatchOrders(data)
+        });
+    }, [])
+
+    console.log("ALL BATCH ORDERS:", allBatchOrders)
+    const batchOrdersDisplay = allBatchOrders.map((batchOrder) => {
+        // JSON.stringify(batchOrder)
+        return <BatchOrder batchOrder={batchOrder}></BatchOrder>
+    })
+    
     return (
         <div>
-        <h1>Upcoming orders</h1>
+            <h1>Upcoming orders</h1>
             <div class="divider"></div> 
-            <p>this is a test i hope it works</p>
+            <div>{batchOrdersDisplay}</div>
         </div>
     )
 }

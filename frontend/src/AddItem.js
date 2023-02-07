@@ -201,112 +201,123 @@ export default function AddItem() {
 
     return (
         <div>
-        <div class='grid place-self-center'>
-            <div class="card card-compact w-full h-full mt-10 border-8 border-bone bg-bone shadow-xl">
-            
-                <div class="card-body">
-                <table className="table w-full text-black">
-                    <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Price</th>
-                        <th>Cost to Bake</th>
-                        <th>ingredients</th>
-                        <th>Batch Quantity</th>
-                        <th>
-                        <label htmlFor="my-modal-5" className="btn ml-10" onClick={resetFields}>add item</label></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {itemDisplay}
-                    </tbody>    
-                </table>
+            <div class='grid place-self-center'>
+                <div class="card card-compact w-full h-full mt-10 border-8 border-bone bg-bone shadow-xl">
+                    <div class="dropdown">
+                        <label tabindex="0" class="btn btn-ghost btn-circle avatar w-20 h-20">
+                            <div class="w-13 rounded-full ">
+                                <img src="https://img.icons8.com/bubbles/200/home-page.png" />
+                            </div>
+                        </label>
+                        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black">
+                            <li>
+                                <a href="/" class="justify-between">Store front</a>
+                            </li>
+                        </ul>
                     </div>
-
-            <input type="checkbox" id="my-modal-5" className="modal-toggle" />
-                <div className="modal">
-                <div className="modal-box w-11/12 max-w-5xl">
-                    <h3 className="font-bold text-lg">Add new item</h3>
-                    <div className="card-body">
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Item</span>
-                        </label>
-                        <input 
-                        type="text" 
-                        placeholder="Item" 
-                        className="input input-bordered" 
-                        value={item}
-                        onChange={(e) => setItem(e.target.value)}/>
-                        </div>
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Price</span>
-                        </label>
-                        <input 
-                        type="text" 
-                        placeholder="price" 
-                        className="input input-bordered"
-                        value={price}
-                        onChange={(e) => setPrice(e.target.value)} />
-                        </div>
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Cost to bake</span>
-                        </label>
-                        <input 
-                        type="text" 
-                        placeholder="Cost to bake" 
-                        className="input input-bordered" 
-                        value={costToBake}
-                        onChange={(e) => setCostToBake(e.target.value)}/>
-                        </div>
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Ingredients</span>
-                        </label>
-                        <input 
-                        type="text" 
-                        placeholder="ingredients" 
-                        className="input input-bordered" 
-                        value={ingredients}
-                        onChange={(e) => setIngredients(e.target.value)}/>
-                        </div>
-                        <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Batch Quantity</span>
-                        </label>
-                        <input 
-                        type="text" 
-                        placeholder="Batch Quantity" 
-                        className="input input-bordered" 
-                        value={batchQuantity}
-                        onChange={(e) => setBatchQuantity(e.target.value)}/>
-                        </div>
-                        <div className="form-control mt-6">
-                            {isEditing ? 
-                            <label className="btn btn-primary" htmlFor="my-modal-5" onClick={() => {editItemWrapper()}}>Edit</label>
-                            :
-                            <label className="btn btn-primary" htmlFor="my-modal-5" onClick={addItemWrapper}>Add</label>
-                            }
-                       </div>
-                      <input type="file" 
-                      className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
-                      onChange={handleChange}
-                      accept="/image/*"/>
+                    <div class="card-body">
+                        <table className="table w-full text-black">
+                            <thead>
+                                <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Cost to Bake</th>
+                                <th>ingredients</th>
+                                <th>Batch Quantity</th>
+                                <th>
+                                <label htmlFor="my-modal-5" className="btn ml-10" onClick={resetFields}>add item</label>
+                                </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {itemDisplay}
+                            </tbody>    
+                        </table>
                     </div>
-                    <div className="modal-action">
-                        {isEditing ? 
-                        <label htmlFor="my-modal-5" className="btn" onClick={() => {setIsEditing(false)}}>Close</label>
-                        :
-                        <label htmlFor="my-modal-5" className="btn">Close</label>
+                    <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+                        <div className="modal">
+                            <div className="modal-box w-11/12 max-w-5xl">
+                                <h3 className="font-bold text-lg">Add new item</h3>
+                                <div className="card-body">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Item</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            placeholder="Item" 
+                                            className="input input-bordered" 
+                                            value={item}
+                                            onChange={(e) => setItem(e.target.value)}/>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Price</span>
+                                        </label>
+                                        <input 
+                                        type="text" 
+                                        placeholder="price" 
+                                        className="input input-bordered"
+                                        value={price}
+                                        onChange={(e) => setPrice(e.target.value)} />
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Cost to bake</span>
+                                        </label>
+                                        <input 
+                                        type="text" 
+                                        placeholder="Cost to bake" 
+                                        className="input input-bordered" 
+                                        value={costToBake}
+                                        onChange={(e) => setCostToBake(e.target.value)}/>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Ingredients</span>
+                                        </label>
+                                        <input 
+                                        type="text" 
+                                        placeholder="ingredients" 
+                                        className="input input-bordered" 
+                                        value={ingredients}
+                                        onChange={(e) => setIngredients(e.target.value)}/>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Batch Quantity</span>
+                                        </label>
+                                        <input 
+                                        type="text" 
+                                        placeholder="Batch Quantity" 
+                                        className="input input-bordered" 
+                                        value={batchQuantity}
+                                        onChange={(e) => setBatchQuantity(e.target.value)}/>
+                                    </div>
+                                <div className="form-control mt-6">
+                                    {isEditing ? 
+                                    <label className="btn btn-primary" htmlFor="my-modal-5" onClick={() => {editItemWrapper()}}>Edit</label>
+                                    :
+                                    <label className="btn btn-primary" htmlFor="my-modal-5" onClick={addItemWrapper}>Add</label>
+                                    }
+                                </div>
+                                <input type="file" 
+                                className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
+                                onChange={handleChange}
+                                accept="/image/*"/>
+                            </div>
+                            <div className="modal-action">
+                                {isEditing ? 
+                                <label htmlFor="my-modal-5" className="btn" onClick={() => {setIsEditing(false)}}>Close</label>
+                                :
+                                <label htmlFor="my-modal-5" className="btn">Close</label>
 
-                        }
+                                }
+                            </div>
+                        </div>
                     </div>
                 </div>
-                </div>
             </div>
-            </div>
-            </div>
+        </div>
     )
 }

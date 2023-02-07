@@ -18,6 +18,9 @@ module.exports = {
         'beige': '#9f8e7a',
         'muted': '#657163',
       },
+      backgroundImage: {
+        'logo': "url('https://files.slack.com/files-pri/T03ALA7H4-F04N7PKAYH4/logobm8.png')",
+      },
     },
   },
   plugins: [require("daisyui")],

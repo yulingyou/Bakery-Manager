@@ -29,19 +29,19 @@ function App() {
     <div>
       <div class="navbar h-10 bg-lightgreen">
         <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl text-black" href='./addItem'>Bakewells Bakery</a>
+          <a class="btn btn-ghost normal-case text-xl text-black">Bakewells Bakery</a>
         </div>
         <Basket></Basket>
       </div>
-    <div class="collapse justify-center mt-5">
-      <input type="checkbox" /> 
-      <div class="collapse-title text-xl font-medium">
-        About us!
+      <div class="collapse justify-center mt-5">
+        <input type="checkbox" /> 
+        <div class="collapse-title text-xl font-medium">
+          About us!
+        </div>
+      <div class="collapse-content"> 
+          <p>Here's the link to our <a href="https://github.com/dev-mhowells/bakery-manager">github </a>page</p>
+        </div>
       </div>
-    <div class="collapse-content"> 
-        <p>We sell cake</p>
-      </div>
-    </div>
     <div class="divider"></div> 
       <div class='flex flex-wrap place-content-evenly'>
         {itemsDisplay}

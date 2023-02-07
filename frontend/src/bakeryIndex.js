@@ -20,27 +20,26 @@ export default function BakeryIndex() {
                 <div className="mt-5 ml-20 w-10/12 h-10/12 mockup-window border bg-green">
                     <div className="flex justify-center px-4 py-96 bg-base-200">
     {/* company photo */}
-                    <div className='fixed mt-10 h-96 w-96 top-10 left-80 bg-bone card rounded-full'>
-                        <div className="artboard artboard-horizontal phone-1"></div>
-                    </div>
+                    <div className='card fixed mt-10 h-96 w-96 top-10 left-80 bg-bone bg-logo rounded-full'>   
+                            <figure class="px-10 pt-10">
+                                <img src="https://thumbs.dreamstime.com/b/bakery-logo-template-vector-illustration-bakery-shop-emblem-retro-style-logo-bakery-logo-template-vector-illustration-bakery-shop-156109843.jpg" alt="logo" class="rounded-full"/>
+                            </figure>
+                        </div>
     {/* company name */}
-            </div>
+                </div>
     {/* cards that contain 3 elements */}
                     <div className="fixed mt-40 top-80 left-80 right-30 card-body bg-darkgreen card shadow-xl w-96">
                         <button class="btn bg-beige text-bone btn-block"><a href='/addItem'>Add more items</a></button>
-                            {/* <button class="btn bg-beige text-bone btn-block"><a href='/orders'>Upcoming orders</a></button> */}
                             <label for="my-modal-3" class="btn bg-beige text-bone btn-block">Upcoming orders</label>
-                            
-                            <input type="text" placeholder="Type here" class="input input-bordered input-sm w-full max-w-xs" />
-                                <button class="btn btn-sm bg-beige text-bone btn-block">Add order</button>
-                          {/* calendar */}
-                            <div className="fixed mt-60 top-60 right-80 w-96 h-96 border-solid border-5 border-green mb-10"> 
-                          <CalendarTable></CalendarTable>
+                            <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/">Home page</a></label>
+    {/* calendar */}
+                                <div className="fixed mt-60 top-60 right-80 w-96 h-96 border-solid border-5 border-green mb-10"> 
+                                <CalendarTable></CalendarTable>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
             </body>
-            </div>
+        </div>
     )
 }
