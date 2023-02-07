@@ -31,6 +31,7 @@ export default function Basket(props) {
   })
 
   const Checkout = () => {
+    //Need to post the confirmed order to the confirmed orders database.
     console.log("checkout")
     
   }

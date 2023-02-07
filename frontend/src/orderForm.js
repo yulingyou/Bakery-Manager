@@ -1,5 +1,6 @@
 import './styles.css';
 import React from 'react';
+import BasketItem from './Basket/BasketItem'
 import { useState, useEffect } from 'react';
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
@@ -7,14 +8,16 @@ const OrderForm = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [companyName, setCompanyName] = useState("");
-  const [order, setOrderSummary] = useState("");
+  const [orderSummary, setOrderSummary] = useState([]);
   const [dateNeededBy, setDateNeededBy] = useState ("");
   const [orderId, setOrderId] = useState("")
 
 
+
+
   useEffect(() => {
     if (token) {
-      console.log(token)
+      console.log("token:", token)
       //specify the localhost
     fetch('/orders', { 
       // mode: 'cors',
@@ -26,10 +29,9 @@ const OrderForm = () => {
       .then(res => res.json())
       .then((data) => {
         setToken(window.localStorage.getItem("token"));
-        console.log(data)
+        console.log("data:",  data)
         setCompanyName(data.orders[0].company)
-        setOrderSummary(data.orders[data.orders.length-1].order)
-        console.log(data.orders[data.orders.length-1]._id)
+        setOrderSummary(data.orders[0].orders)
         setOrderId(data.orders[data.orders.length-1]._id)
   
       })
@@ -38,6 +40,17 @@ const OrderForm = () => {
       navigate("/ABC");
     }
   }, []);
+
+  console.log("ORDER SUMMARY:", orderSummary)
+
+  const orderSumarryDisplay = orderSummary.map((order) => {
+    // return <BasketItem key={ order._id } item={order}></BasketItem>
+    return (
+      <div>
+        <p>{order}</p>
+      </div>
+    )
+  })
 
   console.log(orderId)
   const handleSubmit = (event) => {
@@ -60,7 +73,7 @@ const OrderForm = () => {
     })
     .catch(error => console.error(error));
   };
-  console.log(dateNeededBy)
+  console.log("date needed by:", dateNeededBy)
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
@@ -104,7 +117,7 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="order_summary"
-                  placeholder="Order Summary">{order}
+                  placeholder="Order Summary">{orderSumarryDisplay}
                   </div>
               </div>
               <div className="mb-6 form-group">
