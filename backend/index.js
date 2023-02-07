@@ -39,7 +39,7 @@ const tokenChecker = (req, res, next) => {
 // route setup
 app.use(express.json())
 app.use("/items", itemsRouter);
-app.use("/orders",tokenChecker,ordersRouter);
+app.use("/orders",ordersRouter);
 app.use("/bakers", bakersRouter);
 app.use("/users", usersRouter);
 app.use("/tokens", tokensRouter);

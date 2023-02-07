@@ -70,7 +70,7 @@ const OrdersController = {
     await Order.findByIdAndUpdate( req.params.order_id, update);
     const order = await Order.find(filter)
     return order
-  }
+  },
   addBatch: async (req, res) => {
     // const orderRef = '63da563fdd9375028be24ef8'
     // const order = await Order.findById(orderRef)
