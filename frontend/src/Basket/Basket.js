@@ -1,5 +1,7 @@
 import React from 'react';
 import BasketItem from './BasketItem';
+import { Link} from 'react-router-dom'
+
 import { useState, useEffect} from 'react';
 
 export default function Basket(props) {
@@ -28,6 +30,11 @@ export default function Basket(props) {
     return <BasketItem key={ item._id } updateBasket={props.updateBasket} item={item}></BasketItem>
   })
 
+  const Checkout = () => {
+    console.log("checkout")
+    
+  }
+
 
   const basketMenu =
     (
@@ -44,7 +51,8 @@ export default function Basket(props) {
                   <br></br>
               <li>Total Price: £{getTotalPrice()} </li>
               <div class="card-actions">
-              <button class="btn btn-primary btn-block"><a href='/checkout'>Checkout</a></button>
+              <Link to="/orderform"><button className="btn btn-primary btn-block" onClick={() => Checkout()}>Checkout</button></Link>
+
             </div> 
           </div>
           </div>
