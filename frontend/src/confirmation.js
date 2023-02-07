@@ -17,12 +17,13 @@ useEffect(() => {
     })
     .then(res => res.json())
     .then((data) => {
+        console.log("this is data", data);
         setOrderName(data.confirmedOrder[0].confirmedOrder)
         // setOrderQuantity(data.confirmedOrder[0]);
         console.log(data.confirmedOrder[0]);
         setOrderId(data.confirmedOrder[0].orderId);
     })
-    }) 
+    },[]) 
 
 // confirmation message
 return (
@@ -40,7 +41,7 @@ return (
   <h2><b>Your order is confirmed and will be delivered on DATE.</b></h2></div>
     <h2 className="orderID text-center">Order ID: {orderId}</h2>
   
-    <p className="order-name text-center">{orderName}</p>
+    <p className="order-name text-center" data-cy="order contents">{orderName}</p>
 
     <div className="card-actions justify-center">
       <button className="btn btn-primary">Home</button>
