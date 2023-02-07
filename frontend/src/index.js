@@ -30,6 +30,10 @@ const router = createBrowserRouter([
     element: <OrderForm />
   },
   {
+    path: '/addItem',
+    element: <AddItem />
+  },
+  {
     path: '/login',
     element: <LogInForm />
   },

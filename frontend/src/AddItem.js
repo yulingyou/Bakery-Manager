@@ -71,10 +71,7 @@ export default function AddItem() {
                         image: url,
                         costToBake,
                         ingredients,
-            batchQuantity
-        }
-        
-        console.log(itemObj)
+                        batchQuantity}
 
         const response = await fetch('/items', {
             method: 'POST',
@@ -190,7 +187,8 @@ export default function AddItem() {
           {item.ingredients}
         </td>
         <td>{item.batchQuantity}</td>
-        <th className="flex justify-around gap-5">
+        <th className="flex justify-around">
+          {/* <button className="btn" onClick={() => {editItem(item)}}>edit</button> */}
           <label htmlFor="my-modal-5" className="btn" onClick={() => {selectedItem(item)}}>edit</label>
 
           <button className="btn" onClick={() => {deleteItem(item._id)}}>delete</button>
@@ -255,7 +253,7 @@ export default function AddItem() {
                                             <span className="label-text">Price</span>
                                         </label>
                                         <input 
-                                        type="text" 
+                                        type="number" 
                                         placeholder="price" 
                                         className="input input-bordered"
                                         value={price}
@@ -266,7 +264,7 @@ export default function AddItem() {
                                             <span className="label-text">Cost to bake</span>
                                         </label>
                                         <input 
-                                        type="text" 
+                                        type="number" 
                                         placeholder="Cost to bake" 
                                         className="input input-bordered" 
                                         value={costToBake}
@@ -288,7 +286,7 @@ export default function AddItem() {
                                             <span className="label-text">Batch Quantity</span>
                                         </label>
                                         <input 
-                                        type="text" 
+                                        type="number" 
                                         placeholder="Batch Quantity" 
                                         className="input input-bordered" 
                                         value={batchQuantity}

@@ -14,19 +14,19 @@ export default function Basket(props) {
       setBatchOrders(data[0].orders)
     });
 
-}, [])
+}, [props.updateBasket])
 
   
   const getTotalPrice = () => {
     let total = 0;
     batchOrders.forEach(element => {
-       total += (element.price_per_batch * element.batch_quantity);
+       total += (element.pricePerBatch * element.batchQuantity);
     });
     return total.toFixed(2);
   }
 
   const basketDisplay = batchOrders.map((item) => {
-    return <BasketItem item={item}></BasketItem>
+    return <BasketItem key={ item._id } updateBasket={props.updateBasket} item={item}></BasketItem>
   })
 
 

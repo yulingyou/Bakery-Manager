@@ -27,10 +27,10 @@ const ItemsController = {
     }
     )
   },
+
   getImage: (req, res) => {
     getDownloadURL(ref(storage, 'bpcbgbeesroom.png'))
       .then((url) => {
-
         console.log(url)
         res.status(200).json({ url })
 
@@ -64,12 +64,14 @@ const ItemsController = {
     res.status(200).json({ item: item })
   },
 
+
   deleteItem: async (req, res) => {
     console.log('DELETE RAN')
     await Item.deleteOne({ _id: req.body.id })
     const newItems = await Item.find()
     res.status(201).json({ items: newItems })
   },
+    
   editItem: async (req, res) => {
     console.log('this is body', req.body)
     await Item.findByIdAndUpdate(req.body.id, {

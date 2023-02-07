@@ -5,10 +5,9 @@ import Item from './Item';
 import Basket from './Basket/Basket';
 import Navbar from './Navbar';
 
-
 function App() {
   const [items, setItems] = useState([]);
-
+  const [updateBasket, setUpdateBasket] = useState(false)
 
   useEffect(() => {
       fetch("/items", {
@@ -20,9 +19,8 @@ function App() {
    
   }, [])
 
-
   const itemsDisplay = items.map((food) => {
-    return <Item food={food}></Item> 
+    return <Item key={ food._id } updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
   })
 
   return (
@@ -31,7 +29,7 @@ function App() {
         <div class="flex-1">
           <a class="btn btn-ghost normal-case text-xl text-black">Bakewells Bakery</a>
         </div>
-        <Basket></Basket>
+        <Basket  updateBasket={updateBasket} ></Basket>
       </div>
       <div class="collapse justify-center mt-5 ml-20">
         <input type="checkbox" /> 
@@ -46,6 +44,9 @@ function App() {
       <div class='flex flex-wrap place-content-evenly'>
         {itemsDisplay}
       </div>
+      <div class='flex flex-wrap'>
+        {itemsDisplay}
+    </div>
     </div>
   );
 }
