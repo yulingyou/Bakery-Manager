@@ -9,7 +9,7 @@ const OrderForm = () => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [companyName, setCompanyName] = useState("");
   const [orderSummary, setOrderSummary] = useState([]);
-  const [dateNeededBy, setDateNeededBy] = useState ("");
+  const [dateNeededBy, setDateNeededBy] = useState (null);
   const [orderId, setOrderId] = useState("")
 
 
@@ -45,24 +45,26 @@ const OrderForm = () => {
   })
 
   const handleSubmit = (event) => {
-    // debugger;
     event.preventDefault();
-    fetch(`/orders/update/${orderId}`, {
-      method: "put",
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ 
-        date_required: dateNeededBy
+    if (dateNeededBy !== null){
+      // debugger;
+      fetch(`/orders/update/${orderId}`, {
+        method: "put",
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ 
+          date_required: dateNeededBy
+        })
       })
-    })
-    .then(res => res.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(error => console.error(error));
-  };
+      .then(res => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(error => console.error(error));
+    };
+  }
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
@@ -88,7 +90,7 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="company_name"
-                  placeholder="Company Name">Company Name: {companyName}</div>
+                  placeholder="Company Name"> {companyName}</div>
               </div>
               <div className="mb-6 form-group">
                 <div type="text" className="form-control block
