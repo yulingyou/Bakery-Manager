@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 
-export default function Item({food}) {
+export default function Item(props) {
 
     const [counter, setCounter] = useState(0)
     const [basketText, setBasketText] = useState("Add to Basket"); 
     const [inBasket, setInBasket] = useState(false); 
+    const [mostRecentBatchID, setMostRecentBatchID] = useState(""); 
 
     const increaseCount = () => {
       setCounter((prevCounter) => prevCounter + 1)
@@ -17,42 +18,74 @@ export default function Item({food}) {
       }
   }
 
-  const updateBasket = () => {
-    if (inBasket){
-      changeText("Add to basket")
-      setInBasket(false)
+  const addBatchToOrder = async () => {
+    let response = await fetch('/orders/addBatch', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify({ item: props.food.item_name, batch_quantity: counter, price_per_batch: props.food.price})
+      })
+    if (response.status !== 201) {
+      console.log("post failed, Error status:" + response.status)
+    } else {
+      console.log("Batch added: " + response.status)
+      let data = await response.json()
+      console.log("BATCH ORDER ADDED:", data)
+      setMostRecentBatchID(data.batchOrder._id)
     }
-    else{
-      changeText("In Basket")
-      setInBasket(true)
+  }
+  console.log("MOST RECENT BATCHID:", mostRecentBatchID)
+
+  const removeBatchFromOrder = async () => {
+    console.log("TRYING TO REMOVE BATCH:", mostRecentBatchID)
+    let response = await fetch(`/orders/delete/batch/${mostRecentBatchID}`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      }, })
+    if (response.status !== 201) {
+      console.log("post failed, Error status:" + response.status)
+    } else {
+      console.log("Batch removed: " + response.status)
+      let data = await response.json()
     }
   }
 
-  const changeText = (text) => setBasketText(text);
+  const updateBasket = () => {
+    if (inBasket){
+      changeBasketButtonText("Add to basket")
+      setInBasket(false)
+      removeBatchFromOrder();
 
-  return (
-    <div>
-      <br></br>
-      <div className="place-content-evenly mt-50 m-10   drop-shadow-mdbg-green card w-96 bg-base-100 shadow-xl card-bordered">
-      <figure><img src="https://www.dinnerbyheston.co.uk/cms/images/_800x418_crop_center-center_82_none/Brown-Bread-Ice-cream-APW-copy.jpg?mtime=1575465674"/></figure>
-        <div className="rounded-b-lg bg-green card-body">
-          <div className="bg-green text-900">
-            <h1 className="card-title heading">{food.itemName}</h1>
-            <p>Price: {food.price}</p>
-            <p>Batch Quantity: {food.batchQuantity}</p>
+    }
+    else if (!inBasket && counter >0){
+      changeBasketButtonText("In Basket")
+      setInBasket(true)
+      addBatchToOrder();
+    }
+  }
+
+  const changeBasketButtonText = (text) => setBasketText(text);
+
+    return (
+      <div className="m-10 place-content-evenly bg-lightgreen card w-96 shadow-xl rounded-t-lg">
+          <figure>
+              <img class="rounded-t-lg object-cover h-64 w-96 " src={props.food.image} alt='food' />
+          </figure>
+          <div className="rounded-b-lg card-body">
+            <div className="bg-lightgreen text-black">
+              <h1 className="card-title heading">{props.food.itemName}</h1>
+              <p>Price: {props.food.price}</p>
+              <p>Batch Quantity: {props.food.batch_quantity}</p>
+            </div>
+          <div className="card-actions justify-end w-28">
+            <button data-cy="decrease-btn" class='btn btn-circle btn-sm bg-bone text-black' onClick={decreaseCount}>-</button>
+             <p className='text-center text-black' data-cy="counter">{counter}</p>
+            <button data-cy="increase-btn" className='btn btn-circle btn-sm bg-bone text-black' onClick={increaseCount}>+</button>
           </div>
-        <div className="card-actions justify-end">
-          <button data-cy="increase-btn" className='btn btn-circle btn-sm' onClick={increaseCount}>+</button>
-          <p className='text-center text-900' data-cy="counter">{counter}</p>
-            <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={decreaseCount}>-</button>
-          <button className="btn gap-2">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-            Add to wishlist
-          </button>
-          <div className="btn" onClick={() => updateBasket()}>{basketText}</div>
-      </div>
-    </div>
-      </div>
+          <div data-cy="basket-btn" className="btn bg-bone text-black" onClick={() => updateBasket()}>{basketText}</div>
+        </div>
       </div>
     )
   }
