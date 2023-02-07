@@ -33,7 +33,7 @@ function App() {
         </div>
         <Basket></Basket>
       </div>
-      <div class="collapse justify-center mt-5">
+      <div class="collapse justify-center mt-5 ml-20">
         <input type="checkbox" /> 
         <div class="collapse-title text-xl font-medium">
           About us!
