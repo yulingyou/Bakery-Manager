@@ -10,9 +10,7 @@ import {
 } from 'react-router-dom'
 import OrderForm from './orderForm';
 // import { Navigate } from "react-router-dom";
-
 import LogInForm from './login';
-import Login from './login';
 import Profile from './profile';
 import BakeryIndex from './bakeryIndex';
 import Orders from './orders';
@@ -38,10 +36,6 @@ const router = createBrowserRouter([
     path: '/addItem',
     element: <AddItem />
   },
-  // {
-  //   path: '/login',
-  //   element: <Login />
-  // },
   {
     path: '/signup',
     element: <Signup />

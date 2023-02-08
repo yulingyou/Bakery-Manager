@@ -39,7 +39,7 @@ export default function Signup({}) {
 					<div className="w-1/2">
 						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
 							<div class="max-w-md mx-auto w-96">	
-								<img src="logoBMv9.png"></img>
+								<img src="logoBM8.png"></img>
 							</div>
 						</div>
 					</div>

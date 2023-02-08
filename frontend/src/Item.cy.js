@@ -1,6 +1,5 @@
 import React from 'react'
 import Item from './Item'
-import App from './App'
 
 
 describe('<Item />', () => {

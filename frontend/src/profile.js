@@ -9,8 +9,8 @@ export default function Profile() {
                     <div className="flex justify-center px-4 py-96 bg-base-200 border-8 border-green rounded-md">
 {/* company photo */}
                         <div className='card fixed mt-10 h-96 w-96 top-10 left-80 bg-bone bg-logo rounded-full'>   
-                            <figure class="px-10 pt-10">
-                                <img src="logoBMv9.png" alt="logo" class="rounded-full"/>
+                            <figure class="px-30 pt-30">
+                                <img src="logoBM8.png" alt="logo" class="rounded-full"/>
                             </figure>
                         </div>
 {/* company name */}

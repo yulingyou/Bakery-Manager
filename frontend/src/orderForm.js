@@ -1,7 +1,7 @@
 import './styles.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const OrderForm = () => {
   const navigate = useNavigate();
@@ -39,7 +39,6 @@ const OrderForm = () => {
     }
   }, []);
 
-  console.log(orderId)
   const handleSubmit = (event) => {
     // debugger;
     event.preventDefault();
@@ -60,7 +59,7 @@ const OrderForm = () => {
     })
     .catch(error => console.error(error));
   };
-  console.log(dateNeededBy)
+  
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
@@ -151,7 +150,7 @@ const OrderForm = () => {
           </div>
         </div>
     </div>
-    </div>
+  </div>
   );
 }
 

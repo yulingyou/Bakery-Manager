@@ -1,6 +1,6 @@
 import './styles.css';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 
 
@@ -45,11 +45,10 @@ export default function LogInForm({}) {
 				<div className="w-1/2">
 					<div class="min-h-screen py-6 flex flex-col sm:py-12">
 						<div class="max-w-md mx-auto w-96 mt-40">	
-							<img src="logoBMv9.png"></img>
+							<img src="logoBM8.png"></img>
 						</div>
 					</div>
-					</div>
-				
+				</div>
 				<div className="w-1/2">
 					<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
 						<div class="relative py-3 sm:max-w-xl sm:mx-auto">
@@ -94,14 +93,14 @@ export default function LogInForm({}) {
 											</form>
 											<Link to='/signup'><b class='text-blue underline'>Don't have an account yet? Sign up here</b></Link>
 										</div>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				</div>
+			</div>
+		</div>
 
 	);
 }

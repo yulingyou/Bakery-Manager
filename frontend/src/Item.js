@@ -37,7 +37,6 @@ export default function Item(props) {
           }
         });
       });
-  // }, [props.updateBasket])
   }, [])
   
 
