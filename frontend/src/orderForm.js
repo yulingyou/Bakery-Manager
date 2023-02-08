@@ -11,6 +11,7 @@ const OrderForm = () => {
   const [orderSummary, setOrderSummary] = useState([]);
   const [dateNeededBy, setDateNeededBy] = useState (null);
   const [orderId, setOrderId] = useState("")
+  const [totalPrice, setTotalPrice] = useState(0)
 
 
   useEffect(() => {
@@ -27,9 +28,12 @@ const OrderForm = () => {
       .then(res => res.json())
       .then((data) => {
         setToken(window.localStorage.getItem("token"));
+        console.log(data)
         setCompanyName(data.companyName)
         setOrderSummary(data.orders)
         setOrderId(data._id)
+        setTotalPrice(data.totalPrice)
+
   
       })
       .catch(error => console.error(error));
@@ -42,6 +46,12 @@ const OrderForm = () => {
   const orderSumarryDisplay = orderSummary.map((orderID) => {
     return <OrderSummaryItem key={ orderID } orderID={orderID}></OrderSummaryItem>
   })
+
+  const totalPriceDisplay = () => {
+    console.log("TOTAL PRICE ON ORDER FORM", totalPrice)
+    console.log("NAME ON ORDER FORM", companyName)
+    return totalPrice.toFixed(2);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -145,6 +155,24 @@ const OrderForm = () => {
                   placeholder="Date needed by"
                   value={dateNeededBy}
                   onChange={e => setDateNeededBy(e.target.value)}></input>
+              </div>
+              <div className="mb-6 form-group">
+                <div type="text" className="form-control block
+                  h-10
+                  w-96
+                  px-3
+                  py-1.5
+                  text-base
+                  font-normal
+                  text-gray-700
+                  bg-white bg-clip-padding
+                  border border-solid border-gray-300
+                  rounded
+                  transition
+                  ease-in-out
+                  m-0
+                  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="company_name"
+                  placeholder="Company Name"> Total: £ {totalPriceDisplay()}</div>
               </div>
               <div>
               <button type="submit" className="

@@ -39,8 +39,21 @@ export default function Basket(props) {
     return <BasketItem key={ item._id } updateBasket={props.updateBasket} item={item}></BasketItem>
   })
 
-  const Checkout = () => {
-    //Need to post the confirmed order to the confirmed orders database.
+  const Checkout = async() => {
+
+    let response = await fetch(`/orders/update/totalPrice/${basketID}`, {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify({ totalPrice: getTotalPrice()})
+      })
+    if (response.status !== 202) {
+      console.log("post failed, Error status:" + response.status)
+    } else {
+      console.log("price updated ", getTotalPrice())
+    }
+
     window.localStorage.setItem("currentBasketID", basketID)
     console.log("checkout")
     

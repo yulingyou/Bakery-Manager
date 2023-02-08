@@ -110,6 +110,13 @@ const OrdersController = {
     const order = await Order.find(filter)
     return order
   },
+  updateOrderPrice:async(req, res) => {
+    const filter = { _id: req.params.order_id};
+    const update = { totalPrice:  req.body.totalPrice}
+    await Order.findByIdAndUpdate( req.params.order_id, update);
+    const order = await Order.find(filter)
+    res.status(202).json(order);
+  }
 }
 
 

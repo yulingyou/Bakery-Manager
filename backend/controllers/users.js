@@ -48,7 +48,7 @@ const UsersController = {
   },
   updateUserBasket: async (req,res) => {
 
-    const newBasket = new Order ({company: req.body.company, order: [], date_of_order:"", date_required :""})
+    const newBasket = new Order ({companyName: req.body.companyName, order: [], date_of_order:"", date_required :""})
     newBasket.save(async (err) => {
       if (err) {
         throw err;

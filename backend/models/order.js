@@ -9,6 +9,7 @@ const OrderSchema = new Schema({
   orders: [{type: ObjectId, ref: "BatchOrder"}],
   date_of_order: {type: String},
   date_required: {type: String},
+  totalPrice: {type: Number},
 });
 
 // Export model
