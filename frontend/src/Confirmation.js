@@ -26,11 +26,15 @@ useEffect(() => {
 
 // confirmation message
 return (
-    <div className="card w-96 bg-base-100 shadow-xl place-content-center">
+  <div className="flex place-content-evenly mt-20">
+    <div className="card w-96 bg-green drop-shadow-xl place-content-center border-2 border-beige">
   {/* <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure> */}
-  <div className="card-body">
+      <div className="card-body">
+        <div className="text-center">
+          <h1>Order Invoice</h1>
+        </div>
   <div className="orderText text-center" data-cy="confirmation_message">
-  <h2><b>Your order is confirmed and will be delivered on DATE.</b></h2></div>
+          <h2><b>Your order is confirmed</b></h2></div>
     <h2 className="orderID text-center">Order ID: {orderId}</h2>
   
     <p className="order-name text-center" data-cy="order contents">{orderName}</p>
@@ -39,6 +43,7 @@ return (
       <button className="btn btn-primary"><a href ='/'>Home</a></button>
     </div>
   </div>
+</div>
 </div>
 )
 }
