@@ -4,8 +4,8 @@ import React from 'react';
 
     return(
       <div>
-        <p>-----------------------------------------</p>
-            <p>{props.batchOrder.item} | {props.batchOrder.batch_quantity}</p>
+        <div className="divider"></div>
+            <p>{props.batchOrder.itemName} | {props.batchOrder.batchQuantity}</p>
             {/* need to add date due by, sort by soonest date */}
       </div>
     )
