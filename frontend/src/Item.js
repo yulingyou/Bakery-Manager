@@ -131,9 +131,9 @@ const addBatchToOrder = async () => {
               <p>Batch Quantity: {props.food.batchQuantity}</p>
             </div>
             <div className="card-actions justify-end w-28">
-      <button data-cy="decrease-btn" class='btn btn-circle btn-sm' onClick={()=>{changeCounter(-1)}}>-</button>
+      <button data-cy="decrease-btn" class='btn btn-circle btn-sm bg-bone text-black' onClick={()=>{changeCounter(-1)}}>-</button>
         <p className='text-center text-black' data-cy="counter">{counter}</p>
-        <button data-cy="increase-btn" className='btn btn-circle btn-sm' onClick={()=>{changeCounter(1)}}>+</button>
+        <button data-cy="increase-btn" className='btn btn-circle btn-sm bg-bone text-black' onClick={()=>{changeCounter(1)}}>+</button>
       </div>
           <div data-cy="basket-btn" className="btn bg-bone text-black" onClick={() => updateBasket()}>{basketText}</div>
       </div>

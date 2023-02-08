@@ -38,9 +38,8 @@ export default function Signup({}) {
 				<div className="flex">
 					<div className="w-1/2">
 						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
-						<div class="max-w-md mx-auto w-96">	
-									{/* <img src="https://i.imgur.com/9l1A4OS.jpeg"></img> */}
-									<img src="logoBMv9.png"></img>
+							<div class="max-w-md mx-auto w-96">	
+								<img src="logoBMv9.png"></img>
 							</div>
 						</div>
 					</div>
@@ -53,22 +52,21 @@ export default function Signup({}) {
 											<h1 className=" text-3xl text-center font-heading">Sign up</h1>
 										</div>
 										<div class="divide-y divide-gray-200">
-										<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-											<form onSubmit={handleSubmit}>
-
-                                            <div class="relative">
+											<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+												<form onSubmit={handleSubmit}>
+												<div class="relative">
 													<input autoComplete="off" id="companyName" name="companyName" type="text" class="peer placeholder-transparent h-10 w-full rounded-md text-gray-900 mb-4 focus:outline-none focus:borer-rose-600" placeholder="Company Name" value={ companyName } onChange={(e) => setCompanyName(e.target.value)} />
 													<label for="companyName" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Company Name</label>
 												</div>
-                                                <div class="relative">
+												<div class="relative">
 													<input autoComplete="off" id="typeOfBusiness" name="typeOfBusiness" type="text" class="peer placeholder-transparent h-10 w-full mb-4 rounded-md text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Type of business" value={ typeOfBusiness } onChange={(e) => setTypeOfBusiness(e.target.value)} />
 													<label for="typeOfBusiness" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Type of business</label>
 												</div>
-                                                <div class="relative">
+												<div class="relative">
 													<input autoComplete="off" id="address" name="address" type="text" class="peer placeholder-transparent h-10 w-full mb-4 rounded-md text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Type of business" value={ address } onChange={(e) => setAddress(e.target.value)} />
 													<label for="address" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Address</label>
 												</div>
-                                                <div class="relative">
+												<div class="relative">
 													<input autoComplete="off" id="phoneNumber" name="phoneNumber" type="text" class="peer placeholder-transparent h-10 w-full mb-4 rounded-md text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Type of business" value={ phoneNumber } onChange={(e) => setPhoneNumber(e.target.value)} />
 													<label for="phoneNumber" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Phone number</label>
 												</div>
@@ -100,10 +98,10 @@ export default function Signup({}) {
 														duration-150
 														ease-in-out mb-5"
 														onSubmit={handleSubmit} >Submit</button>
-												</div>
-											</form>
-                                            <Link to='/login'><b class='text-blue underline mt-10'>Already have an account? Log in here!</b></Link>
-										</div>
+													</div>
+												</form>
+												<Link to='/login'><b class='text-blue underline mt-10'>Already have an account? Log in here!</b></Link>
+											</div>
 										</div>
 									</div>
 								</div>

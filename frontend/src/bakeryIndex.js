@@ -17,7 +17,7 @@ export default function BakeryIndex() {
             </div>
         <body>
             <div className='flex'>
-                <div className="mt-5 ml-20 w-10/12 h-10/12 mockup-window border bg-green">
+                <div className="fixed mt-5 ml-20 w-10/12 h-10/12 mockup-window border bg-green">
                     <div className="flex justify-center px-4 py-96 bg-base-200">
     {/* company photo */}
                     <div className='card fixed mt-10 h-96 w-96 top-10 left-80 bg-bone bg-logo rounded-full'>   
