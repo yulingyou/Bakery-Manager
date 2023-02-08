@@ -34,7 +34,7 @@ export default function Signup({}) {
 	};
 
 	return (
-		<div className="hero min-h-screen bg-darkgreen">
+		<div className="hero min-h-screen bg-lightgreen">
 				<div className="flex">
 					<div className="w-1/2">
 						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">

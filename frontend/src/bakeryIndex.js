@@ -17,8 +17,8 @@ export default function BakeryIndex() {
             </div>
         <body>
             <div className='flex'>
-                <div className="fixed mt-5 ml-20 w-10/12 h-10/12 mockup-window border bg-green">
-                    <div className="flex justify-center px-4 py-96 bg-base-200">
+                <div className="fixed mt-5 ml-20 w-10/12 h-10/12 rounded-md">
+                    <div className="flex justify-center px-4 py-96 bg-base-200 border-8 border-green rounded-md">
     {/* company photo */}
                     <div className='card fixed mt-10 h-96 w-96 top-10 left-80 bg-bone bg-logo rounded-full'>   
                             <figure class="px-10 pt-10">
@@ -32,6 +32,7 @@ export default function BakeryIndex() {
                         <button class="btn bg-beige text-bone btn-block"><a href='/addItem'>Add more items</a></button>
                             <label for="my-modal-3" class="btn bg-beige text-bone btn-block">Upcoming orders</label>
                             <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/">Home page</a></label>
+                            <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/login">Login</a></label>
     {/* calendar */}
                                 <div className="fixed mt-60 top-60 right-80 w-96 h-96 border-solid border-5 border-green mb-10"> 
                                 <CalendarTable></CalendarTable>

@@ -5,8 +5,8 @@ export default function Profile() {
     return (
         <body>
             <div className='flex'>
-                <div className="mt-5 ml-20 w-10/12 h-10/12 mockup-window border bg-green">
-                    <div className="flex justify-center px-4 py-96 bg-base-200">
+                <div className="mt-5 ml-20 w-10/12 h-10/12 bg-green rounded-md">
+                    <div className="flex justify-center px-4 py-96 bg-base-200 border-8 border-green rounded-md">
 {/* company photo */}
                         <div className='card fixed mt-10 h-96 w-96 top-10 left-80 bg-bone bg-logo rounded-full'>   
                             <figure class="px-10 pt-10">
@@ -54,7 +54,8 @@ export default function Profile() {
                             <label htmlFor="my-modal" className="btn bg-beige">Close</label>
                         </div>
                     </div>
-                </div >
+                        </div >
+                        <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/login">Logout</a></label>
 {/* text box bio */}
                 <div className="fixed mt-40 top-80 right-80 w-96 h-40 border-solid border-5 border-green mb-10 form-control">        
                     <textarea className="textarea textarea-bordered textarea-xl border-darkgreen" placeholder="Bio"></textarea>
