@@ -1,7 +1,6 @@
 import './styles.css';
 import React from 'react';
 import { useState } from 'react';
-import Navbar2 from './Navbar2';
 import {  useNavigate, Link } from "react-router-dom";
 
 export default function Signup({}) {
@@ -35,13 +34,7 @@ export default function Signup({}) {
 	};
 
 	return (
-		<div>
-				<Navbar2></Navbar2>
-				<div class="collapse">
-					<div class="collapse-content">
-          	<p>bake</p>
-        	</div>
-				</div>
+		<div className="hero min-h-screen bg-darkgreen">
 				<div className="flex">
 					<div className="w-1/2">
 						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
@@ -54,10 +47,7 @@ export default function Signup({}) {
 					<div className="w-1/2">
 						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
 							<div class="relative py-3 sm:max-w-xl sm:mx-auto">
-								<div
-									class="absolute inset-0 bg-gradient-to-r from-green to-bone shadow-darkgreen transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
-								</div>
-								<div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+								<div class="relative px-4 py-10 bg-bone border-b-8 border-r-8 border-beige drop-shadow-lg sm:rounded-3xl sm:p-20">
 									<div class="max-w-md mx-auto w-96">
 										<div>
 											<h1 className="mb-12 text-3xl text-center font-heading">Sign up</h1>
@@ -112,7 +102,7 @@ export default function Signup({}) {
 														onSubmit={handleSubmit} >Submit</button>
 												</div>
 											</form>
-                                            <Link to='/login'><b class='text-blue underline mt-10'>already have an account? Log in</b></Link>
+                                            <Link to='/login'><b class='text-blue underline mt-10'>Already have an account? Log in here!</b></Link>
 										</div>
 										</div>
 									</div>

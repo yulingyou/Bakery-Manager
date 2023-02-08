@@ -103,10 +103,6 @@ export default function LogInForm({}) {
 					</div>
 				</div>
 				</div>
-				{/* <div  className="flex justify-start">
-				<img src="https://i.imgur.com/9l1A4OS.jpeg" className="w-48 h-48"></img>
-    		</div> */}
-		</div>
 
 	);
 }
