@@ -49,7 +49,7 @@ export default function Signup({}) {
 								<div class="relative px-4 py-10 bg-bone border-b-8 border-r-8 border-beige drop-shadow-lg sm:rounded-3xl sm:p-20">
 									<div class="max-w-md mx-auto w-96">
 										<div>
-											<h1 className=" text-3xl text-center font-heading">Sign up</h1>
+											<h1 className=" text-3xl text-center font-heading">Signup</h1>
 										</div>
 										<div class="divide-y divide-gray-200">
 											<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
@@ -97,7 +97,7 @@ export default function Signup({}) {
 														transition
 														duration-150
 														ease-in-out mb-5"
-														onSubmit={handleSubmit} >Submit</button>
+														onSubmit={handleSubmit} >Signup</button>
 													</div>
 												</form>
 												<Link to='/login'><b class='text-blue underline mt-10'>Already have an account? Log in here!</b></Link>

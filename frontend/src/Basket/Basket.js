@@ -5,6 +5,9 @@ import { useState, useEffect} from 'react';
 export default function Basket(props) {
   const [batchOrders, setBatchOrders] = useState([]);
 
+  const ClearLocalStorage = () => {
+    localStorage.clear();
+}
 
   useEffect(() => {
     fetch("orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
@@ -56,7 +59,7 @@ export default function Basket(props) {
           <div class="dropdown dropdown-end">
             <label tabindex="0" class="btn btn-ghost btn-circle avatar">
               <div class="w-10 rounded-full ">
-                <img src="https://www.jocooks.com/wp-content/uploads/2022/03/bakewell-tart-1-28.jpg" />
+                <img src="logoBMv9.png" />
               </div>
             </label>
           <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black">
@@ -66,7 +69,7 @@ export default function Basket(props) {
                 <span class="badge">Check it out!</span>
               </a>
             </li>
-            <li><a href="/login">Logout</a></li>
+            <li><a href="/login" onClick={ClearLocalStorage()}>Logout</a></li>
           </ul>
         </div>
       </div>

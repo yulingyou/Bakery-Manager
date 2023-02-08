@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import ClearLocalStorage from './logout';
 
 export default function Profile() {
     return (
@@ -10,7 +10,7 @@ export default function Profile() {
 {/* company photo */}
                         <div className='card fixed mt-10 h-96 w-96 top-10 left-80 bg-bone bg-logo rounded-full'>   
                             <figure class="px-10 pt-10">
-                                <img src="https://thumbs.dreamstime.com/b/bakery-logo-template-vector-illustration-bakery-shop-emblem-retro-style-logo-bakery-logo-template-vector-illustration-bakery-shop-156109843.jpg" alt="logo" class="rounded-full"/>
+                                <img src="logoBMv9.png" alt="logo" class="rounded-full"/>
                             </figure>
                         </div>
 {/* company name */}
@@ -55,7 +55,7 @@ export default function Profile() {
                         </div>
                     </div>
                         </div >
-                        <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/login">Logout</a></label>
+                        <label htmlFor="my-modal" className="btn text-bone bg-beige" onClick={ClearLocalStorage()}><a href="/login">Logout</a></label>
 {/* text box bio */}
                 <div className="fixed mt-40 top-80 right-80 w-96 h-40 border-solid border-5 border-green mb-10 form-control">        
                     <textarea className="textarea textarea-bordered textarea-xl border-darkgreen" placeholder="Bio"></textarea>
