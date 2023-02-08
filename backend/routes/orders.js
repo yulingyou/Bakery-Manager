@@ -13,6 +13,7 @@ router.get("/getBasketInfo/:orderID", OrdersController.getBasketInfoByID);
 router.delete("/delete/batch/:batchID", OrdersController.deleteBatchByID)
 // router.patch("/update/batch/:batchID", OrdersController.updateBasketByBatchID)
 router.put("/update/:order_id", OrdersController.updateOrder);
+router.put("/update/totalPrice/:order_id", OrdersController.updateOrderPrice);
 
 
 
