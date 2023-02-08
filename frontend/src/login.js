@@ -24,11 +24,14 @@ export default function LogInForm({}) {
 					navigate("/login")
 				} else {
 					let data = await response.json();
+					console.log('this is all the data', data)
 					console.log("you are login");
-					window.localStorage.setItem("token", data.token);
-					navigate("/orderform")
+					localStorage.clear()
+					localStorage.setItem("user", data.role);
+					navigate(data.role === 'customer' ? "/" : '/bakeryindex')
 				}
 	};
+	console.log('this is token from Login', window.localStorage.getItem('token'))
 
 	const handleEmailChange = (event) => {
 		setEmail(event.target.value)
