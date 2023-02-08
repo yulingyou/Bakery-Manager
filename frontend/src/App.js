@@ -1,7 +1,7 @@
 import './styles.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import Item from './Item';
+import Item from './Items/Item';
 import Basket from './Basket/Basket';
 
 function App() {

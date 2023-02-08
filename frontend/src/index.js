@@ -2,18 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 import App from './App';
-import AddItem from './AddItem'
-import Signup from './Signup';
+import AddItem from './Items/AddItem'
+import Signup from './User/Signup';
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
-import OrderForm from './orderForm';
+import OrderForm from './OrderForm/orderForm';
 // import { Navigate } from "react-router-dom";
-import LogInForm from './login';
-import Profile from './profile';
-import BakeryIndex from './bakeryIndex';
-import Orders from './orders';
+import LogInForm from './User/login';
+import Profile from './User/profile';
+import BakeryIndex from './User/bakeryIndex';
+import Orders from './OrderForm/orders';
 
 // const storage = localStorage.getItem('user')
 // console.log('this is storage', storage)

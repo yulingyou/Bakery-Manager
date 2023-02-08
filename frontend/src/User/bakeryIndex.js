@@ -1,6 +1,6 @@
 import React from 'react';
 import CalendarTable from './calendar';
-import Orders from './orders';
+import Orders from '../OrderForm/orders';
 import ClearLocalStorage from './logout';
 
 export default function BakeryIndex() {
