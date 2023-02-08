@@ -10,7 +10,7 @@ export default function BakeryIndex() {
         <div>
             <input type="checkbox" id="my-modal-3" class="modal-toggle" />
             <div class="modal">
-                <div class="modal-box relative">
+                <div class="modal-box relative overflow-auto">
                     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <Orders></Orders>
                 </div>

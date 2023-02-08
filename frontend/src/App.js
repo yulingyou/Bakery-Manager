@@ -3,7 +3,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Item from './Item';
 import Basket from './Basket/Basket';
-import Navbar from './Navbar';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -44,9 +43,6 @@ function App() {
       <div class='flex flex-wrap place-content-evenly'>
         {itemsDisplay}
       </div>
-      <div class='flex flex-wrap'>
-        {itemsDisplay}
-    </div>
     </div>
   );
 }
