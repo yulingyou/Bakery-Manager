@@ -36,9 +36,10 @@ On the last Wednesday we were trying to pull together the last few strings (and 
 To make sure we knew what areas to focus on we created two new columns in trello (to do today, and clean up): this made it super easy to get our heads down and finish feeling satisfied.
 
 <img width="281" alt="Screenshot 2023-02-08 at 14 58 57" src="https://user-images.githubusercontent.com/106555227/217568905-d057b80a-4c67-466e-b8af-479800c842a2.png">
-![Uploading Screenshot 2023-02-08 at 15.10.54.png…]()
+
+
+<img width="281" alt="Screenshot 2023-02-08 at 15 10 54" src="https://user-images.githubusercontent.com/106555227/217570164-dbcac85f-aff9-4362-92f2-51b42b755e76.png">
 
 
 
-
-#######*to do today was compiled of those final features we just knew we had to make sure worked*
+###### *To do today was compiled of those final features we just knew we had to make sure worked*
