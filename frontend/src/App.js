@@ -13,7 +13,6 @@ function App() {
   
   useEffect(() => {
     if (userID){
-      console.log("USER ID", userID)
       fetch(`/users/${userID}`, {
       })
         .then(response => response.json())
@@ -32,7 +31,6 @@ function App() {
     }
   }, [])
 
-console.log("APP PAGE USER", user)
   const itemsDisplay = items.map((food) => {
     return <Item key={ food._id } updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
   })

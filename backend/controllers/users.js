@@ -15,7 +15,7 @@ const UsersController = {
   },
   Create: (req, res) => {
     //Create a new basket for the user
-    const newBasket = new Order ({order: [], date_of_order:"", date_required :""})
+    const newBasket = new Order ({companyName: req.body.companyName, order: [], date_of_order:"", date_required :""})
     newBasket.save(async (err) => {
       if (err) {
         throw err;
@@ -47,12 +47,19 @@ const UsersController = {
     res.status(200).json(user)
   },
   updateUserBasket: async (req,res) => {
+
+    const newBasket = new Order ({company: req.body.company, order: [], date_of_order:"", date_required :""})
+    newBasket.save(async (err) => {
+      if (err) {
+        throw err;
+      }
+    })
+
     const userID = req.params.userID
     console.log(userID)
 
     const filter = { _id: userID};
-    const new_basketID = req.body.new_basketID;
-    await User.findByIdAndUpdate(userID,  { currentBasketID: new_basketID });
+    await User.findByIdAndUpdate(userID,  { currentBasketID: newBasket._id });
     const user = await User.find(filter)
     console.log("updated user:", user)
     res.status(202).json(user)

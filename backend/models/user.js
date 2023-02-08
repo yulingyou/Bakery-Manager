@@ -9,6 +9,7 @@ const UserSchema = new Schema({
   phone_number: {type: String},
   typeOfBusiness: {type: String},
   currentBasketID: {type: String},
+  role: {type: String, default: 'customer'}
 });
 
 // Export model

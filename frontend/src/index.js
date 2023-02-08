@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles.css';
 import App from './App';
 import AddItem from './AddItem'
+import Signup from './Signup';
 import {
   createBrowserRouter,
   RouterProvider
@@ -22,10 +23,6 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path: '/ABC',
-    element: <h2>THIS IS AN EXAMPLE</h2>
-  },
-  {
     path: '/orderform',
     element: <OrderForm />
   },
@@ -41,9 +38,13 @@ const router = createBrowserRouter([
     path: '/addItem',
     element: <AddItem />
   },
+  // {
+  //   path: '/login',
+  //   element: <Login />
+  // },
   {
-    path: '/login',
-    element: <Login />
+    path: '/signup',
+    element: <Signup />
   },
   {
     path: '/profile',

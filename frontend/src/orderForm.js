@@ -15,7 +15,6 @@ const OrderForm = () => {
 
   useEffect(() => {
     if (token) {
-      console.log("token:", token)
       //specify the localhost
     const basketID = window.localStorage.getItem("currentBasketID")
     fetch(`/orders/${basketID}`, { 
@@ -28,8 +27,7 @@ const OrderForm = () => {
       .then(res => res.json())
       .then((data) => {
         setToken(window.localStorage.getItem("token"));
-        console.log("data:",  data)
-        setCompanyName(data.company)
+        setCompanyName(data.companyName)
         setOrderSummary(data.orders)
         setOrderId(data._id)
   
@@ -61,35 +59,27 @@ const OrderForm = () => {
       })
       .then(res => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch(error => console.error(error));
 
-      fetch(`/orders`, {
-        method: "post",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({company: companyName, order: [], date_of_order:"", date_required :""})
-      })
-      .then(res => res.json())
-      .then((data) => {
-        window.localStorage.setItem("currentBasketID", data.order._id)
-        console.log("new basket id: ", data.order._id);
-      })
       fetch(`/users/${window.localStorage.getItem("currentUserID")}`, {
         method: "put",
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({new_basketID: window.localStorage.getItem("currentBasketID")})
+        body: JSON.stringify({companyName: companyName})
       }).then(res => res.json())
-      .then((data) => {
+        .then((data) => {
 
+        console.log("CURRENT BASKET UPDATED:", data[0].currentBasketID )
+        window.localStorage.setItem("currentBasketID", data[0].currentBasketID)
+        console.log("LOCAL STORAGE:", window.localStorage.getItem("currentBasketID") )
+        navigate("/");
+        
       })
+      
     };
-
-
   }
   return (
   <div className="flex items-center justify-center h-screen">

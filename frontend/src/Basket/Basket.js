@@ -6,9 +6,11 @@ import { useState, useEffect} from 'react';
 
 export default function Basket(props) {
   const [batchOrders, setBatchOrders] = useState([]);
-  const [basketID] = useState(window.localStorage.getItem("currentBasketID"));
+  const [basketID, setBasketID] = useState(window.localStorage.getItem("currentBasketID"));
 
   useEffect(() => {
+    console.log("LOCAL STORAGE IN BASKET, ", window.localStorage.getItem("currentBasketID"))
+     setBasketID(window.localStorage.getItem("currentBasketID"))
     if (basketID){
       console.log("BASKET ID: ", basketID)
       fetch(`orders/getBasketInfo/${basketID}`, {
