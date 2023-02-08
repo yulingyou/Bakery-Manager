@@ -14,18 +14,6 @@ const OrdersController = {
       res.status(200).json({ orders: orders, token: token });
     })
   },
-  // getAll: (req, res) => {
-  //   console.log("GET ORDERS")
-  //   Order.find(async (err, orders) => {
-  //     if (err) {
-  //       console.log(err)
-  //       throw err;
-  //     }
-  //     const token = await TokenGenerator.jsonwebtoken(req.user_id);
-  //     console.log("orders:", orders)
-  //     res.status(200).json({ orders: orders, token: token });
-  //   });
-  // },
   createOrder: (req, res) => {
     User.find({_id: req.user_id }, function (err, docs)
     {
@@ -48,7 +36,7 @@ const OrdersController = {
           throw err;
         }
         const token = await TokenGenerator.jsonwebtoken(req.user_id);
-        res.status(201).json({ message: "OK", orders: orders, token: token});
+        res.status(201).json({ message: "OK", order: order, token: token});
       })
       
       // const allOrders = await Order.find()
@@ -56,17 +44,8 @@ const OrdersController = {
     }
   )},
   addBatch: async (req, res) => {
-    // const orderRef = '63da563fdd9375028be24ef8'
-    // const order = await Order.findById(orderRef)
-
-    // const batchOrder = new BatchOrder(req.body)
-    // batchOrder.save()
-    // // add the batchOrder to the order
-    // const filter = {_id: orderRef}
-    // const newOrders = [...order.orders, batchOrder]
-    // await Order.findOneAndUpdate(filter, {orders: newOrders})
-
-    const orderRef = '63dbab59d49bd03887f3aafe';
+    const orderID = req.params.orderID
+    const orderRef = orderID;
     const batchOrder = new BatchOrder(req.body);
     batchOrder.save();
     
@@ -88,10 +67,19 @@ const OrdersController = {
     const batchOrders = await Order.find(filter).populate('orders').exec()
     res.status(200).json(batchOrders)
   },
-  deleteBatchByID: async (req, res) => {
+  getOrderByID: async (req, res) => {
+    const orderID = req.params.orderID;
+    let order = await Order.findById(orderID)
+    console.log("ORDER:", order)
+    res.status(200).json(order)
 
-    let order = await Order.findById('63dbab59d49bd03887f3aafe')
-    const filter = { _id: '63dbab59d49bd03887f3aafe'};
+  },
+  deleteBatchByID: async (req, res) => {
+    const orderID = req.body.orderID;
+
+    let order = await Order.findById(orderID)
+    console.log("ORDER:", order)
+    const filter = { _id: orderID};
 
     //Remove batch from the orders array in Order DB
     console.log("ORDER TO UPDATE: ",order)
@@ -122,58 +110,6 @@ const OrdersController = {
     const order = await Order.find(filter)
     return order
   },
-  addBatch: async (req, res) => {
-    // const orderRef = '63da563fdd9375028be24ef8'
-    // const order = await Order.findById(orderRef)
-
-    // const batchOrder = new BatchOrder(req.body)
-    // batchOrder.save()
-    // // add the batchOrder to the order
-    // const filter = {_id: orderRef}
-    // const newOrders = [...order.orders, batchOrder]
-    // await Order.findOneAndUpdate(filter, {orders: newOrders})
-
-    const orderRef = '63dbab59d49bd03887f3aafe';
-    const batchOrder = new BatchOrder(req.body);
-    batchOrder.save();
-    
-    await Order.findByIdAndUpdate(orderRef, { $push: { orders: batchOrder } });
-    
-    res.status(201).json({batchOrder: batchOrder})
-  },
-  getBatch: async (req,res) => {
-    const filter = { _id: req.params.batchID };
-    const batch = await BatchOrder.find(filter)
-    console.log("batch: ", batch)
-    res.json(batch)
-    
-  },
-  getBasketInfoByID: async (req,res) => {
-    const filter = { _id: req.params.orderID };
-    //Firstly filter the through the orders DB.
-    //Then populate the variable 'batchOrders' with all in info in the orders field 
-    const batchOrders = await Order.find(filter).populate('orders').exec()
-    res.status(200).json(batchOrders)
-  },
-  DeleteBatchByID: async (req, res) => {
-
-    let order = await Order.findById('63dbab59d49bd03887f3aafe')
-    const filter = { _id: '63dbab59d49bd03887f3aafe'};
-
-    //Remove batch from the orders array in Order DB
-    console.log("ORDER TO UPDATE: ",order)
-    const previousBatchOrders = order.orders;
-    console.log("PREVIOUS BATCH ORDERS",previousBatchOrders)
-    const newBatchOrders = previousBatchOrders.remove(req.params.batchID)
-    console.log("NEW BATCH ORDERS", newBatchOrders)
-    const update = { orders: newBatchOrders };
-    await Order.findOneAndUpdate(filter, update);
-    
-    //Remove batch order from BatchOrder DB
-    await BatchOrder.deleteOne({ _id: req.params.batchID})
-    console.log("Batches in Order", order.orders)
-    res.status(201).json(order)
-  }
 }
 
 

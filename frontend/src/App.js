@@ -8,15 +8,27 @@ import Navbar from './Navbar';
 function App() {
   const [items, setItems] = useState([]);
   const [updateBasket, setUpdateBasket] = useState(false)
-
+  const [userID, setUserID] = useState(window.localStorage.getItem("currentUserID"));
+  const [user, setUser] = useState([]);
+  
   useEffect(() => {
+    if (userID){
+      fetch(`/users/${userID}`, {
+      })
+        .then(response => response.json())
+        .then(async data => {
+          setUser(data);
+          setUpdateBasket(!updateBasket)
+          window.localStorage.setItem("currentBasketID", data.currentBasketID)
+        })
+  
       fetch("/items", {
       })
         .then(response => response.json())
         .then(async data => {
           setItems(data.items);
         })
-   
+    }
   }, [])
 
   const itemsDisplay = items.map((food) => {
@@ -29,7 +41,7 @@ function App() {
         <div class="flex-1">
           <a class="btn btn-ghost normal-case text-xl text-black">Bakewells Bakery</a>
         </div>
-        <Basket  updateBasket={updateBasket} ></Basket>
+        <Basket updateBasket={updateBasket} ></Basket>
       </div>
       <div class="collapse justify-center mt-5 ml-20">
         <input type="checkbox" /> 
@@ -44,9 +56,6 @@ function App() {
       <div class='flex flex-wrap place-content-evenly'>
         {itemsDisplay}
       </div>
-      <div class='flex flex-wrap'>
-        {itemsDisplay}
-    </div>
     </div>
   );
 }

@@ -9,6 +9,7 @@ export default function LogInForm({}) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -28,6 +29,8 @@ export default function LogInForm({}) {
 					console.log("you are login");
 					localStorage.clear()
 					localStorage.setItem("user", data.role);
+					window.localStorage.setItem("currentUserID", data.userID);
+					window.localStorage.setItem("token", data.token);
 					navigate(data.role === 'customer' ? "/" : '/bakeryindex')
 				}
 	};
