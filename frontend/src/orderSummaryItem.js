@@ -13,6 +13,7 @@ export default function OrderSummaryItem(props) {
     })
       .then(response => response.json())
       .then(async data => {
+        console.log('this is the data in the map', data[0])
         setItem(data[0])
         if (data[0].pricePerBatch){
           setpricePerBatch((data[0].pricePerBatch).toFixed(2))

@@ -7,6 +7,7 @@ const Order = require("../models/order");
 router.get("/", OrdersController.getAll);
 router.post("/", OrdersController.createOrder);
 router.get("/:orderID", OrdersController.getOrderByID)
+router.get("/filled/:orderID", OrdersController.getOrderByIDFilled)
 router.post("/addBatch/:orderID", OrdersController.addBatch);
 router.get("/getBatch/:batchID", OrdersController.getBatch);
 router.get("/getBasketInfo/:orderID", OrdersController.getBasketInfoByID);

@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "jest": "^29.4.1"
+  },
+  "devDependencies": {
+    "cypress": "^12.4.1",
     "react-calendar": "^4.0.0"
   }
 }
