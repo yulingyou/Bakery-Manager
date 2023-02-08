@@ -1,7 +1,6 @@
 import './styles.css';
 import React from 'react';
 import {useEffect, useState} from 'react';
-// import BakersController from '../backend/controllers/bakers'
 
 const Confirmation = () => {
   
