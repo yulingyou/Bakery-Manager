@@ -53,7 +53,6 @@ export default function LogInForm({}) {
 					<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
 						<div class="relative py-3 sm:max-w-xl sm:mx-auto">
 							<div class="relative px-4 py-10 bg-bone border-b-8 border-r-8 border-beige drop-shadow-lg mr-30 sm:rounded-3xl sm:p-20">
-								
 								<div class="max-w-md mx-auto w-96">
 									<div>
 										<h1 className="text-3xl text-center font-heading mr-30">Login here!</h1>
