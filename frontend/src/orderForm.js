@@ -1,32 +1,58 @@
 import './styles.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 const OrderForm = () => {
+  const navigate = useNavigate();
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [companyName, setCompanyName] = useState("");
   const [order, setOrderSummary] = useState("");
   const [dateNeededBy, setDateNeededBy] = useState ("");
+  const [orderId, setOrderId] = useState("")
 
 
   useEffect(() => {
-    fetch('/orders', { //specify the localhost
+    if (token) {
+      console.log(token)
+      //specify the localhost
+    fetch('/orders', { 
+      // mode: 'cors',
       method: "get",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     })
       .then(res => res.json())
       .then((data) => {
+        setToken(window.localStorage.getItem("token"));
         console.log(data)
         setCompanyName(data.orders[0].company)
-        setOrderSummary(data.orders[0].orders)
+        setOrderSummary(data.orders[data.orders.length-1].order)
+        console.log(data.orders[data.orders.length-1]._id)
+        setOrderId(data.orders[data.orders.length-1]._id)
   
       })
       .catch(error => console.error(error));
+    } else {
+      navigate("/ABC");
+    }
   }, []);
 
+  console.log(orderId)
   const handleSubmit = (event) => {
+    // debugger;
     event.preventDefault();
-    fetch('/orders', {
-      method: "post",
-      body: JSON.stringify({ date: dateNeededBy })
+    console.log("handleSubmit")
+    fetch(`/orders/update/${orderId}`, {
+      method: "put",
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ 
+        date_required: dateNeededBy
+      })
     })
     .then(res => res.json())
     .then((data) => {
@@ -34,8 +60,7 @@ const OrderForm = () => {
     })
     .catch(error => console.error(error));
   };
-
-console.log("outside:",companyName)
+  console.log(dateNeededBy)
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
@@ -120,7 +145,7 @@ console.log("outside:",companyName)
                 transition
                 duration-150
                 ease-in-out"
-                onSubmit={handleSubmit} >Send</button>
+                onClick={handleSubmit} >Send</button>
               </div>
             </form>
           </div>
