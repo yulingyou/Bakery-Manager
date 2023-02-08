@@ -11,7 +11,7 @@ npm install
 This will install all of the dependancies required for this to run smoothly.
 
 # The process behind creating Bakery Manager
-###### and how it came to be what it is now
+###### And how it came to be what it is now
 
 We first began by creating an extensive Excalidraw, 
 really getting into the depths of what we what the design to be, 
@@ -22,3 +22,23 @@ how it will function and interact with other pages of the website.
 Alongside this, we used a trello to truly keep track of where we were with implementing features and testing. 
 <img width="1401" alt="Screenshot 2023-02-07 at 15 08 49" src="https://user-images.githubusercontent.com/106555227/217283156-3ad05dc1-362b-4f5f-98f5-29ce055640db.png">
 <img width="1456" alt="Screenshot 2023-02-07 at 15 08 59" src="https://user-images.githubusercontent.com/106555227/217283167-d437854c-45c7-4c8c-9432-8e825a5e6140.png">
+
+Both of these helped us keep track of where we were in the development process, and by assigning ourselves to tickets on the trello it also made 
+it visable what we were working on. 
+
+*Which is super important for communication!*
+
+# Nearing the end of the project 
+###### As with everything, it came down to a time crunch.
+
+On the last Wednesday we were trying to pull together the last few strings (and squash any bugs) needed to make our project whole and completely functioning. We also thought about getting it deployed, going off of what a Makers alumni used on their final project, to really bring it to life for others to use!
+
+To make sure we knew what areas to focus on we created two new columns in trello (to do today, and clean up): this made it super easy to get our heads down and finish feeling satisfied.
+
+<img width="281" alt="Screenshot 2023-02-08 at 14 58 57" src="https://user-images.githubusercontent.com/106555227/217568905-d057b80a-4c67-466e-b8af-479800c842a2.png">
+![Uploading Screenshot 2023-02-08 at 15.10.54.png…]()
+
+
+
+
+#######*to do today was compiled of those final features we just knew we had to make sure worked*
