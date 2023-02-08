@@ -7,7 +7,8 @@ const UserSchema = new Schema({
   password: {type: String},
   address: {type: String},
   phone_number: {type: String},
-  typeOfBusiness: {type: String}
+  typeOfBusiness: {type: String},
+  currentBasketID: {type: String},
 });
 
 // Export model

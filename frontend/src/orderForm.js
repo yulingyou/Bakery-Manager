@@ -17,7 +17,8 @@ const OrderForm = () => {
     if (token) {
       console.log("token:", token)
       //specify the localhost
-    fetch('/orders', { 
+    const basketID = window.localStorage.getItem("currentBasketID")
+    fetch(`/orders/${basketID}`, { 
       // mode: 'cors',
       method: "get",
       headers: {
@@ -28,9 +29,9 @@ const OrderForm = () => {
       .then((data) => {
         setToken(window.localStorage.getItem("token"));
         console.log("data:",  data)
-        setCompanyName(data.orders[0].company)
-        setOrderSummary(data.orders[0].orders)
-        setOrderId(data.orders[0]._id)
+        setCompanyName(data.company)
+        setOrderSummary(data.orders)
+        setOrderId(data._id)
   
       })
       .catch(error => console.error(error));
@@ -63,7 +64,23 @@ const OrderForm = () => {
         console.log(data);
       })
       .catch(error => console.error(error));
+
+      fetch(`/orders`, {
+        method: "post",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({company: companyName, order: [], date_of_order:"", date_required :""})
+      })
+      .then(res => res.json())
+      .then((data) => {
+        window.localStorage.setItem("currentBasketID", data.order._id)
+        console.log("new basket id: ", data.order._id);
+
+      })
     };
+
+
   }
   return (
   <div className="flex items-center justify-center h-screen">

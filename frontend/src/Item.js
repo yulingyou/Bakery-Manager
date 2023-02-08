@@ -23,7 +23,8 @@ export default function Item(props) {
 
   //Fetch batch orders within basket
   useEffect(() => {
-      fetch("/orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
+    if (props.basketID){
+      fetch(`/orders/getBasketInfo/${props.basketID}`, {
       })
       .then(response => response.json())
       .then(async data => {
@@ -37,13 +38,14 @@ export default function Item(props) {
           }
         });
       });
-  // }, [props.updateBasket])
-  }, [])
+    }
+  }, [props.updateBasket])
+  // }, [])
   
 
 
 const addBatchToOrder = async () => {
-    let response = await fetch('/orders/addBatch', {
+    let response = await fetch(`/orders/addBatch/${props.basketID}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -66,9 +68,11 @@ const addBatchToOrder = async () => {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
-      }, })
+      },
+        body: JSON.stringify({ orderID: props.basketID})
+      })
     if (response.status !== 201) {
-      console.log("post failed, Error status:" + response.status)
+      console.log("delete failed, Error status:" + response.status)
     } else {
       console.log("Batch removed: " + response.status)
       props.setUpdateBasket(!props.updateBasket)

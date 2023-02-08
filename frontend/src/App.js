@@ -8,19 +8,32 @@ import Navbar from './Navbar';
 function App() {
   const [items, setItems] = useState([]);
   const [updateBasket, setUpdateBasket] = useState(false)
-
+  const [userID, setUserID] = useState(window.localStorage.getItem("currentUserID"));
+  const [user, setUser] = useState([]);
+  
   useEffect(() => {
+    if (userID){
+      fetch(`/users/${userID}`, {
+      })
+        .then(response => response.json())
+        .then(async data => {
+          setUser(data);
+          setUpdateBasket(!updateBasket)
+
+        })
+  
       fetch("/items", {
       })
         .then(response => response.json())
         .then(async data => {
           setItems(data.items);
         })
-   
+    }
   }, [])
 
+console.log("APP PAGE USER", user)
   const itemsDisplay = items.map((food) => {
-    return <Item key={ food._id } updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
+    return <Item key={ food._id } basketID={user.currentBasketID} updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
   })
 
   return (
@@ -29,7 +42,7 @@ function App() {
         <div class="flex-1">
           <a class="btn btn-ghost normal-case text-xl text-black">Bakewells Bakery</a>
         </div>
-        <Basket  updateBasket={updateBasket} ></Basket>
+        <Basket basketID={user.currentBasketID} updateBasket={updateBasket} ></Basket>
       </div>
       <div class="collapse justify-center mt-5 ml-20">
         <input type="checkbox" /> 

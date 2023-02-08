@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Order = require("../models/order");
 
 const UsersController = {
   getAll: (req, res) => {
@@ -13,13 +14,23 @@ const UsersController = {
     });
   },
   Create: (req, res) => {
+    //Create a new basket for the user
+    const newBasket = new Order ({order: [], date_of_order:"", date_required :""})
+    newBasket.save(async (err) => {
+      if (err) {
+        throw err;
+      }
+    })
+      
+    console.log("NEW BASKET ID: ", )
     const user = new User({
       companyName: req.body.companyName,
       email: req.body.email,
       password: req.body.password,
       address: req.body.address,
       phoneNumber: req.body.phone_number,
-      typeOfBusiness: req.body.typeOfBusiness
+      typeOfBusiness: req.body.typeOfBusiness,
+      currentBasketID: newBasket._id
     });
 
     user.save((err) => {
@@ -29,6 +40,11 @@ const UsersController = {
         res.status(201).json({ message: "OK" })
       }
     });
+  },
+  getUserByID: async (req, res) => {
+    const filter = { _id: req.params.userID };
+    const user = await User.findById(filter)
+    res.status(200).json(user)
   },
   // Delete: (req, res) => {
   //   const email = req.body.email

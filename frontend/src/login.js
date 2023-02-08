@@ -9,6 +9,7 @@ export default function LogInForm({}) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -26,7 +27,9 @@ export default function LogInForm({}) {
 					let data = await response.json();
 					console.log("you are login");
 					window.localStorage.setItem("token", data.token);
-					navigate("/orderform")
+					window.localStorage.setItem("currentUserID", data.userID);
+					console.log("LOGIN ID:", data.userID)
+					navigate("/")
 				}
 	};
 

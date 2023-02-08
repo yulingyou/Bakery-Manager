@@ -71,7 +71,6 @@ const ItemsController = {
     const newItems = await Item.find()
     res.status(201).json({ items: newItems })
   },
-    
   editItem: async (req, res) => {
     console.log('this is body', req.body)
     await Item.findByIdAndUpdate(req.body.id, {

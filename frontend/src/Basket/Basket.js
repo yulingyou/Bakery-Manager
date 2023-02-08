@@ -8,12 +8,14 @@ export default function Basket(props) {
   const [batchOrders, setBatchOrders] = useState([]);
 
   useEffect(() => {
-    fetch("orders/getBasketInfo/63dbab59d49bd03887f3aafe", {
-    })
-    .then(response => response.json())
-    .then(async data => {
-      setBatchOrders(data[0].orders)
-    });
+    if (props.basketID){
+      fetch(`orders/getBasketInfo/${props.basketID}`, {
+      })
+      .then(response => response.json())
+      .then(async data => {
+        setBatchOrders(data[0].orders)
+      });
+    }
 
   }, [props.updateBasket])
 
@@ -32,6 +34,7 @@ export default function Basket(props) {
 
   const Checkout = () => {
     //Need to post the confirmed order to the confirmed orders database.
+    window.localStorage.setItem("currentBasketID", props.basketID)
     console.log("checkout")
     
   }
