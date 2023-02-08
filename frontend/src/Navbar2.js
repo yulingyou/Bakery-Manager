@@ -5,7 +5,7 @@ export default function Navbar2(props) {
 
     return (
     <div>
-    <div class="navbar bg-lightgreen">
+    {/* <div class="navbar bg-lightgreen">
         <div class="flex-1">
             <a class="btn btn-ghost normal-case text-xl">Bakewells Bakery</a>
                 </div>
@@ -28,7 +28,7 @@ export default function Navbar2(props) {
             </ul>
             </div>
         </div>
-  </div>
+  </div> */}
 </div>
 
   )
