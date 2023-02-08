@@ -113,7 +113,8 @@ return (
   </table>
 </div>
     <div className="justify-center card-actions">
-      <button className="btn btn-primary"><a href ='/'>Home</a></button>
+      <button className=
+      "btn "><a href ='/'>Home</a></button>
     </div>
   </div>
 </div>
