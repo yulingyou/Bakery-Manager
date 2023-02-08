@@ -1,13 +1,14 @@
 import './styles.css';
 import React from 'react';
-import { useState, useEffect } from 'react';
-import Navbar2 from './Navbar2';
+import { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
+
 
 export default function LogInForm({}) {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -28,6 +29,8 @@ export default function LogInForm({}) {
 					console.log("you are login");
 					localStorage.clear()
 					localStorage.setItem("user", data.role);
+					window.localStorage.setItem("currentUserID", data.userID);
+					window.localStorage.setItem("token", data.token);
 					navigate(data.role === 'customer' ? "/" : '/bakeryindex')
 				}
 	};
@@ -43,43 +46,34 @@ export default function LogInForm({}) {
 
 
 	return (
-		<div>
-				<Navbar2></Navbar2>
-				<div class="collapse">
-					<div class="collapse-content">
-          	<p>bake</p>
-        	</div>
-				</div>
-				<div className="flex">
-					<div className="w-1/2">
-						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
-						<div class="max-w-md mx-auto w-96">	
-									{/* <img src="https://i.imgur.com/9l1A4OS.jpeg"></img> */}
-									<img src="logoBMv9.png"></img>
-							</div>
+		<div className="hero min-h-screen bg-lightgreen">
+			<div className="flex place-content-evenly">
+				<div className="w-1/2">
+					<div class="min-h-screen py-6 flex flex-col sm:py-12">
+						<div class="max-w-md mx-auto w-96 mt-40">	
+							<img src="logoBM8.png"></img>
 						</div>
 					</div>
-					<div className="w-1/2">
-						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
-							<div class="relative py-3 sm:max-w-xl sm:mx-auto">
-								<div
-									class="absolute inset-0 bg-gradient-to-r from-green to-bone shadow-darkgreen transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
-								</div>
-								<div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-									<div class="max-w-md mx-auto w-96">
-										<div>
-											<h1 className="mb-12 text-3xl text-center font-heading">Login Form</h1>
-										</div>
-										<div class="divide-y divide-gray-200">
-										<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+				</div>
+				<div className="w-1/2">
+					<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
+						<div class="relative py-3 sm:max-w-xl sm:mx-auto">
+							<div class="relative px-4 py-10 bg-bone border-b-8 border-r-8 border-beige drop-shadow-lg mr-30 sm:rounded-3xl sm:p-20">
+								<div class="max-w-md mx-auto w-96">
+									<div>
+										<h1 className="text-3xl text-center font-heading mr-30">Login here!</h1>
+									</div>
+									<div class="divide-y divide-gray-200">
+										<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7 mr-30">
 											<form onSubmit={handleSubmit}>
-												<div class="relative">
-													<input autoComplete="off" id="email" name="email" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" value={ email } onChange={handleEmailChange} />
-													<label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
+												<div class="relative"> 
+													<input autoComplete="off" id="email" name="email" type="text" class="peer placeholder-transparent mt-4 h-10 w-full rounded-md border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Email address" value={ email } onChange={handleEmailChange} required/>
+													<label for="email" class="absolute left-0 -top-3.5 text-gray-600 text-sm mt-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
 												</div>
-												<div class="relative">
-													<input autoComplete="off" id="password" name="password" type="password" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" value={ password } onChange={handlePasswordChange} />
-													<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+												<div class="relative"> 
+													<input autoComplete="off" id="password" name="password" type="password" class="peer placeholder-transparent mt-4 h-10 w-full rounded-md border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Password" value={ password } onChange={handlePasswordChange} required/>
+													<label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm mt-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+													
 												</div>
 												<div class="mt-6 relative">
 													<button type="submit" value="Submit" className="
@@ -99,12 +93,11 @@ export default function LogInForm({}) {
 														active:bg-#A9A9A9 active:shadow-lg
 														transition
 														duration-150
-														ease-in-out"
-														onSubmit={handleSubmit} >Submit</button>
+														ease-in-out mb-5"
+													onSubmit={handleSubmit} >Login</button>
 												</div>
 											</form>
-											<Link to='/signup'><b class='text-blue underline mt-10'>don't have an account yet? Sign up here</b></Link>
-										</div>
+											<Link to='/signup'><b class='text-blue underline'>Don't have an account yet? Sign up here</b></Link>
 										</div>
 									</div>
 								</div>
@@ -112,9 +105,7 @@ export default function LogInForm({}) {
 						</div>
 					</div>
 				</div>
-				{/* <div  className="flex justify-start">
-				<img src="https://i.imgur.com/9l1A4OS.jpeg" className="w-48 h-48"></img>
-    		</div> */}
+			</div>
 		</div>
 
 	);

@@ -1,22 +1,23 @@
 import './styles.css';
 import React from 'react';
+import OrderSummaryItem from './orderSummaryItem'
 import { useState, useEffect } from 'react';
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const OrderForm = () => {
   const navigate = useNavigate();
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [companyName, setCompanyName] = useState("");
-  const [order, setOrderSummary] = useState("");
-  const [dateNeededBy, setDateNeededBy] = useState ("");
+  const [orderSummary, setOrderSummary] = useState([]);
+  const [dateNeededBy, setDateNeededBy] = useState (null);
   const [orderId, setOrderId] = useState("")
 
 
   useEffect(() => {
     if (token) {
-      console.log(token)
       //specify the localhost
-    fetch('/orders', { 
+    const basketID = window.localStorage.getItem("currentBasketID")
+    fetch(`/orders/${basketID}`, { 
       // mode: 'cors',
       method: "get",
       headers: {
@@ -26,11 +27,9 @@ const OrderForm = () => {
       .then(res => res.json())
       .then((data) => {
         setToken(window.localStorage.getItem("token"));
-        console.log(data)
-        setCompanyName(data.orders[0].company)
-        setOrderSummary(data.orders[data.orders.length-1].order)
-        console.log(data.orders[data.orders.length-1]._id)
-        setOrderId(data.orders[data.orders.length-1]._id)
+        setCompanyName(data.companyName)
+        setOrderSummary(data.orders)
+        setOrderId(data._id)
   
       })
       .catch(error => console.error(error));
@@ -39,28 +38,49 @@ const OrderForm = () => {
     }
   }, []);
 
-  console.log(orderId)
+
+  const orderSumarryDisplay = orderSummary.map((orderID) => {
+    return <OrderSummaryItem key={ orderID } orderID={orderID}></OrderSummaryItem>
+  })
+
   const handleSubmit = (event) => {
-    // debugger;
     event.preventDefault();
-    console.log("handleSubmit")
-    fetch(`/orders/update/${orderId}`, {
-      method: "put",
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify({ 
-        date_required: dateNeededBy
+    if (dateNeededBy !== null){
+      // debugger;
+      fetch(`/orders/update/${orderId}`, {
+        method: "put",
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ 
+          date_required: dateNeededBy
+        })
       })
-    })
-    .then(res => res.json())
-    .then((data) => {
-      console.log(data);
-    })
-    .catch(error => console.error(error));
-  };
-  console.log(dateNeededBy)
+      .then(res => res.json())
+      .then((data) => {
+        // console.log(data);
+      })
+      .catch(error => console.error(error));
+
+      fetch(`/users/${window.localStorage.getItem("currentUserID")}`, {
+        method: "put",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({companyName: companyName})
+      }).then(res => res.json())
+        .then((data) => {
+
+        console.log("CURRENT BASKET UPDATED:", data[0].currentBasketID )
+        window.localStorage.setItem("currentBasketID", data[0].currentBasketID)
+        console.log("LOCAL STORAGE:", window.localStorage.getItem("currentBasketID") )
+        navigate("/");
+        
+      })
+      
+    };
+  }
   return (
   <div className="flex items-center justify-center h-screen">
     <div className="h-screen pt-20 font-sans bg-grey-lighter">
@@ -86,12 +106,12 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="company_name"
-                  placeholder="Company Name">Company Name: {companyName}</div>
+                  placeholder="Company Name"> {companyName}</div>
               </div>
               <div className="mb-6 form-group">
                 <div type="text" className="form-control block
                   w-96
-                  h-40
+                  h-auto
                   px-3
                   py-1.5
                   text-base
@@ -104,7 +124,7 @@ const OrderForm = () => {
                   ease-in-out
                   m-0
                   focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" data-cy="order_summary"
-                  placeholder="Order Summary">{order}
+                  placeholder="Order Summary">{orderSumarryDisplay}
                   </div>
               </div>
               <div className="mb-6 form-group">
@@ -151,7 +171,7 @@ const OrderForm = () => {
           </div>
         </div>
     </div>
-    </div>
+  </div>
   );
 }
 

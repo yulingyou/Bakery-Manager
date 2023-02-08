@@ -8,6 +8,7 @@ const UserSchema = new Schema({
   address: {type: String},
   phone_number: {type: String},
   typeOfBusiness: {type: String},
+  currentBasketID: {type: String},
   role: {type: String, default: 'customer'}
 });
 
