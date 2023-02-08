@@ -59,7 +59,7 @@ const ItemsController = {
     });
   },
   getItemByName: async (req, res) => {
-    const filter = { item_name: req.params.name };
+    const filter = { itemName: req.params.name };
     const item = await Item.find(filter).populate().exec()
     res.status(200).json({ item: item })
   },

@@ -30,11 +30,11 @@ export default function LogInForm({}) {
 					localStorage.clear()
 					localStorage.setItem("user", data.role);
 					window.localStorage.setItem("currentUserID", data.userID);
+					window.localStorage.setItem("currentBasketID", data.userBasket);
 					window.localStorage.setItem("token", data.token);
 					navigate(data.role === 'customer' ? "/" : '/bakeryindex')
 				}
 	};
-	console.log('this is token from Login', window.localStorage.getItem('token'))
 
 	const handleEmailChange = (event) => {
 		setEmail(event.target.value)

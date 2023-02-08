@@ -11,21 +11,22 @@ function App() {
   const [user, setUser] = useState([]);
   
   useEffect(() => {
+    fetch("/items", {
+    })
+      .then(response => response.json())
+      .then(async data => {
+        setItems(data.items);
+        setUpdateBasket(!updateBasket)
+      })
+
     if (userID){
       fetch(`/users/${userID}`, {
       })
         .then(response => response.json())
         .then(async data => {
+          window.localStorage.setItem("currentBasketID", data.currentBasketID)
           setUser(data);
           setUpdateBasket(!updateBasket)
-          window.localStorage.setItem("currentBasketID", data.currentBasketID)
-        })
-  
-      fetch("/items", {
-      })
-        .then(response => response.json())
-        .then(async data => {
-          setItems(data.items);
         })
     }
   }, [])

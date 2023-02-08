@@ -13,9 +13,9 @@ export default function Basket(props) {
 
   useEffect(() => {
     console.log("LOCAL STORAGE IN BASKET, ", window.localStorage.getItem("currentBasketID"))
-     setBasketID(window.localStorage.getItem("currentBasketID"))
+    setBasketID(window.localStorage.getItem("currentBasketID"))
+    console.log("BASKET ID  ", basketID)
     if (basketID){
-      console.log("BASKET ID: ", basketID)
       fetch(`orders/getBasketInfo/${basketID}`, {
       })
       .then(response => response.json())
