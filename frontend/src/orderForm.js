@@ -34,7 +34,7 @@ const OrderForm = () => {
       })
       .catch(error => console.error(error));
     } else {
-      navigate("/ABC");
+      // navigate("/ABC");
     }
   }, []);
 

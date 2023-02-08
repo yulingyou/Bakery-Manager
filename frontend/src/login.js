@@ -25,13 +25,16 @@ export default function LogInForm({}) {
 					navigate("/login")
 				} else {
 					let data = await response.json();
+					console.log('this is all the data', data)
 					console.log("you are login");
-					window.localStorage.setItem("token", data.token);
+					localStorage.clear()
+					localStorage.setItem("user", data.role);
 					window.localStorage.setItem("currentUserID", data.userID);
-					console.log("LOGIN ID:", data.userID)
-					navigate("/")
+					window.localStorage.setItem("token", data.token);
+					navigate(data.role === 'customer' ? "/" : '/bakeryindex')
 				}
 	};
+	console.log('this is token from Login', window.localStorage.getItem('token'))
 
 	const handleEmailChange = (event) => {
 		setEmail(event.target.value)
