@@ -32,7 +32,7 @@ export default function BakeryIndex() {
                         <button class="btn bg-beige text-bone btn-block"><a href='/addItem'>Add more items</a></button>
                             <label for="my-modal-3" class="btn bg-beige text-bone btn-block">Upcoming orders</label>
                             <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/">Home page</a></label>
-                            <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/login">Login</a></label>
+                            <label htmlFor="my-modal" className="btn text-bone bg-beige"><a href="/login">Logout</a></label>
     {/* calendar */}
                                 <div className="fixed mt-60 top-60 right-80 w-96 h-96 border-solid border-5 border-green mb-10"> 
                                 <CalendarTable></CalendarTable>
