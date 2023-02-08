@@ -9,8 +9,6 @@ export default function Basket(props) {
   const [basketID, setBasketID] = useState(window.localStorage.getItem("currentBasketID"));
   const ClearLocalStorage = () => {
     localStorage.clear();
-    console.log("USERID", window.localStorage.getItem("currentUserID"))
-
 }
 
   useEffect(() => {
@@ -85,7 +83,7 @@ export default function Basket(props) {
                 <span class="badge">Check it out!</span>
               </a>
             </li>
-            <li><a  onClick={() => ClearLocalStorage()}>Logout</a></li>
+            <li><a href="/login" onClick={() => ClearLocalStorage()}>Logout</a></li>
           </ul>
         </div>
       </div>
