@@ -46,6 +46,17 @@ const UsersController = {
     const user = await User.findById(filter)
     res.status(200).json(user)
   },
+  updateUserBasket: async (req,res) => {
+    const userID = req.params.userID
+    console.log(userID)
+
+    const filter = { _id: userID};
+    const new_basketID = req.body.new_basketID;
+    await User.findByIdAndUpdate(userID,  { currentBasketID: new_basketID });
+    const user = await User.find(filter)
+    console.log("updated user:", user)
+    res.status(202).json(user)
+    },
   // Delete: (req, res) => {
   //   const email = req.body.email
   //   try {

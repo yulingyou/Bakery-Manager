@@ -13,13 +13,14 @@ function App() {
   
   useEffect(() => {
     if (userID){
+      console.log("USER ID", userID)
       fetch(`/users/${userID}`, {
       })
         .then(response => response.json())
         .then(async data => {
           setUser(data);
           setUpdateBasket(!updateBasket)
-
+          window.localStorage.setItem("currentBasketID", data.currentBasketID)
         })
   
       fetch("/items", {
@@ -33,7 +34,7 @@ function App() {
 
 console.log("APP PAGE USER", user)
   const itemsDisplay = items.map((food) => {
-    return <Item key={ food._id } basketID={user.currentBasketID} updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
+    return <Item key={ food._id } updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
   })
 
   return (
@@ -42,7 +43,7 @@ console.log("APP PAGE USER", user)
         <div class="flex-1">
           <a class="btn btn-ghost normal-case text-xl text-black">Bakewells Bakery</a>
         </div>
-        <Basket basketID={user.currentBasketID} updateBasket={updateBasket} ></Basket>
+        <Basket updateBasket={updateBasket} ></Basket>
       </div>
       <div class="collapse justify-center mt-5 ml-20">
         <input type="checkbox" /> 

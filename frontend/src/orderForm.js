@@ -76,6 +76,15 @@ const OrderForm = () => {
       .then((data) => {
         window.localStorage.setItem("currentBasketID", data.order._id)
         console.log("new basket id: ", data.order._id);
+      })
+      fetch(`/users/${window.localStorage.getItem("currentUserID")}`, {
+        method: "put",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({new_basketID: window.localStorage.getItem("currentBasketID")})
+      }).then(res => res.json())
+      .then((data) => {
 
       })
     };

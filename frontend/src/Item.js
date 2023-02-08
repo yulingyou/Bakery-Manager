@@ -8,6 +8,8 @@ export default function Item(props) {
   const [inBasket, setInBasket] = useState(false); 
   const [batchID, setBatchID] = useState(""); 
   const [quantityInBasket, setQuantityInBasket] = useState(); 
+  const [basketID] = useState(window.localStorage.getItem("currentBasketID"));
+
 
   const changeCounter = (amount) =>{
     if ((counter > 0 && amount === -1) || (amount === +1)){
@@ -23,8 +25,8 @@ export default function Item(props) {
 
   //Fetch batch orders within basket
   useEffect(() => {
-    if (props.basketID){
-      fetch(`/orders/getBasketInfo/${props.basketID}`, {
+    if (basketID){
+      fetch(`/orders/getBasketInfo/${basketID}`, {
       })
       .then(response => response.json())
       .then(async data => {
@@ -45,7 +47,7 @@ export default function Item(props) {
 
 
 const addBatchToOrder = async () => {
-    let response = await fetch(`/orders/addBatch/${props.basketID}`, {
+    let response = await fetch(`/orders/addBatch/${basketID}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -69,7 +71,7 @@ const addBatchToOrder = async () => {
       headers: {
         'Content-Type': 'application/json'
       },
-        body: JSON.stringify({ orderID: props.basketID})
+        body: JSON.stringify({ orderID: basketID})
       })
     if (response.status !== 201) {
       console.log("delete failed, Error status:" + response.status)

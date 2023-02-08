@@ -6,10 +6,12 @@ import { useState, useEffect} from 'react';
 
 export default function Basket(props) {
   const [batchOrders, setBatchOrders] = useState([]);
+  const [basketID] = useState(window.localStorage.getItem("currentBasketID"));
 
   useEffect(() => {
-    if (props.basketID){
-      fetch(`orders/getBasketInfo/${props.basketID}`, {
+    if (basketID){
+      console.log("BASKET ID: ", basketID)
+      fetch(`orders/getBasketInfo/${basketID}`, {
       })
       .then(response => response.json())
       .then(async data => {
@@ -34,7 +36,7 @@ export default function Basket(props) {
 
   const Checkout = () => {
     //Need to post the confirmed order to the confirmed orders database.
-    window.localStorage.setItem("currentBasketID", props.basketID)
+    window.localStorage.setItem("currentBasketID", basketID)
     console.log("checkout")
     
   }
