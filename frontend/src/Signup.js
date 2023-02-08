@@ -1,8 +1,8 @@
 import './styles.css';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Navbar2 from './Navbar2';
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import {  useNavigate, Link } from "react-router-dom";
 
 export default function Signup({}) {
 	const navigate = useNavigate();
@@ -112,6 +112,7 @@ export default function Signup({}) {
 														onSubmit={handleSubmit} >Submit</button>
 												</div>
 											</form>
+                                            <Link to='/login'><b class='text-blue underline mt-10'>already have an account? Log in</b></Link>
 										</div>
 										</div>
 									</div>
