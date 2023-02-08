@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles.css';
 import App from './App';
 import AddItem from './AddItem'
+import Signup from './Signup';
 import {
   createBrowserRouter,
   RouterProvider
@@ -17,14 +18,15 @@ import Profile from './profile';
 import BakeryIndex from './bakeryIndex';
 import Orders from './orders';
 
+// const storage = localStorage.getItem('user')
+// console.log('this is storage', storage)
+console.log('this is user from Index', window.localStorage.getItem('user'))
+const user = window.localStorage.getItem('user')
+
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />
-  },
-  {
-    path: '/ABC',
-    element: <h2>THIS IS AN EXAMPLE</h2>
   },
   {
     path: '/orderform',
@@ -45,11 +47,16 @@ const router = createBrowserRouter([
   
   {
     path: '/addItem',
-    element: <AddItem />
+    element:  user === 'customer' ? <AddItem /> : <App />
+    // element: <AddItem />
   },
+  // {
+  //   path: '/login',
+  //   element: <Login />
+  // },
   {
-    path: '/login',
-    element: <Login />
+    path: '/signup',
+    element: <Signup />
   },
   {
     path: '/profile',
