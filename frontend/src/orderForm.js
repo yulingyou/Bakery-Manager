@@ -26,6 +26,7 @@ const OrderForm = () => {
     })
       .then(res => res.json())
       .then((data) => {
+        console.log('all data from order', data)
         setToken(window.localStorage.getItem("token"));
         setCompanyName(data.companyName)
         setOrderSummary(data.orders)
@@ -38,6 +39,7 @@ const OrderForm = () => {
     }
   }, []);
 
+  console.log('this is the order summary', orderSummary)
 
   const orderSumarryDisplay = orderSummary.map((orderID) => {
     return <OrderSummaryItem key={ orderID } orderID={orderID}></OrderSummaryItem>
