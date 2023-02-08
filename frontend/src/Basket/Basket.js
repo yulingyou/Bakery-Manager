@@ -7,6 +7,11 @@ import { useState, useEffect} from 'react';
 export default function Basket(props) {
   const [batchOrders, setBatchOrders] = useState([]);
   const [basketID, setBasketID] = useState(window.localStorage.getItem("currentBasketID"));
+  const ClearLocalStorage = () => {
+    localStorage.clear();
+    console.log("USERID", window.localStorage.getItem("currentUserID"))
+
+}
 
   useEffect(() => {
     console.log("LOCAL STORAGE IN BASKET, ", window.localStorage.getItem("currentBasketID"))
@@ -56,37 +61,37 @@ export default function Basket(props) {
                   <span class="badge badge-sm indicator-item">{batchOrders.length}</span>
                 </div>
               </label>
-              <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow">
-                <div class="card-body">
-                    {basketDisplay}
-                    <br></br>
-                    <li>Total Price: £{getTotalPrice()} </li>
-                    <div class="card-actions">
-                      <Link to="/orderform"><button className="btn bg-bone btn-block" onClick={() => Checkout()}>Checkout</button></Link>
-                    </div> 
-                  </div>
-               </div>
-              </div>
-              <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                  <div class="w-10 rounded-full ">
-                    <img src="https://www.jocooks.com/wp-content/uploads/2022/03/bakewell-tart-1-28.jpg" />
-                  </div>
-                </label>
-                <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black">
-                  <li>
-                    <a href="/profile" class="justify-between">
-                      Profile
-                      <span class="badge">Check it out!</span>
-                    </a>
-                  </li>
-                  <li><a>Settings</a></li>
-                  <li><a>Logout</a></li>
-                </ul>
+              <div tabindex="0" class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow text-black">
+              <div class="card-body">
+                {basketDisplay}
+                <br></br>
+                <li>Total Price: £{getTotalPrice()}</li>
+                <div class="card-actions">
+                <Link to="/orderform"><button className="btn bg-bone btn-block" onClick={() => Checkout()}>Checkout</button></Link>
+                </div> 
               </div>
             </div>
           </div>
+          <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+              <div class="w-10 rounded-full ">
+              <img src="logoBM8.png" />
+              </div>
+            </label>
+          <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-black">
+            <li>
+              <a href="/profile" class="justify-between">
+                Profile
+                <span class="badge">Check it out!</span>
+              </a>
+            </li>
+            <li><a  onClick={() => ClearLocalStorage()}>Logout</a></li>
+          </ul>
         </div>
+      </div>
+    </div>
+</div>
+      
     )
 
 

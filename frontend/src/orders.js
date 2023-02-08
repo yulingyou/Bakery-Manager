@@ -27,8 +27,7 @@ export default function Orders(props) {
     return (
         <div>
             <h1>Upcoming orders</h1>
-            <div class="divider"></div> 
-            <div>{batchOrdersDisplay}</div>
+            <div >{batchOrdersDisplay}</div>
         </div>
     )
 }

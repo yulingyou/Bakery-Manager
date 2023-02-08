@@ -2,7 +2,7 @@ import './styles.css';
 import React from 'react';
 import OrderSummaryItem from './orderSummaryItem'
 import { useState, useEffect } from 'react';
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const OrderForm = () => {
   const navigate = useNavigate();
@@ -171,7 +171,7 @@ const OrderForm = () => {
           </div>
         </div>
     </div>
-    </div>
+  </div>
   );
 }
 

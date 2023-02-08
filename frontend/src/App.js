@@ -3,7 +3,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Item from './Item';
 import Basket from './Basket/Basket';
-import Navbar from './Navbar';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -39,20 +38,20 @@ function App() {
     <div>
       <div class="navbar h-10 bg-lightgreen">
         <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl text-black">Bakewells Bakery</a>
+          <h1 class="text-2xl">Bakery Manager</h1>
         </div>
         <Basket updateBasket={updateBasket} ></Basket>
       </div>
       <div class="collapse justify-center mt-5 ml-20">
         <input type="checkbox" /> 
-        <div class="collapse-title text-xl font-medium">
+        <div class="collapse-title text-2xl font-medium">
           About us!
         </div>
       <div class="collapse-content"> 
           <p>Here's the link to our <a href="https://github.com/dev-mhowells/bakery-manager">github </a>page</p>
         </div>
       </div>
-    <div class="divider"></div> 
+      <div class="divider"></div> 
       <div class='flex flex-wrap place-content-evenly'>
         {itemsDisplay}
       </div>

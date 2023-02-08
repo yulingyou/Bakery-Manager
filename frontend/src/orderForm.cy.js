@@ -1,6 +1,5 @@
 import React from 'react'
 import OrderForm from './orderForm'
-import App from './App'
 
 
 describe('<OrderForm />', () => {
