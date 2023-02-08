@@ -1,7 +1,6 @@
 import './styles.css';
 import React from 'react';
 import {useEffect, useState} from 'react';
-
 // import BakersController from '../backend/controllers/bakers'
 
 const Confirmation = () => {
@@ -27,13 +26,6 @@ useEffect(() => {
 
 // confirmation message
 return (
-    // <div className='orderConfirmation'>
-    //     <div className='orderText' data-cy="confirmation_message">
-    //         <h1>Your order is confirmed and will be delivered on DATE</h1></div>
-    //     <div className='orderName'> Order: 
-    //     <p>{orderName} </p></div>
-    //     <div className='orderQuantity'></div>
-    // </div>
     <div className="card w-96 bg-base-100 shadow-xl place-content-center">
   {/* <figure><img src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure> */}
   <div className="card-body">
@@ -44,10 +36,11 @@ return (
     <p className="order-name text-center" data-cy="order contents">{orderName}</p>
 
     <div className="card-actions justify-center">
-      <button className="btn btn-primary">Home</button>
+      <button className="btn btn-primary"><a href ='/'>Home</a></button>
     </div>
   </div>
 </div>
 )
 }
+
 export default Confirmation; 

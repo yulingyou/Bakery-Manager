@@ -1,52 +1,79 @@
 import './styles.css';
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Item from './Item';
+import BasketItem from './Basket/BasketItem';
 import Basket from './Basket/Basket';
-import Navbar from './Navbar';
 
 function App() {
-  const [items, setItems] = useState([]);
-  const [updateBasket, setUpdateBasket] = useState(false)
+  // const [data, setData] = useState(null);
 
-  useEffect(() => {
-      fetch("/items", {
-      })
-        .then(response => response.json())
-        .then(async data => {
-          setItems(data.items);
-        })
-   
-  }, [])
+  // React.useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data.message));
+  // }, []);
+
+  const blueberryMuffin = {  
+    price: 22,
+    itemName: 'Blueberry Muffin',
+    batchQuantity: 12
+  }
+  
+  const raspberryMuffin = {
+    price: 25,
+    itemName: 'Raspberry Muffin',
+    batchQuantity: 12
+  }
+  
+  const chickenMuffin = {
+    price: 2,
+    itemName: 'Chicken Muffin',
+    batchQuantity: 22
+  }
+
+  const lemonDrizzleCake = {
+    price: 20,
+    itemName: 'Lemon Drizzle Cake',
+    batchQuantity: 1
+  }
+
+  const krispyKreme = {
+    price: 20,
+    itemName: 'Lemon Drizzle Cake',
+    batchQuantity: 1
+  }
+
+  const pancakes = {
+    price: 20,
+    itemName: 'Lemon Drizzle Cake',
+    batchQuantity: 1
+  }
+  
+  const items = [blueberryMuffin, raspberryMuffin, chickenMuffin, lemonDrizzleCake, krispyKreme, pancakes]
 
   const itemsDisplay = items.map((food) => {
-    return <Item key={ food._id } updateBasket={updateBasket} setUpdateBasket={setUpdateBasket} food={food}></Item> 
+    return <Item food={food}></Item> 
   })
 
   return (
     <div>
-      <div class="navbar h-10 bg-lightgreen">
-        <div class="flex-1">
-          <a class="btn btn-ghost normal-case text-xl text-black">Bakewells Bakery</a>
-        </div>
-        <Basket  updateBasket={updateBasket} ></Basket>
-      </div>
-      <div class="collapse justify-center mt-5 ml-20">
-        <input type="checkbox" /> 
-        <div class="collapse-title text-xl font-medium">
-          About us!
-        </div>
-      <div class="collapse-content"> 
-          <p>Here's the link to our <a href="https://github.com/dev-mhowells/bakery-manager">github </a>page</p>
-        </div>
-      </div>
-    <div class="divider"></div> 
-      <div class='flex flex-wrap place-content-evenly'>
-        {itemsDisplay}
-      </div>
       <div class='flex flex-wrap'>
-        {itemsDisplay}
-    </div>
+        <Basket>Basket</Basket>
+        <div class='flex flex-wrap place-content-evenly'>
+        <div class="collapse">
+        <input type="checkbox" /> 
+        <div class="collapse-title text-xl font-medium mt-5">
+          ABOUT US
+        </div>
+        <div class="collapse-content"> 
+          <p>bake</p>
+        </div>
+      </div>
+    <div class="divider w-full"></div>
+          {itemsDisplay}
+          </div>
+      </div>
     </div>
   );
 }
