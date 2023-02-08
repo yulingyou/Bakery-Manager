@@ -4,6 +4,7 @@ const Order = require('../../models/order');
 const Orders = require('../../controllers/orders')
 const User = require('../../models/user');
 const mongoose = require("mongoose");
+require('dotenv').config({path: './.env.test'});
 
 
 describe("updateOrder", () => {

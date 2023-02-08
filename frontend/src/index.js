@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 import App from './App';
+import AddItem from './AddItem'
 import {
   createBrowserRouter,
   RouterProvider
@@ -11,6 +12,10 @@ import Confirmation from './Confirmation';
 // import { Navigate } from "react-router-dom";
 
 import LogInForm from './login';
+import Login from './login';
+import Profile from './profile';
+import BakeryIndex from './bakeryIndex';
+import Orders from './orders';
 
 const router = createBrowserRouter([
   {
@@ -26,12 +31,36 @@ const router = createBrowserRouter([
     element: <OrderForm />
   },
   {
+    path: '/addItem',
+    element: <AddItem />
+  },
+
+  {
     path: '/Confirmation',
     element: <Confirmation />
   },
    { path: '/login',
     element: <LogInForm />
-  }
+  {
+    path: '/addItem',
+    element: <AddItem />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/profile',
+    element: <Profile/>
+  },
+  {
+    path: '/bakeryindex',
+    element: <BakeryIndex/>
+  },
+  {
+    path: '/orders',
+    element: <Orders/>
+  },
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
