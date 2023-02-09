@@ -1,5 +1,7 @@
 # Bakery Manger
-###### Created by Michael Howell, Abbey Minett, Natalie Theodoropoulou, Harry Hibbins, Yu-Ling You (Daisy), and Lou Diane Rigodon (Elle).
+
+<img src="https://img.shields.io/badge/Built%20by-Developers-yellowgreen"/>
+###### Michael Howell, Abbey Minett, Natalie Theodoropoulou, Harry Hibbins, Yu-Ling You (Daisy), and Lou Diane Rigodon (Elle).
 
 ## About the Project
 
@@ -37,7 +39,17 @@ it visable what we were working on.
 
 ## Backend Design
 
-## Some screenshots of the frontend
+## Some frontend screenshots
+<img width="450" alt="截圖 2023-02-09 上午11 10 58" src="https://user-images.githubusercontent.com/114609139/217836349-d44952bb-4da9-4617-a1b6-6031f94c29ac.png">
+<img width="450" alt="截圖 2023-02-09 上午11 11 11" src="https://user-images.githubusercontent.com/114609139/217836347-ad89fbd6-8505-4f1f-81ec-1ee0efc7e6a9.png">
+<img width="450" alt="截圖 2023-02-09 上午11 11 54" src="https://user-images.githubusercontent.com/114609139/217836341-083d7b2e-a615-4b82-bb89-eadafd2fcb86.png">
+<img width="450" alt="Screenshot 2023-02-09 at 11 28 42" src="https://user-images.githubusercontent.com/114609139/217832437-60e24a02-efeb-4bb8-b2cd-ed36ca7d0f0a.png">
+<img width="450" alt="Screenshot 2023-02-09 at 11 27 11" src="https://user-images.githubusercontent.com/114609139/217836293-22b692d9-43f8-4a4f-9afd-236b695e9642.png">
+<img width="450" alt="截圖 2023-02-09 上午11 18 04" src="https://user-images.githubusercontent.com/114609139/217836305-1c8b2e9f-6dbb-4de1-8af4-f7b82bc3bf8d.png">
+<img width="450" alt="截圖 2023-02-09 上午11 17 46" src="https://user-images.githubusercontent.com/114609139/217836308-f7ec5d49-43ab-4711-a4c0-4832c6cc38b3.png">
+<img width="450" alt="截圖 2023-02-09 上午11 16 19" src="https://user-images.githubusercontent.com/114609139/217836312-9fe35da3-4b2a-42f5-913d-d17f05510c2a.png">
+<img width="450" alt="截圖 2023-02-09 上午11 16 10" src="https://user-images.githubusercontent.com/114609139/217836320-50d8010e-da2c-440a-9587-e5b05a6b2acb.png">
+
 ## Nearing the end of the project 
 ###### As with everything, it came down to a time crunch.
 
@@ -49,7 +61,6 @@ To make sure we knew what areas to focus on we created two new columns in trello
 
 
 <img width="281" alt="Screenshot 2023-02-08 at 15 10 54" src="https://user-images.githubusercontent.com/106555227/217570164-dbcac85f-aff9-4362-92f2-51b42b755e76.png">
-
 
 
 ###### *To do today was compiled of those final features we just knew we had to make sure worked*
