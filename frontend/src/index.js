@@ -8,7 +8,8 @@ import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
-import OrderForm from './OrderForm/orderForm';
+import OrderForm from './orderForm';
+import Confirmation from './Confirmation';
 // import { Navigate } from "react-router-dom";
 import LogInForm from './User/login';
 import Profile from './User/profile';
@@ -33,10 +34,15 @@ const router = createBrowserRouter([
     path: '/addItem',
     element: <AddItem />
   },
+
   {
-    path: '/login',
+    path: '/Confirmation',
+    element: <Confirmation />
+  },
+   { path: '/login',
     element: <LogInForm />
   },
+  
   {
     path: '/addItem',
     element:  user === 'customer' ? <AddItem /> : <App />

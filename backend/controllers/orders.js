@@ -21,12 +21,12 @@ const OrdersController = {
         throw err;
       }
     })
-    console.log("POST ORDER")
+    // console.log("POST ORDER")
     console.log(req.body)
     const order = new Order({userId: req.user_id, company: req.body.company, order: req.body.order
       // date_of_order: req.body.date_of_order, date_required: req.body.date_required 
     });
-    console.log("NEW ORDER: ", order)
+    // console.log("NEW ORDER: ", order)
     order.save(async (err) => {
       if (err) {
         throw err;
@@ -56,7 +56,7 @@ const OrdersController = {
   getBatch: async (req,res) => {
     const filter = { _id: req.params.batchID };
     const batch = await BatchOrder.find(filter)
-    console.log("batch: ", batch)
+    // console.log("batch: ", batch)
     res.json(batch)
     
   },
@@ -70,6 +70,14 @@ const OrdersController = {
   getOrderByID: async (req, res) => {
     const orderID = req.params.orderID;
     let order = await Order.findById(orderID)
+    // console.log("ORDER:", order)
+    res.status(200).json(order)
+
+  },
+  getOrderByIDFilled: async (req, res) => {
+    const orderID = req.params.orderID;
+    let order = await Order.findById(orderID).populate('orders').exec()
+    // const entries = await Entry.find().populate('corrections').exec()
     console.log("ORDER:", order)
     res.status(200).json(order)
 
@@ -78,7 +86,7 @@ const OrdersController = {
     const orderID = req.body.orderID;
 
     let order = await Order.findById(orderID)
-    console.log("ORDER:", order)
+    // console.log("ORDER:", order)
     const filter = { _id: orderID};
 
     //Remove batch from the orders array in Order DB
@@ -110,6 +118,13 @@ const OrdersController = {
     const order = await Order.find(filter)
     return order
   },
+  updateOrderPrice:async(req, res) => {
+    const filter = { _id: req.params.order_id};
+    const update = { totalPrice:  req.body.totalPrice}
+    await Order.findByIdAndUpdate( req.params.order_id, update);
+    const order = await Order.find(filter)
+    res.status(202).json(order);
+  }
 }
 
 
