@@ -4,13 +4,20 @@
 This project was created under the category food, it's a bakery management system where a customer can signup, login, and place orders. After placing orders they can view their own profile which has the ability to show lists containing all of their orders. 
 Similarly for the admin users who can view their own profile, view all orders sent to them organised by date: soonest to latest, as well as add new stock and edit their current stock.
 
-# To get the project set up: in both frontend and backend run
+## To get the project set up: in both frontend and backend run
 ``` 
 npm install 
 ```
+
+<img src="https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"> 
+<img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"> 
+<img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"> 
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"> 
+
 This will install all of the dependancies required for this to run smoothly.
 
-# The process behind creating Bakery Manager
+## The process behind creating Bakery Manager
 ###### And how it came to be what it is now
 
 We first began by creating an extensive Excalidraw, 
@@ -28,7 +35,12 @@ it visable what we were working on.
 
 *Which is super important for communication!*
 
-# Nearing the end of the project 
+## Schema Design
+
+## Backend Design
+
+## Some screenshots of the frontend
+## Nearing the end of the project 
 ###### As with everything, it came down to a time crunch.
 
 On the last Wednesday we were trying to pull together the last few strings (and squash any bugs) needed to make our project whole and completely functioning. We also thought about getting it deployed, going off of what a Makers alumni used on their final project, to really bring it to life for others to use!
