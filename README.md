@@ -49,11 +49,11 @@ how it will function and interact with other pages of the website.
 <img width="1099" alt="excalidraw" src="https://user-images.githubusercontent.com/106555227/217282376-014b9543-7b9f-4415-8669-b37a81c57311.png">
 ###### *This is what it looked like on the final day of implementing features!!*
 
-Alongside this, we used a trello to truly keep track of where we were with implementing features and testing. 
+Alongside this, we used a trello to truly keep track of where we were with implementing features and testing.
 <img width="1401" alt="Screenshot 2023-02-07 at 15 08 49" src="https://user-images.githubusercontent.com/106555227/217283156-3ad05dc1-362b-4f5f-98f5-29ce055640db.png">
 <img width="1456" alt="Screenshot 2023-02-07 at 15 08 59" src="https://user-images.githubusercontent.com/106555227/217283167-d437854c-45c7-4c8c-9432-8e825a5e6140.png">
 
-Both of these helped us keep track of where we were in the development process, and by assigning ourselves to tickets on the trello it also made 
+Both of these helped us keep track of where we were in the development process, and by assigning ourselves to tickets on the trello it also made
 it visable what we were working on.
 
 *Which is super important for communication!*
@@ -69,7 +69,7 @@ it visable what we were working on.
 <img width="450" alt="截圖 2023-02-09 上午11 16 19" src="https://user-images.githubusercontent.com/114609139/217836312-9fe35da3-4b2a-42f5-913d-d17f05510c2a.png">
 <img width="450" alt="截圖 2023-02-09 上午11 16 10" src="https://user-images.githubusercontent.com/114609139/217836320-50d8010e-da2c-440a-9587-e5b05a6b2acb.png">
 
-## Nearing the end of the project 
+## Nearing the end of the project
 ###### As with everything, it came down to a time crunch.
 
 On the last Wednesday we were trying to pull together the last few strings (and squash any bugs) needed to make our project whole and completely functioning. We also thought about getting it deployed, going off of what a Makers alumni used on their final project, to really bring it to life for others to use!
