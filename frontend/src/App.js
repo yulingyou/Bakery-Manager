@@ -22,11 +22,13 @@ function App() {
       })
 
     if (userID){
+      
       fetch(`/users/${userID}`, {
       })
         .then(response => response.json())
         .then(async data => {
           window.localStorage.setItem("currentBasketID", data.currentBasketID)
+          console.log("BASKET ID IN APP:", window.localStorage.getItem("currentBasketID"))
           setUser(data);
           setUpdateBasket(!updateBasket)
         })

@@ -1,8 +1,11 @@
 import './styles.css';
 import React from 'react';
 import {useEffect, useState} from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Confirmation = () => {
+
+  const navigate = useNavigate()
   
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [companyName, setCompanyName] = useState("");
@@ -37,6 +40,23 @@ const Confirmation = () => {
 
   const allNumbers = orderSummary?.map((order) => order.pricePerBatch * order.batchQuantity)
   const totals = allNumbers.reduce((a, b) => a + b, 0)
+
+  const resetBasket = async () => {
+    fetch(`/users/${window.localStorage.getItem("currentUserID")}`, {
+      method: "put",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({companyName: companyName})
+    }).then(res => res.json())
+      .then((data) => {
+
+      console.log("CURRENT BASKET UPDATED:", data[0].currentBasketID )
+      window.localStorage.setItem("currentBasketID", data[0].currentBasketID)
+      console.log("LOCAL STORAGE:", window.localStorage.getItem("currentBasketID") )
+      navigate('/')
+    })
+  }
 
 
   const allOrders = orderSummary?.map((order, index) => {
@@ -113,8 +133,8 @@ return (
   </table>
 </div>
     <div className="justify-center card-actions">
-      <button className=
-      "btn "><a href ='/'>Home</a></button>
+      <button onClick={resetBasket} className=
+      "btn ">home</button>
     </div>
   </div>
 </div>

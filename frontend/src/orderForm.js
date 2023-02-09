@@ -75,23 +75,24 @@ const OrderForm = () => {
       })
       .catch(error => console.error(error));
 
-      fetch(`/users/${window.localStorage.getItem("currentUserID")}`, {
-        method: "put",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({companyName: companyName})
-      }).then(res => res.json())
-        .then((data) => {
+      // fetch(`/users/${window.localStorage.getItem("currentUserID")}`, {
+      //   method: "put",
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({companyName: companyName})
+      // }).then(res => res.json())
+      //   .then((data) => {
 
-        console.log("CURRENT BASKET UPDATED:", data[0].currentBasketID )
-        window.localStorage.setItem("currentBasketID", data[0].currentBasketID)
-        console.log("LOCAL STORAGE:", window.localStorage.getItem("currentBasketID") )
-        navigate("/");
+      //   console.log("CURRENT BASKET UPDATED:", data[0].currentBasketID )
+      //   window.localStorage.setItem("currentBasketID", data[0].currentBasketID)
+      //   console.log("LOCAL STORAGE:", window.localStorage.getItem("currentBasketID") )
+      //   navigate("/");
         
-      })
+      // })
       
     };
+    navigate('/confirmation')
   }
   return (
     <div>
