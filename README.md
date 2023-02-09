@@ -22,6 +22,12 @@ This will install all of the dependencies required for this to run smoothly.
 
 ## Running the project
 
+Clone the project to your local machine.
+
+```
+git clone https://github.com/dev-mhowells/bakery-manager
+```
+
 For the client side, run npm start to start the client side of the project.
 
 ```
