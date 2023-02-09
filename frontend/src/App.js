@@ -2,9 +2,12 @@ import './styles.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Item from './Items/Item';
+import { useNavigate } from "react-router-dom";
+
 import Basket from './Basket/Basket';
 
 function App() {
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [updateBasket, setUpdateBasket] = useState(false)
   const [userID, setUserID] = useState(window.localStorage.getItem("currentUserID"));
@@ -28,6 +31,9 @@ function App() {
           setUser(data);
           setUpdateBasket(!updateBasket)
         })
+    }
+    else{
+      navigate("/login")
     }
   }, [])
 
