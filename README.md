@@ -9,14 +9,31 @@ This project was created with a view of automating some of the manual processes 
 
 Similarly for the admin users who can view their own profile, view all orders sent to them organised by date: soonest to latest, as well as add new stock and edit their current stock.
 
+<img src="https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"> <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"> <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"> 
+
 ## Project Setup
+
+Run npm install for both the frontend and backend folders to install all the dependencies.
+
 ```
 npm install
 ```
+This will install all of the dependencies required for this to run smoothly.
 
-<img src="https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white"> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"> <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"> <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"> 
+## Running the project
 
-This will install all of the dependancies required for this to run smoothly.
+For the client side, run npm start to start the client side of the project.
+
+```
+npm start
+```
+
+For the server side, run npm start to the server side of the project.
+
+```
+JWT_SECRET=SUPER_SECRET npm start
+```
+
 ## The process behind creating Bakery Manager
 ###### And how it came to be what it is now
 
@@ -31,13 +48,9 @@ Alongside this, we used a trello to truly keep track of where we were with imple
 <img width="1456" alt="Screenshot 2023-02-07 at 15 08 59" src="https://user-images.githubusercontent.com/106555227/217283167-d437854c-45c7-4c8c-9432-8e825a5e6140.png">
 
 Both of these helped us keep track of where we were in the development process, and by assigning ourselves to tickets on the trello it also made 
-it visable what we were working on. 
+it visable what we were working on.
 
 *Which is super important for communication!*
-
-## Schema Design
-
-## Backend Design
 
 ## Some frontend screenshots
 <img width="450" alt="截圖 2023-02-09 上午11 10 58" src="https://user-images.githubusercontent.com/114609139/217836349-d44952bb-4da9-4617-a1b6-6031f94c29ac.png">
