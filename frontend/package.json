@@ -25,7 +25,7 @@
     "eject": "react-scripts eject",
     "cypress:open": "cypress open"
   },
-  "proxy": "${process.env.PORT}",
+  "proxy": "https://bakery-manager.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",
