@@ -16,7 +16,7 @@ export default function Basket(props) {
     setBasketID(window.localStorage.getItem("currentBasketID"))
     console.log("BASKET ID  ", basketID)
     if (basketID){
-      fetch(`orders/getBasketInfo/${basketID}`, {
+      fetch(`https://bakery-manager.onrender.com/orders/getBasketInfo/${basketID}`, {
       })
       .then(response => response.json())
       .then(async data => {
@@ -41,7 +41,7 @@ export default function Basket(props) {
 
   const Checkout = async() => {
 
-    let response = await fetch(`/orders/update/totalPrice/${basketID}`, {
+    let response = await fetch(`https://bakery-manager.onrender.com/orders/update/totalPrice/${basketID}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
