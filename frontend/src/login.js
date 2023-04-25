@@ -13,7 +13,7 @@ export default function LogInForm({}) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		let response = await fetch('/tokens', {
+		let response = await fetch('https://bakery-manager.onrender.com/tokens', {
 			method: 'post',
 			headers: {
 				"Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function LogInForm({}) {
 
 
 	return (
-		<div className="hero min-h-screen bg-lightgreen">
+		<div className="min-h-screen hero bg-lightgreen">
 			<div className="flex place-content-evenly">
 				<div className="w-1/2">
 					<div class="min-h-screen py-6 flex flex-col sm:py-12">

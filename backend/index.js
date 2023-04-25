@@ -8,7 +8,7 @@ const bakersRouter = require("./routes/bakers");
 const usersRouter = require("./routes/users");
 const JWT = require("jsonwebtoken");
 const tokensRouter = require("./routes/tokens");
-
+const cors = require('cors');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -45,6 +45,7 @@ app.use("/batchOrders", batchOrdersRouter);
 app.use("/bakers", bakersRouter);
 app.use("/users", usersRouter);
 app.use("/tokens", tokensRouter);
+app.use(cors()); 
 
 
 main().catch(err => console.log(err));

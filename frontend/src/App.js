@@ -13,7 +13,7 @@ function App() {
   const [user, setUser] = useState([]);
   
   useEffect(() => {
-    fetch("/items", {
+    fetch("https://bakery-manager.onrender.com/items", {
     })
       .then(response => response.json())
       .then(async data => {
@@ -23,7 +23,7 @@ function App() {
 
     if (userID){
       
-      fetch(`/users/${userID}`, {
+      fetch(`https://bakery-manager.onrender.com/users/${userID}`, {
       })
         .then(response => response.json())
         .then(async data => {
