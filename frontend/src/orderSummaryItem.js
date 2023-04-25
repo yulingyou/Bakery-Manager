@@ -9,7 +9,7 @@ export default function OrderSummaryItem(props) {
   const [itemName, setItemName] = useState([]);
 
   useEffect(() => {
-    fetch(`/orders/getBatch/${props.orderID}`, {
+    fetch(`https://bakery-manager.onrender.com/orders/getBatch/${props.orderID}`, {
     })
       .then(response => response.json())
       .then(async data => {

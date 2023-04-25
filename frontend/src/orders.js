@@ -9,7 +9,7 @@ export default function Orders(props) {
 
 
     useEffect(() => {
-        fetch("batchOrders/getAll", {
+        fetch("https://bakery-manager.onrender.com/batchOrders/getAll", {
         })
             .then(response => response.json())
             .then(async data => {

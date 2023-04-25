@@ -26,7 +26,7 @@ export default function Item(props) {
   //Fetch batch orders within basket
   useEffect(() => {
     if (basketID){
-      fetch(`/orders/getBasketInfo/${basketID}`, {
+      fetch(`https://bakery-manager.onrender.com/orders/getBasketInfo/${basketID}`, {
       })
       .then(response => response.json())
       .then(async data => {
@@ -48,7 +48,7 @@ export default function Item(props) {
 
 const addBatchToOrder = async () => {
   console.log("BASKETID", basketID)
-    let response = await fetch(`/orders/addBatch/${basketID}`, {
+    let response = await fetch(`https://bakery-manager.onrender.com/orders/addBatch/${basketID}`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -67,7 +67,7 @@ const addBatchToOrder = async () => {
   }
 
   const removeBatchFromOrder = async () => {
-    let response = await fetch(`/orders/delete/batch/${batchID}`, {
+    let response = await fetch(`https://bakery-manager.onrender.com/orders/delete/batch/${batchID}`, {
       method: 'delete',
       headers: {
         'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ const addBatchToOrder = async () => {
   }
   
   const updateBatchOrder = async () =>{
-    let response = await fetch(`batchOrders/update/batch/${batchID}`, {
+    let response = await fetch(`https://bakery-manager.onrender.com/batchOrders/update/batch/${batchID}`, {
       method: 'put',
       headers: {
         'Content-Type': 'application/json'
@@ -127,22 +127,22 @@ const addBatchToOrder = async () => {
   const changeBasketButtonText = (text) => setBasketText(text);
 
   return (
-      <div className="m-10 place-content-evenly bg-lightgreen card w-96 shadow-xl rounded-t-lg">
+      <div className="m-10 rounded-t-lg shadow-xl place-content-evenly bg-lightgreen card w-96">
           <figure>
               <img class="rounded-t-lg object-cover h-64 w-96 " src={props.food.image} alt='food' />
           </figure>
           <div className="rounded-b-lg card-body">
-            <div className="bg-lightgreen text-black">
+            <div className="text-black bg-lightgreen">
               <h1 className="card-title heading">{props.food.itemName}</h1>
               <p>Price: {props.food.price.toFixed(2)}</p>
               <p>Batch Quantity: {props.food.batchQuantity}</p>
             </div>
-            <div className="card-actions justify-end w-28">
+            <div className="justify-end card-actions w-28">
       <button data-cy="decrease-btn" class='btn btn-circle btn-sm bg-bone text-black' onClick={()=>{changeCounter(-1)}}>-</button>
         <p className='text-center text-black' data-cy="counter">{counter}</p>
-        <button data-cy="increase-btn" className='btn btn-circle btn-sm bg-bone text-black' onClick={()=>{changeCounter(1)}}>+</button>
+        <button data-cy="increase-btn" className='text-black btn btn-circle btn-sm bg-bone' onClick={()=>{changeCounter(1)}}>+</button>
       </div>
-          <div data-cy="basket-btn" className="btn bg-bone text-black" onClick={() => updateBasket()}>{basketText}</div>
+          <div data-cy="basket-btn" className="text-black btn bg-bone" onClick={() => updateBasket()}>{basketText}</div>
       </div>
       </div>
     )

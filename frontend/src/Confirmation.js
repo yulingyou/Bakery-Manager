@@ -18,7 +18,7 @@ const Confirmation = () => {
     if (token) {
       //specify the localhost
     const basketID = window.localStorage.getItem("currentBasketID")
-    fetch(`/orders/filled/${basketID}`, { 
+    fetch(`https://bakery-manager.onrender.com/orders/filled/${basketID}`, { 
       method: "get",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ const Confirmation = () => {
   const totals = allNumbers.reduce((a, b) => a + b, 0)
 
   const resetBasket = async () => {
-    fetch(`/users/${window.localStorage.getItem("currentUserID")}`, {
+    fetch(`https://bakery-manager.onrender.com/users/${window.localStorage.getItem("currentUserID")}`, {
       method: "put",
       headers: {
         'Content-Type': 'application/json',

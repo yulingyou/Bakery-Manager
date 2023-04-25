@@ -28,7 +28,7 @@ export default function AddItem() {
     }
 
     useEffect(() => {
-        fetch("/items", {
+        fetch("https://bakery-manager.onrender.com/items", {
         })
           .then(response => response.json())
           .then(async data => {
@@ -73,7 +73,7 @@ export default function AddItem() {
                         ingredients,
                         batchQuantity}
 
-        const response = await fetch('/items', {
+        const response = await fetch('https://bakery-manager.onrender.com/items', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export default function AddItem() {
 
     const deleteItem = async (id) => {
         console.log('this is id', id)
-        const response = await fetch('/items/deleteItem', {
+        const response = await fetch('https://bakery-manager.onrender.com/items/deleteItem', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -139,7 +139,7 @@ export default function AddItem() {
         
         if(url !== null) {updatedItem.image = url}
 
-        const response = await fetch('/items/editItem', {
+        const response = await fetch('https://bakery-manager.onrender.com/items/editItem', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -169,7 +169,7 @@ export default function AddItem() {
         <td>
           <div className="flex items-center space-x-3">
             <div className="avatar">
-              <div className="mask mask-squircle w-12 h-12">
+              <div className="w-12 h-12 mask mask-squircle">
                 <img src={item.image} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
@@ -223,7 +223,7 @@ export default function AddItem() {
                                 <th>ingredients</th>
                                 <th>Batch Quantity</th>
                                 <th>
-                                <label htmlFor="my-modal-5" className="btn ml-10" onClick={resetFields}>add item</label>
+                                <label htmlFor="my-modal-5" className="ml-10 btn" onClick={resetFields}>add item</label>
                                 </th>
                                 </tr>
                             </thead>
@@ -234,8 +234,8 @@ export default function AddItem() {
                     </div>
                     <input type="checkbox" id="my-modal-5" className="modal-toggle" />
                         <div className="modal">
-                            <div className="modal-box w-11/12 max-w-5xl">
-                                <h3 className="font-bold text-lg">Add new item</h3>
+                            <div className="w-11/12 max-w-5xl modal-box">
+                                <h3 className="text-lg font-bold">Add new item</h3>
                                 <div className="card-body">
                                     <div className="form-control">
                                         <label className="label">
@@ -292,7 +292,7 @@ export default function AddItem() {
                                         value={batchQuantity}
                                         onChange={(e) => setBatchQuantity(e.target.value)}/>
                                     </div>
-                                <div className="form-control mt-6">
+                                <div className="mt-6 form-control">
                                     {isEditing ? 
                                     <label className="btn btn-primary" htmlFor="my-modal-5" onClick={() => {editItemWrapper()}}>Edit</label>
                                     :
@@ -300,7 +300,7 @@ export default function AddItem() {
                                     }
                                 </div>
                                 <input type="file" 
-                                className="file-input file-input-bordered file-input-xs w-full max-w-xs" 
+                                className="w-full max-w-xs file-input file-input-bordered file-input-xs" 
                                 onChange={handleChange}
                                 accept="/image/*"/>
                             </div>

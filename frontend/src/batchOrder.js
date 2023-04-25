@@ -6,7 +6,7 @@ const BatchOrder = (props) => {
   const [itemTotalBatchQuantity, setItemTotalBatchQuantity] = useState([]);
 
   useEffect(() => {
-    fetch(`items/${props.batchOrder.itemName}`, {
+    fetch(`https://bakery-manager.onrender.com/items/${props.batchOrder.itemName}`, {
     })
         .then(response => response.json())
         .then(async data => {

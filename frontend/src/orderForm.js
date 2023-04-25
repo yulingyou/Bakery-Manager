@@ -18,7 +18,7 @@ const OrderForm = () => {
     if (token) {
       //specify the localhost
     const basketID = window.localStorage.getItem("currentBasketID")
-    fetch(`/orders/${basketID}`, { 
+    fetch(`https://bakery-manager.onrender.com/orders/${basketID}`, { 
       // mode: 'cors',
       method: "get",
       headers: {
@@ -59,7 +59,7 @@ const OrderForm = () => {
     event.preventDefault();
     if (dateNeededBy !== null){
       // debugger;
-      fetch(`/orders/update/${orderId}`, {
+      fetch(`https://bakery-manager.onrender.com/orders/update/${orderId}`, {
         method: "put",
         headers: {
           'Content-Type': 'application/json',
