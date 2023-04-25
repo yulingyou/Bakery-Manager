@@ -15,7 +15,7 @@ export default function Signup({}) {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		let response = await fetch('/users', {
+		let response = await fetch('https://bakery-manager.onrender.com/users', {
 			method: 'post',
 			headers: {
 				"Content-Type": "application/json",
@@ -34,7 +34,7 @@ export default function Signup({}) {
 	};
 
 	return (
-		<div className="hero min-h-screen bg-lightgreen">
+		<div className="min-h-screen hero bg-lightgreen">
 				<div className="flex">
 					<div className="w-1/2">
 						<div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
@@ -49,7 +49,7 @@ export default function Signup({}) {
 								<div class="relative px-4 py-10 bg-bone border-b-8 border-r-8 border-beige drop-shadow-lg sm:rounded-3xl sm:p-20">
 									<div class="max-w-md mx-auto w-96">
 										<div>
-											<h1 className=" text-3xl text-center font-heading">Signup</h1>
+											<h1 className="text-3xl text-center  font-heading">Signup</h1>
 										</div>
 										<div class="divide-y divide-gray-200">
 											<div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
