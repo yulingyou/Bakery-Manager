@@ -8,7 +8,7 @@ export default function BasketItem(props) {
   const [itemName, setItemName] = useState([]);
 
   useEffect(() => {
-    fetch(`/orders/getBatch/${props.item._id}`, {
+    fetch(`https://bakery-manager.onrender.com/orders/getBatch/${props.item._id}`, {
     })
       .then(response => response.json())
       .then(async data => {
